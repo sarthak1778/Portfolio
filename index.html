@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarthak Choudhary | EEE Student | Embedded Systems & IoT Portfolio</title>
+<meta name="description" content="Sarthak Choudhary is an Electrical & Electronics Engineering student building IoT systems, embedded software, and practical web projects.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+:root{
+    --bg:#0A0D12;
+    --bg-soft:#0D1118;
+    --surface:#141922;
+    --surface-2:#1B212C;
+    --border:#242C39;
+    --border-bright:#37424F;
+    --copper:#F0935A;
+    --copper-soft:rgba(240,147,90,.14);
+    --copper-line:rgba(240,147,90,.45);
+    --teal:#5EEAD4;
+    --text:#EDEAE3;
+    --text-dim:#9AA3B5;
+    --text-faint:#5C6577;
+    --font-display:'Space Grotesk', sans-serif;
+    --font-body:'Inter', sans-serif;
+    --font-mono:'JetBrains Mono', monospace;
+    --rail-x:28px;
+    --rail-col:56px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+  }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  ::selection{ background:var(--copper); color:#1a0f08; }
+
+  a{ color:inherit; }
+  img{ max-width:100%; display:block; }
+
+  .wrap{ max-width:1100px; margin:0 auto; padding:0 24px; }
+
+  /* faint circuit-grid backdrop */
+  body::before{
+    content:'';
+    position:fixed; inset:0; z-index:-1;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size:64px 64px;
+    opacity:.06;
+  }
+
+  /* ---------- Topbar ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,13,18,.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .topbar-inner{
+    max-width:1100px; margin:0 auto; padding:16px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+  }
+  .logo{
+    font-family:var(--font-mono); font-size:14px; letter-spacing:.04em;
+    display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--text);
+  }
+  .logo .blip{
+    width:8px; height:8px; border-radius:50%; background:var(--copper);
+    box-shadow:0 0 8px var(--copper);
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{ 0%,100%{ opacity:1; } 50%{ opacity:.35; } }
+
+  nav.primary-nav{ display:flex; align-items:center; gap:28px; }
+  nav.primary-nav a{
+    font-family:var(--font-mono); font-size:12.5px; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--text-dim); text-decoration:none; transition:color .15s;
+    padding:4px 2px; border-bottom:1px solid transparent;
+  }
+  nav.primary-nav a:hover, nav.primary-nav a:focus-visible{ color:var(--copper); border-bottom-color:var(--copper-line); }
+
+  .topbar-actions{ display:flex; align-items:center; gap:14px; }
+  .icon-link{
+    width:34px; height:34px; border-radius:8px; border:1px solid var(--border-bright);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--text-dim); text-decoration:none; transition:.15s;
+  }
+  .icon-link:hover, .icon-link:focus-visible{ color:var(--copper); border-color:var(--copper-line); background:var(--copper-soft); }
+  .icon-link svg{ width:16px; height:16px; }
+
+  .btn{
+    font-family:var(--font-mono); font-size:12.5px; letter-spacing:.04em; text-transform:uppercase;
+    border:1px solid var(--copper); color:var(--copper); background:transparent;
+    padding:9px 16px; border-radius:8px; cursor:pointer; text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px; transition:.15s;
+  }
+  .btn:hover, .btn:focus-visible{ background:var(--copper); color:#160C06; }
+  .btn:disabled{ opacity:.55; cursor:wait; }
+  .btn.ghost{ border-color:var(--border-bright); color:var(--text-dim); }
+  .btn.ghost:hover{ border-color:var(--copper-line); color:var(--copper); background:var(--copper-soft); }
+
+  .menu-toggle{
+    display:none; width:38px; height:38px; border-radius:8px; border:1px solid var(--border-bright);
+    background:transparent; color:var(--text); align-items:center; justify-content:center; cursor:pointer;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding:88px 0 72px; }
+  .hero-grid{ display:grid; grid-template-columns:minmax(0,1.2fr) minmax(320px,.8fr); gap:28px; align-items:start; }
+  .terminal{
+    font-family:var(--font-mono); font-size:13px; color:var(--text-dim);
+    background:var(--surface); border:1px solid var(--border); border-radius:10px;
+    padding:18px 20px; max-width:560px; margin-bottom:36px;
+    min-height:128px;
+  }
+  .terminal .line{ white-space:pre; opacity:0; animation:reveal .3s forwards; }
+  .terminal .line.ready{ color:var(--teal); }
+  .cursor{ display:inline-block; width:7px; height:14px; background:var(--copper); margin-left:2px; vertical-align:-2px; animation:blink 1s step-end infinite; }
+  @keyframes reveal{ to{ opacity:1; } }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  .eyebrow{
+    font-family:var(--font-mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--copper); margin:0 0 14px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{ content:''; width:18px; height:1px; background:var(--copper-line); }
+
+  .hero h1{
+    font-family:var(--font-display); font-weight:700;
+    font-size:clamp(2.2rem, 5vw, 3.4rem); line-height:1.08; margin:0 0 18px; max-width:780px;
+  }
+  .hero h1 .accent{ color:var(--copper); }
+  .hero p.lede{
+    font-size:17px; color:var(--text-dim); max-width:620px; margin:0 0 32px;
+  }
+  .hero-actions{ display:flex; flex-wrap:wrap; gap:14px; }
+  .hero-facts{ display:flex; flex-wrap:wrap; gap:10px; margin:0 0 26px; }
+  .hero-facts span{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--text-dim); border:1px solid var(--border-bright); border-radius:999px;
+    padding:6px 11px; background:var(--surface);
+  }
+  .hero-panel{
+    background:linear-gradient(180deg, rgba(27,33,44,.95), rgba(20,25,34,.9));
+    border:1px solid var(--border); border-radius:18px; padding:22px;
+    box-shadow:0 20px 40px rgba(0,0,0,.18); position:relative; overflow:hidden;
+  }
+  .hero-panel::before{
+    content:''; position:absolute; inset:auto -24px -24px auto; width:170px; height:170px;
+    background:radial-gradient(circle, rgba(240,147,90,.2), transparent 70%); pointer-events:none;
+  }
+  .hero-panel h3{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--text-faint); margin:0 0 14px;
+  }
+  .summary-list{ display:grid; gap:12px; margin:0 0 18px; }
+  .summary-item{
+    border:1px solid var(--border-bright); border-radius:12px; background:rgba(13,17,24,.72);
+    padding:14px 15px;
+  }
+  .summary-item .label{
+    display:block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--text-faint); margin-bottom:4px;
+  }
+  .summary-item .value{ font-size:14px; color:var(--text); line-height:1.45; }
+  .ats-band{ display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+  .ats-band span{
+    font-family:var(--font-mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--text-faint); padding:6px 10px; border-radius:999px; border:1px dashed var(--border-bright);
+    background:rgba(10,13,18,.55);
+  }
+
+  /* ---------- Modules / circuit rail ---------- */
+  .modules{ position:relative; max-width:1100px; margin:0 auto; padding:0 24px; }
+  .modules::before{
+    content:''; position:absolute; left:calc(24px + var(--rail-x) - 1px);
+    top:0; bottom:0; width:2px;
+    background:linear-gradient(to bottom, transparent, var(--border-bright) 6%, var(--border-bright) 94%, transparent);
+  }
+  .module{
+    position:relative; display:grid; grid-template-columns:var(--rail-col) 1fr; gap:28px;
+    padding:72px 0; border-bottom:1px solid var(--border);
+  }
+  .module:last-child{ border-bottom:none; }
+  .module-marker{ display:flex; justify-content:center; padding-top:6px; }
+  .module-marker .dot{
+    width:14px; height:14px; border-radius:50%; background:var(--bg);
+    border:2px solid var(--copper); box-shadow:0 0 0 6px var(--bg), 0 0 14px rgba(240,147,90,.35);
+  }
+  .module-body{ min-width:0; }
+  .module h2{
+    font-family:var(--font-display); font-size:clamp(1.5rem,3vw,2rem); margin:0 0 16px; font-weight:600;
+  }
+  .module > .module-body > p.module-intro{ color:var(--text-dim); max-width:680px; margin:0 0 28px; }
+  .module-intro-compact{ max-width:760px; }
+
+  /* chips */
+  .chip-row{ display:flex; flex-wrap:wrap; gap:9px; }
+  .chip{
+    font-family:var(--font-mono); font-size:12px; color:var(--text-dim);
+    border:1px solid var(--border-bright); border-radius:999px; padding:6px 13px; background:var(--surface);
+  }
+
+  /* ---------- Telemetry ---------- */
+  .telemetry-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:28px; }
+  .stat{ background:var(--surface); padding:22px 18px; text-align:center; }
+  .stat-value{ display:block; font-family:var(--font-display); font-size:1.8rem; font-weight:700; color:var(--copper); }
+  .stat-label{ display:block; font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-faint); margin-top:6px; }
+
+  .telemetry-panels{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .panel{ background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:22px; }
+  .panel h3{ font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--text-faint); margin:0 0 16px; }
+
+  .lang-row{ display:grid; grid-template-columns:90px 1fr 28px; align-items:center; gap:10px; margin-bottom:10px; font-family:var(--font-mono); font-size:12px; }
+  .lang-name{ color:var(--text-dim); }
+  .lang-bar-track{ height:6px; border-radius:4px; background:var(--surface-2); overflow:hidden; }
+  .lang-bar-fill{ height:100%; background:linear-gradient(90deg, var(--copper), var(--teal)); border-radius:4px; }
+  .lang-count{ color:var(--text-faint); text-align:right; }
+
+  .repo-list{ display:flex; flex-direction:column; gap:12px; }
+  .repo-card{
+    display:block; border:1px solid var(--border); border-radius:10px; padding:14px 16px;
+    text-decoration:none; color:inherit; transition:.15s; background:var(--bg-soft);
+  }
+  .repo-card:hover, .repo-card:focus-visible{ border-color:var(--copper-line); background:var(--copper-soft); }
+  .repo-card-head{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
+  .repo-name{ font-family:var(--font-mono); font-size:13px; color:var(--text); }
+  .repo-star{ font-family:var(--font-mono); font-size:11px; color:var(--text-faint); }
+  .repo-desc{ font-size:13px; color:var(--text-dim); margin:6px 0 8px; }
+  .repo-meta{ display:flex; gap:14px; font-family:var(--font-mono); font-size:11px; color:var(--text-faint); }
+
+  .skeleton{ color:var(--text-faint); font-family:var(--font-mono); font-size:12.5px; }
+  .skeleton .blip{ display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--copper); margin-right:8px; animation:pulse 1.2s ease-in-out infinite; }
+  .error-state{ font-family:var(--font-mono); font-size:12.5px; color:var(--text-dim); }
+  .error-state a{ color:var(--copper); }
+
+  /* ---------- Projects ---------- */
+  .project-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .project-card{
+    background:linear-gradient(180deg, rgba(20,25,34,.98), rgba(13,17,24,.98)); border:1px solid var(--border); border-radius:16px; padding:24px;
+    display:flex; flex-direction:column; gap:14px; position:relative; min-height:100%;
+  }
+  .project-card::before{
+    content:''; position:absolute; top:0; left:24px; width:36px; height:2px; background:var(--copper);
+  }
+  .project-tag{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-faint); }
+  .project-card h3{ font-family:var(--font-display); font-size:1.15rem; margin:0; font-weight:600; }
+  .project-card p{ font-size:13.5px; color:var(--text-dim); margin:0; }
+  .project-meta{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px; margin-top:2px; }
+  .project-meta div{ padding:10px 12px; border:1px solid var(--border-bright); border-radius:10px; background:rgba(10,13,18,.4); }
+  .project-meta span{ display:block; font-family:var(--font-mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--text-faint); margin-bottom:4px; }
+  .project-meta strong{ font-weight:500; color:var(--text); font-size:13px; line-height:1.45; }
+  .project-points{ margin:0; padding-left:18px; display:grid; gap:6px; color:var(--text-dim); }
+  .project-points li{ font-size:13px; }
+  .project-tools{ display:flex; flex-wrap:wrap; gap:6px; }
+  .project-tools span{ font-family:var(--font-mono); font-size:10.5px; color:var(--text-faint); border:1px solid var(--border-bright); border-radius:6px; padding:3px 8px; }
+  .project-link{ font-family:var(--font-mono); font-size:12px; color:var(--copper); text-decoration:none; display:inline-flex; align-items:center; gap:6px; }
+  .project-link:hover{ text-decoration:underline; }
+
+  /* ---------- Education ---------- */
+  .edu-table{ width:100%; border-collapse:collapse; }
+  .edu-table th{
+    text-align:left; font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--text-faint); font-weight:500; padding:10px 14px; border-bottom:1px solid var(--border-bright);
+  }
+  .edu-table td{ padding:16px 14px; border-bottom:1px solid var(--border); font-size:14px; }
+  .edu-table tr:last-child td{ border-bottom:none; }
+  .edu-table td.score{ font-family:var(--font-mono); color:var(--copper); }
+  .edu-table td.inst{ color:var(--text-dim); }
+
+  /* ---------- Skills ---------- */
+  .skills-summary{ display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:12px; margin:0 0 24px; }
+  .skill-stat{ background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px; }
+  .skill-stat strong{ display:block; font-family:var(--font-display); font-size:1.15rem; color:var(--copper); margin-bottom:4px; }
+  .skill-stat span{ display:block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-faint); }
+  .skills-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:24px 32px; }
+  .skill-group h4{ font-family:var(--font-mono); font-size:11px; letter-spacing:.07em; text-transform:uppercase; color:var(--text-faint); margin:0 0 12px; }
+
+  /* ---------- Achievements ---------- */
+  .ach-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px; }
+  .ach-list li{ display:flex; gap:14px; align-items:flex-start; font-size:14.5px; color:var(--text-dim); }
+  .ach-list li::before{ content:'›'; color:var(--copper); font-family:var(--font-mono); font-weight:700; font-size:16px; line-height:1.4; }
+
+  /* ---------- Contact ---------- */
+  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+  .contact-rows{ display:flex; flex-direction:column; gap:16px; }
+  .contact-row{ display:flex; align-items:center; gap:14px; }
+  .contact-row .ico{ width:38px; height:38px; border-radius:8px; border:1px solid var(--border-bright); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--copper); }
+  .contact-row .ico svg{ width:16px; height:16px; }
+  .contact-row a, .contact-row span{ font-size:14.5px; text-decoration:none; color:var(--text); }
+  .contact-row a:hover{ color:var(--copper); }
+  .contact-row small{ display:block; font-family:var(--font-mono); font-size:10.5px; color:var(--text-faint); text-transform:uppercase; letter-spacing:.05em; }
+
+  .resume-cta{ background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:28px; display:flex; flex-direction:column; gap:16px; justify-content:center; }
+  .resume-cta p{ font-size:13.5px; color:var(--text-dim); margin:0; }
+
+  footer{ border-top:1px solid var(--border); padding:32px 0; }
+  .footer-inner{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
+  footer p{ font-family:var(--font-mono); font-size:11.5px; color:var(--text-faint); margin:0; }
+
+  /* ---------- Hidden printable resume sheet ---------- */
+  #resume-sheet{
+    position:absolute; left:-10000px; top:0; width:794px; background:#ffffff; color:#1a1a1a;
+    font-family:'Inter', Arial, sans-serif; padding:48px 52px;
+  }
+  #resume-sheet h1{ font-size:24px; margin:0 0 4px; letter-spacing:.01em; }
+  #resume-sheet .r-contact{ font-size:12px; color:#444; margin:0 0 18px; }
+  #resume-sheet .r-section{ margin-bottom:18px; }
+  #resume-sheet h2{ font-size:13px; text-transform:uppercase; letter-spacing:.06em; background:#f0f0f0; padding:6px 10px; margin:0 0 10px; border-left:3px solid #c97448; }
+  #resume-sheet p, #resume-sheet li{ font-size:12.5px; line-height:1.55; color:#222; }
+  #resume-sheet table{ width:100%; border-collapse:collapse; font-size:12px; }
+  #resume-sheet th{ text-align:left; padding:6px 8px; background:#f6f6f6; font-size:11px; text-transform:uppercase; letter-spacing:.04em; }
+  #resume-sheet td{ padding:6px 8px; border-top:1px solid #e4e4e4; }
+  #resume-sheet .r-proj{ margin-bottom:12px; }
+  #resume-sheet .r-proj-title{ font-weight:600; font-size:13px; margin-bottom:2px; }
+  #resume-sheet .r-proj-meta{ font-size:11px; color:#666; margin-bottom:4px; font-style:italic; }
+  #resume-sheet ul{ margin:0; padding-left:18px; }
+  #resume-sheet .r-skills li{ margin-bottom:3px; }
+  #resume-sheet .r-decl{ font-size:11px; color:#555; margin-top:20px; border-top:1px solid #e4e4e4; padding-top:12px; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:880px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .skills-summary{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+    .telemetry-grid{ grid-template-columns:repeat(2,1fr); }
+    .telemetry-panels{ grid-template-columns:1fr; }
+    .project-grid{ grid-template-columns:1fr; }
+    .skills-grid{ grid-template-columns:1fr; }
+    .contact-grid{ grid-template-columns:1fr; }
+  }
+  @media (max-width:700px){
+    .skills-summary{ grid-template-columns:1fr; }
+    nav.primary-nav{
+      position:fixed; top:67px; left:0; right:0; bottom:0; z-index:49;
+      background:var(--bg); flex-direction:column; align-items:flex-start; gap:0;
+      padding:8px 24px 24px; transform:translateY(-110%); transition:transform .2s ease; overflow:auto;
+    }
+    nav.primary-nav.open{ transform:translateY(0); }
+    nav.primary-nav a{ width:100%; padding:14px 0; border-bottom:1px solid var(--border); font-size:14px; }
+    .menu-toggle{ display:flex; }
+    .modules{ padding:0 20px; }
+    .modules::before, .module-marker{ display:none; }
+    .module{ grid-template-columns:1fr; padding:52px 0; gap:0; }
+    .telemetry-grid{ grid-template-columns:repeat(2,1fr); }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="#top" class="logo"><span class="blip"></span>S.CHOUDHARY</a>
+    <nav class="primary-nav" id="primaryNav">
+      <a href="#profile">Profile</a>
+      <a href="#telemetry">GitHub</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="topbar-actions">
+      <a class="icon-link" href="https://github.com/sarthak1778" target="_blank" rel="noopener" aria-label="GitHub profile">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.41-5.27 5.69.42.36.78 1.08.78 2.17 0 1.57-.01 2.83-.01 3.22 0 .31.21.67.8.56A10.52 10.52 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
+      </a>
+      <a class="icon-link" href="https://linkedin.com/in/sarthakchoudhary" target="_blank" rel="noopener" aria-label="LinkedIn profile">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.27 2.38 4.27 5.48v6.26ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+      </a>
+      <button class="btn resume-download-btn">Resume PDF</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="terminal" id="bootTerminal" aria-hidden="true"></div>
+        <p class="eyebrow">SYSTEM // PROFILE.INIT</p>
+        <h1>Sarthak Choudhary — <span class="accent">EEE student</span> building IoT, embedded, and web projects with practical impact.</h1>
+        <p class="lede">Electrical &amp; Electronics Engineering undergraduate focused on sensor-driven systems, embedded development, and clear, production-ready interfaces. I combine hardware, software, and analytics to build useful projects and support large student events through coordination and execution.</p>
+        <div class="hero-facts">
+          <span>EEE @ SMVIT</span>
+          <span>IoT &amp; Embedded Systems</span>
+          <span>Web Development</span>
+          <span>Event Coordination</span>
+        </div>
+        <div class="hero-actions">
+          <a href="#projects" class="btn">View Projects</a>
+          <button class="btn ghost resume-download-btn">Download Resume (PDF)</button>
+        </div>
+      </div>
+
+      <aside class="hero-panel">
+        <h3>Resume Snapshot</h3>
+        <div class="summary-list">
+          <div class="summary-item"><span class="label">Focus</span><span class="value">Embedded systems, IoT sensing, and web interfaces that map directly to the keywords recruiters scan for.</span></div>
+          <div class="summary-item"><span class="label">Core Stack</span><span class="value">C++, Python, Java, SQL, Arduino, ESP8266, MATLAB, Simulink, HTML, CSS, JavaScript, Vercel.</span></div>
+          <div class="summary-item"><span class="label">Technical Strength</span><span class="value">Controller design, sensor integration, dashboarding, deployment, and clear documentation of project outcomes.</span></div>
+        </div>
+        <div class="ats-band">
+          <span>Embedded C/C++</span>
+          <span>IoT</span>
+          <span>Control Systems</span>
+          <span>MATLAB</span>
+          <span>Simulink</span>
+          <span>Arduino Uno</span>
+          <span>ESP8266</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <div class="modules">
+
+    <section class="module" id="profile">
+      <div class="module-marker"><span class="dot"></span></div>
+      <div class="module-body">
+        <p class="eyebrow">M01 // Profile</p>
+        <h2>Objective</h2>
+        <p class="module-intro">Electrical and Electronics Engineering undergraduate with hands-on experience across IoT projects, embedded systems, software development, and data analytics — skilled in Java, Python, C++, SQL, Arduino, ESP8266, MATLAB, and Simulink. Active campus ambassador and event coordinator with strong leadership, communication, and problem-solving skills.</p>
+        <div class="chip-row">
+          <span class="chip">Leadership</span>
+          <span class="chip">Event Coordination</span>
+          <span class="chip">Cross-functional Teams</span>
+          <span class="chip">Problem Solving</span>
+          <span class="chip">Public Communication</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="module" id="telemetry">
+      <div class="module-marker"><span class="dot"></span></div>
+      <div class="module-body">
+        <p class="eyebrow">M02 // Live Telemetry</p>
+        <h2>GitHub Activity</h2>
+        <p class="module-intro">Pulled live from the GitHub API on every page load — always current, no manual updates needed.</p>
+
+        <div class="telemetry-grid" id="ghStats">
+          <div class="stat"><span class="stat-value">—</span><span class="stat-label">Repositories</span></div>
+          <div class="stat"><span class="stat-value">—</span><span class="stat-label">Followers</span></div>
+          <div class="stat"><span class="stat-value">—</span><span class="stat-label">Stars Earned</span></div>
+          <div class="stat"><span class="stat-value">—</span><span class="stat-label">On GitHub Since</span></div>
+        </div>
+
+        <div class="telemetry-panels">
+          <div class="panel">
+            <h3>Top Languages</h3>
+            <div id="ghLanguages" class="skeleton"><span class="blip"></span>Reading language data…</div>
+          </div>
+          <div class="panel">
+            <h3>Recently Updated Repos</h3>
+            <div id="ghRepos" class="skeleton"><span class="blip"></span>Fetching repositories…</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="module" id="projects">
+      <div class="module-marker"><span class="dot"></span></div>
+      <div class="module-body">
+        <p class="eyebrow">M03 // Projects</p>
+        <h2>Project Experience</h2>
+        <p class="module-intro module-intro-compact">Three selected projects, written in a more resume-oriented style: each one emphasizes scope, tech stack, and what I actually built or improved.</p>
+        <div class="project-grid">
+
+          <div class="project-card">
+            <span class="project-tag">Independent Project</span>
+            <h3>Prakash Jewellers Website</h3>
+            <p>Designed and deployed a responsive commercial website for a family jewellery business, using AI-assisted coding workflows end-to-end — from layout to deployment.</p>
+            <div class="project-meta">
+              <div><span>Role</span><strong>Full-stack frontend build and deployment</strong></div>
+              <div><span>Outcome</span><strong>Fast, responsive business site ready for public use</strong></div>
+            </div>
+            <ul class="project-points">
+              <li>Built a mobile-first UI with a clear product flow and contact-focused conversion path.</li>
+              <li>Used AI-assisted development to accelerate layout, copy refinement, and implementation.</li>
+              <li>Deployed to Vercel for quick iteration and public access.</li>
+            </ul>
+            <div class="project-tools"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Vercel</span><span>AI-assisted dev</span></div>
+            <a class="project-link" href="https://prakashjewellers.vercel.app/" target="_blank" rel="noopener">View live site →</a>
+          </div>
+
+          <div class="project-card">
+            <span class="project-tag">College Project</span>
+            <h3>Smart Plant Monitoring System</h3>
+            <p>IoT-based monitoring system using Arduino Uno and ESP8266 for real-time sensing, automated irrigation, and cloud dashboards — built to cut water waste and manual upkeep.</p>
+            <div class="project-meta">
+              <div><span>Role</span><strong>Hardware integration, sensing logic, and cloud data flow</strong></div>
+              <div><span>Outcome</span><strong>Reduced manual watering with sensor-triggered automation</strong></div>
+            </div>
+            <ul class="project-points">
+              <li>Integrated DHT11 and soil moisture sensing to capture live environmental conditions.</li>
+              <li>Used ESP8266 to push readings to ThingSpeak for remote monitoring and dashboarding.</li>
+              <li>Added relay-driven irrigation logic to automate watering based on sensor thresholds.</li>
+            </ul>
+            <div class="project-tools"><span>Arduino Uno</span><span>ESP8266</span><span>DHT11</span><span>ThingSpeak</span><span>Relay Control</span></div>
+          </div>
+
+          <div class="project-card">
+            <span class="project-tag">College Project</span>
+            <h3>Hybrid ANN-PID PMSM Speed Control</h3>
+            <p>Simulated and analyzed a hybrid ANN-PID controller for PMSM speed regulation in MATLAB/Simulink, improving dynamic response and cutting steady-state error.</p>
+            <div class="project-meta">
+              <div><span>Role</span><strong>Modeling, controller tuning, and simulation analysis</strong></div>
+              <div><span>Outcome</span><strong>Better transient response and lower steady-state error</strong></div>
+            </div>
+            <ul class="project-points">
+              <li>Modeled the drive system in MATLAB/Simulink to compare controller behavior under load changes.</li>
+              <li>Combined ANN-based adaptation with PID tuning to improve dynamic regulation.</li>
+              <li>Analyzed speed response curves to validate stability and performance improvements.</li>
+            </ul>
+            <div class="project-tools"><span>MATLAB</span><span>Simulink</span><span>Control Systems</span><span>ANN</span></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="module" id="education">
+      <div class="module-marker"><span class="dot"></span></div>
+      <div class="module-body">
+        <p class="eyebrow">M04 // Education</p>
+        <h2>Academic Record</h2>
+        <table class="edu-table">
+          <thead><tr><th>Level</th><th>Institution</th><th>Score</th><th>Year</th></tr></thead>
+          <tbody>
+            <tr><td>Bachelor of Engineering (EEE)</td><td class="inst">Sir M Visvesvaraya Institute of Technology, Bengaluru</td><td class="score">8.39 CGPA</td><td>2023 – Pursuing</td></tr>
+            <tr><td>12th</td><td class="inst">Delhi Public School, Bokaro</td><td class="score">85%</td><td>2021 – 23</td></tr>
+            <tr><td>10th</td><td class="inst">DAV Public School, Tenughat</td><td class="score">89.6%</td><td>2021</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="module" id="skills">
+      <div class="module-marker"><span class="dot"></span></div>
+      <div class="module-body">
+        <p class="eyebrow">M05 // Skills</p>
+        <h2>Technical Skills</h2>
+        <div class="skills-summary">
+          <div class="skill-stat"><strong>7+</strong><span>Core technical categories</span></div>
+          <div class="skill-stat"><strong>10+</strong><span>Languages, tools, and frameworks</span></div>
+          <div class="skill-stat"><strong>3</strong><span>Project domains: web, IoT, control</span></div>
+          <div class="skill-stat"><strong>ATS</strong><span>Keyword-friendly skill coverage</span></div>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <h4>Programming</h4>
+            <div class="chip-row"><span class="chip">C++</span><span class="chip">Python</span><span class="chip">Java</span><span class="chip">SQL</span><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span></div>
+          </div>
+          <div class="skill-group">
+            <h4>Embedded &amp; IoT</h4>
+            <div class="chip-row"><span class="chip">Arduino Uno</span><span class="chip">ESP32</span><span class="chip">ESP8266</span><span class="chip">Raspberry Pi</span><span class="chip">Sensor Integration</span></div>
+          </div>
+          <div class="skill-group">
+            <h4>Core EEE</h4>
+            <div class="chip-row"><span class="chip">Power Electronics</span><span class="chip">PMSM Drives</span><span class="chip">Control Systems</span><span class="chip">PWM</span><span class="chip">Power System Analysis</span></div>
+          </div>
+          <div class="skill-group">
+            <h4>AI &amp; Emerging Tech</h4>
+            <div class="chip-row"><span class="chip">ANN</span><span class="chip">AI-Assisted Development</span><span class="chip">Prompt Engineering</span><span class="chip">LLM Integration</span><span class="chip">Gesture &amp; Eye-Tracking UI</span></div>
+          </div>
+          <div class="skill-group">
+            <h4>Tools</h4>
+            <div class="chip-row"><span class="chip">MATLAB</span><span class="chip">Simulink</span><span class="chip">Arduino IDE</span><span class="chip">Vercel</span></div>
+          </div>
+          <div class="skill-group">
+            <h4>Certifications</h4>
+            <div class="chip-row"><span class="chip">Data Analytics Foundations — Coursera</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="module" id="achievements">
+      <div class="module-marker"><span class="dot"></span></div>
+      <div class="module-body">
+        <p class="eyebrow">M06 // Achievements</p>
+        <h2>Leadership &amp; Achievements</h2>
+        <ul class="ach-list">
+          <li>Campus Ambassador for Google Gemini and Kreo Gaming.</li>
+          <li>Organized large-scale college and corporate events in partnership with O3 Events Management Company.</li>
+          <li>Coordinated logistics for 1,200+ participants as a Volunteer at Aero India 2025.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="module" id="contact">
+      <div class="module-marker"><span class="dot"></span></div>
+      <div class="module-body">
+        <p class="eyebrow">IO // Contact</p>
+        <h2>Get In Touch</h2>
+        <div class="contact-grid">
+          <div class="contact-rows">
+            <div class="contact-row">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/></svg></span>
+              <div><small>Email</small><a href="mailto:sarthakchoudhary1778@gmail.com">sarthakchoudhary1778@gmail.com</a></div>
+            </div>
+            <div class="contact-row">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.8 2.2Z"/></svg></span>
+              <div><small>Phone</small><a href="tel:+919341664156">+91 93416 64156</a></div>
+            </div>
+            <div class="contact-row">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.41-5.27 5.69.42.36.78 1.08.78 2.17 0 1.57-.01 2.83-.01 3.22 0 .31.21.67.8.56A10.52 10.52 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg></span>
+              <div><small>GitHub</small><a href="https://github.com/sarthak1778" target="_blank" rel="noopener">github.com/sarthak1778</a></div>
+            </div>
+            <div class="contact-row">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.27 2.38 4.27 5.48v6.26ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></span>
+              <div><small>LinkedIn</small><a href="https://linkedin.com/in/sarthakchoudhary" target="_blank" rel="noopener">linkedin.com/in/sarthakchoudhary</a></div>
+            </div>
+          </div>
+
+          <div class="resume-cta">
+            <h3 style="font-family:var(--font-mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-faint); margin:0;">Export</h3>
+            <p>Generate a clean, ATS-friendly PDF version of this resume — formatted from the same data shown on this page.</p>
+            <button class="btn resume-download-btn">Download Resume (PDF)</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <p>// Built with HTML, CSS &amp; JS — GitHub data live via api.github.com</p>
+    <p id="footerYear">// © 2026 Sarthak Choudhary</p>
+  </div>
+</footer>
+
+<!-- Hidden printable resume sheet, used only for PDF export -->
+<div id="resume-sheet" aria-hidden="true">
+  <h1>Sarthak Choudhary</h1>
+  <p class="r-contact">
+    sarthakchoudhary1778@gmail.com &nbsp;|&nbsp; +91 93416 64156 &nbsp;|&nbsp;
+    github.com/sarthak1778 &nbsp;|&nbsp; linkedin.com/in/sarthakchoudhary
+  </p>
+
+  <div class="r-section">
+    <h2>Objective</h2>
+    <p>Electrical and Electronics Engineering undergraduate with experience in IoT projects, software development, and data analytics. Skilled in Java, Python, C++, SQL, and Arduino-based systems. Active campus ambassador and event coordinator with strong leadership, communication, and problem-solving abilities.</p>
+  </div>
+
+  <div class="r-section">
+    <h2>Education</h2>
+    <table>
+      <thead><tr><th>Level</th><th>Institution</th><th>Score</th><th>Year</th></tr></thead>
+      <tbody>
+        <tr><td>B.E. (EEE)</td><td>Sir M Visvesvaraya Institute of Technology, Bengaluru</td><td>8.39 CGPA</td><td>2023 – Pursuing</td></tr>
+        <tr><td>12th</td><td>Delhi Public School, Bokaro</td><td>85%</td><td>2021 – 23</td></tr>
+        <tr><td>10th</td><td>DAV Public School, Tenughat</td><td>89.6%</td><td>2021</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="r-section">
+    <h2>Project Experience</h2>
+    <div class="r-proj">
+      <div class="r-proj-title">Prakash Jewellers Website — Independent Project</div>
+      <div class="r-proj-meta">HTML, CSS, JavaScript, Vercel, AI-assisted development</div>
+      <p>Developed and deployed a responsive commercial website for Prakash Jewellers using AI-assisted coding, demonstrating proficiency in modern web development and deployment practices.</p>
+    </div>
+    <div class="r-proj">
+      <div class="r-proj-title">Smart Plant Monitoring System — College Project</div>
+      <div class="r-proj-meta">Arduino Uno, ESP8266, DHT11, Soil Moisture &amp; LDR Sensors, Relay Module, ThingSpeak API</div>
+      <p>Built an IoT-based smart plant monitoring system for real-time sensing, automated irrigation, and cloud monitoring — improving water conservation and reducing manual effort.</p>
+    </div>
+    <div class="r-proj">
+      <div class="r-proj-title">Hybrid ANN-PID PMSM Speed Control — College Project</div>
+      <div class="r-proj-meta">MATLAB, Simulink</div>
+      <p>Designed a hybrid ANN-PID controller for PMSM speed control, enhancing dynamic performance and reducing steady-state error.</p>
+    </div>
+  </div>
+
+  <div class="r-section">
+    <h2>Technical Skills</h2>
+    <ul class="r-skills">
+      <li><strong>Programming:</strong> C++, Python, Java, SQL, HTML, CSS, JavaScript</li>
+      <li><strong>Embedded &amp; IoT:</strong> Arduino Uno, ESP32, ESP8266, Raspberry Pi, Sensor Integration</li>
+      <li><strong>Tools:</strong> MATLAB, Simulink, Arduino IDE, Vercel</li>
+      <li><strong>Core EEE:</strong> Power Electronics, PMSM Drives, Control Systems, PWM, Power System Analysis</li>
+      <li><strong>AI &amp; Emerging Tech:</strong> ANN, AI-Assisted Development, Prompt Engineering, LLM Integration, AI Video Editing, Gesture &amp; Eye-Tracking Interfaces</li>
+    </ul>
+  </div>
+
+  <div class="r-section">
+    <h2>Certifications</h2>
+    <p>Data Analytics Foundations — Coursera</p>
+  </div>
+
+  <div class="r-section">
+    <h2>Achievements</h2>
+    <ul>
+      <li>Campus Ambassador — Google Gemini, Kreo Gaming</li>
+      <li>Organized large-scale college and corporate events with O3 Events Management Company</li>
+      <li>Coordinated events with 1,200+ participants, Volunteer, Aero India 2025</li>
+    </ul>
+  </div>
+
+  <p class="r-decl">I hereby declare that the above written particulars are true to the best of my knowledge and belief.</p>
+</div>
+
+<script>
+  // ---------- Mobile nav ----------
+  const menuToggle = document.getElementById('menuToggle');
+  const primaryNav = document.getElementById('primaryNav');
+  menuToggle.addEventListener('click', () => {
+    const open = primaryNav.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  function closeMobileNav(){
+    primaryNav.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }
+  primaryNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileNav));
+  document.addEventListener('click', event => {
+    if(!primaryNav.classList.contains('open')) return;
+    if(primaryNav.contains(event.target) || menuToggle.contains(event.target)) return;
+    closeMobileNav();
+  });
+  document.addEventListener('keydown', event => {
+    if(event.key === 'Escape') closeMobileNav();
+  });
+
+  // ---------- Footer year ----------
+  document.getElementById('footerYear').textContent = `// © ${new Date().getFullYear()} Sarthak Choudhary`;
+
+  // ---------- Boot sequence ----------
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const bootLines = [
+    '> booting profile.sys ...',
+    '> loading modules: education, projects, skills, achievements',
+    '> linking github.com/sarthak1778',
+    '> status: READY'
+  ];
+  function runBoot(){
+    const term = document.getElementById('bootTerminal');
+    if(reduceMotion){
+      term.innerHTML = bootLines.map((l,i)=>`<div class="line ready" style="opacity:1">${l}</div>`).join('');
+      return;
+    }
+    let delay = 0;
+    bootLines.forEach((line, i) => {
+      const div = document.createElement('div');
+      div.className = 'line' + (i === bootLines.length - 1 ? ' ready' : '');
+      div.style.animationDelay = delay + 'ms';
+      div.textContent = line;
+      if(i === bootLines.length - 1){
+        const cursor = document.createElement('span');
+        cursor.className = 'cursor';
+        div.appendChild(cursor);
+      }
+      term.appendChild(div);
+      delay += 420;
+    });
+  }
+  runBoot();
+
+  // ---------- GitHub live telemetry ----------
+  const GH_USERNAME = 'sarthak1778';
+
+  function escapeHtml(str){
+    const d = document.createElement('div');
+    d.textContent = str || '';
+    return d.innerHTML;
+  }
+  function timeAgo(iso){
+    const diffMs = Date.now() - new Date(iso).getTime();
+    const days = Math.floor(diffMs / 86400000);
+    if(days < 1) return 'today';
+    if(days === 1) return '1 day ago';
+    if(days < 30) return `${days} days ago`;
+    const months = Math.floor(days / 30);
+    if(months < 12) return `${months} mo ago`;
+    return `${Math.floor(months/12)} yr ago`;
+  }
+
+  async function loadGithubTelemetry(){
+    const statsWrap = document.getElementById('ghStats');
+    const langWrap = document.getElementById('ghLanguages');
+    const repoWrap = document.getElementById('ghRepos');
+
+    try {
+      const [userRes, reposRes] = await Promise.all([
+        fetch(`https://api.github.com/users/${GH_USERNAME}`),
+        fetch(`https://api.github.com/users/${GH_USERNAME}/repos?per_page=100&sort=updated`)
+      ]);
+      if(!userRes.ok || !reposRes.ok) throw new Error('GitHub API error');
+      const user = await userRes.json();
+      const repos = await reposRes.json();
+
+      const totalStars = repos.reduce((s, r) => s + (r.stargazers_count || 0), 0);
+
+      statsWrap.innerHTML = `
+        <div class="stat"><span class="stat-value">${user.public_repos ?? '—'}</span><span class="stat-label">Repositories</span></div>
+        <div class="stat"><span class="stat-value">${user.followers ?? '—'}</span><span class="stat-label">Followers</span></div>
+        <div class="stat"><span class="stat-value">${totalStars}</span><span class="stat-label">Stars Earned</span></div>
+        <div class="stat"><span class="stat-value">${user.created_at ? new Date(user.created_at).getFullYear() : '—'}</span><span class="stat-label">On GitHub Since</span></div>
+      `;
+
+      // Languages
+      const langCount = {};
+      repos.forEach(r => { if(r.language) langCount[r.language] = (langCount[r.language] || 0) + 1; });
+      const topLangs = Object.entries(langCount).sort((a,b) => b[1]-a[1]).slice(0,5);
+      if(topLangs.length){
+        const max = topLangs[0][1];
+        langWrap.classList.remove('skeleton');
+        langWrap.innerHTML = topLangs.map(([lang,count]) => `
+          <div class="lang-row">
+            <span class="lang-name">${escapeHtml(lang)}</span>
+            <div class="lang-bar-track"><div class="lang-bar-fill" style="width:${Math.round(count/max*100)}%"></div></div>
+            <span class="lang-count">${count}</span>
+          </div>
+        `).join('');
+      } else {
+        langWrap.classList.remove('skeleton');
+        langWrap.innerHTML = `<p class="error-state">No public language data yet.</p>`;
+      }
+
+      // Recent repos
+      const topRepos = repos
+        .filter(r => !r.fork)
+        .sort((a,b) => new Date(b.updated_at) - new Date(a.updated_at))
+        .slice(0,4);
+      if(topRepos.length){
+        repoWrap.classList.remove('skeleton');
+        repoWrap.innerHTML = `<div class="repo-list">` + topRepos.map(r => `
+          <a class="repo-card" href="${r.html_url}" target="_blank" rel="noopener">
+            <div class="repo-card-head">
+              <span class="repo-name">${escapeHtml(r.name)}</span>
+              <span class="repo-star">★ ${r.stargazers_count || 0}</span>
+            </div>
+            <p class="repo-desc">${r.description ? escapeHtml(r.description) : 'No description provided.'}</p>
+            <div class="repo-meta">
+              ${r.language ? `<span>${escapeHtml(r.language)}</span>` : ''}
+              <span>Updated ${timeAgo(r.updated_at)}</span>
+            </div>
+          </a>
+        `).join('') + `</div>`;
+      } else {
+        repoWrap.classList.remove('skeleton');
+        repoWrap.innerHTML = `<p class="error-state">No public repositories yet.</p>`;
+      }
+
+    } catch (err) {
+      statsWrap.innerHTML = `<div class="stat" style="grid-column:1/-1;"><p class="error-state">Live data temporarily unavailable. <a href="https://github.com/${GH_USERNAME}" target="_blank" rel="noopener">View profile on GitHub →</a></p></div>`;
+      langWrap.classList.remove('skeleton');
+      langWrap.innerHTML = `<p class="error-state">Unavailable right now.</p>`;
+      repoWrap.classList.remove('skeleton');
+      repoWrap.innerHTML = `<p class="error-state">Unavailable right now.</p>`;
+    }
+  }
+  loadGithubTelemetry();
+
+  // ---------- PDF export ----------
+  const allResumeBtns = Array.from(document.querySelectorAll('.resume-download-btn'));
+  const originalLabels = allResumeBtns.map(b => b.textContent);
+
+  allResumeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const el = document.getElementById('resume-sheet');
+      allResumeBtns.forEach(b => { b.disabled = true; b.textContent = 'Generating…'; });
+      const opt = {
+        margin: 0.35,
+        filename: 'Sarthak_Choudhary_Resume.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+      };
+      const restore = () => allResumeBtns.forEach((b, i) => { b.disabled = false; b.textContent = originalLabels[i]; });
+      html2pdf().set(opt).from(el).save().then(restore).catch(() => {
+        restore();
+        alert('PDF generation failed — please try again.');
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

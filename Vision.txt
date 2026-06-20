@@ -1,0 +1,171 @@
+I want to create my portfolio engaging and people attracting.
+in that i want to add and ai bot that will automatically answers for the questions which a user will ask irrespective of the availability of mine.
+in that website if someone will want to open my linkedin it will open within it only
+in that my spotify and all the social media buttons will exist and all tooo in a stylish way
+in that my GitHub will also open and all the things will open within my website in the same way as that of linkedin.
+there will be an ai bot which will automatically update my portfolio website according to the data i post on the linkedIN and GitHub and it will be UpToDate without any effort from me
+reference portfolio:
+https://bruno-simon.com/?utm_source=chatgpt.com
+https://brittanychiang.com/?utm_source=chatgpt.com 
+https://dennissnellenberg.com/?utm_source=chatgpt.com
+https://www.joshwcomeau.com/?utm_source=chatgpt.com
+https://www.joshwcomeau.com/?utm_source=chatgpt.com
+
+🥇 1. Bruno Simon — Most Legendary
+
+Bruno Simon Portfolio
+
+🎮 Interactive 3D world built with Three.js.
+
+Features
+
+Drive a car around the website
+Physics engine
+Stunning animations
+Memorable experience
+
+Tech
+
+Three.js
+GSAP
+JavaScript
+
+Difficulty: 10/10
+
+🥈 Lee Robinson — Clean and Professional
+
+Lee Robinson Portfolio
+
+(VP at Vercel)
+
+Features
+
+Minimal design
+Blog
+Analytics
+Dark mode
+Beautiful typography
+
+Tech
+
+Next.js
+TailwindCSS
+TypeScript
+
+Difficulty: 7/10
+
+🥉 Brittany Chiang — Developer Portfolio GOAT
+
+Brittany Chiang Portfolio
+
+Features
+
+Elegant design
+Smooth animations
+Experience timeline
+Projects section
+Perfect spacing
+
+Tech
+
+React
+Gatsby
+Styled Components
+
+Difficulty: 6/10
+
+🔥 Dennis Snellenberg
+
+Dennis Snellenberg Portfolio
+
+Features
+
+Award-winning
+GSAP animations
+Insane scrolling effects
+
+Difficulty: 10/10
+
+🚀 Josh Comeau
+
+Josh Comeau Portfolio
+
+Features
+
+Beautiful UI
+Blogs
+Dark mode
+Premium feel
+⭐ Matthew Williams
+
+Matthew Williams Portfolio
+
+Clean, modern and recruiter-friendly.
+
+⚡ Apple-Inspired Portfolio
+
+Inspired by:
+
+Apple
+Vercel
+Linear
+Raycast
+
+Features
+
+Glassmorphism
+Aurora background
+Spotlight effect
+Smooth Framer Motion animations
+Dark mode
+Animated cards
+Project showcase
+GitHub stats
+Timeline
+Testimonials
+Resume download
+Contact form
+
+
+💎 What I recommend for YOU
+
+Since you're:
+
+EEE student
+Google Gemini Campus Ambassador
+AI Enthusiast
+Developer
+Interested in placements and internships
+
+I would combine:
+
+🟢 UI Style
+
+Apple + Vercel + Linear
+
+🟢 Layout
+
+Brittany Chiang
+
+🟢 Animations
+
+Dennis Snellenberg
+
+🟢 GitHub Integration
+
+Lee Robinson
+
+🟢 Background Effects
+
+MagicUI + Aceternity UI
+
+🟢 Extra
+Particle background
+Aurora gradients
+Project cards
+Experience timeline
+Skills radar
+GitHub contribution graph
+Animated cursor
+Floating navbar
+Spotlight cards
