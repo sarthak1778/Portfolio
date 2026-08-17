@@ -337,6 +337,69 @@
   #resume-sheet .r-skills li{ margin-bottom:3px; }
   #resume-sheet .r-decl{ font-size:11px; color:#555; margin-top:20px; border-top:1px solid #e4e4e4; padding-top:12px; }
 
+
+  /* ---------- M02 Live Activity ---------- */
+  .activity-toolbar{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:16px;margin-bottom:20px;flex-wrap:wrap;
+  }
+  .activity-sync,.activity-status{
+    font-family:var(--font-mono);font-size:10.5px;color:var(--text-faint);
+    text-transform:uppercase;letter-spacing:.05em;
+  }
+  .activity-status{display:inline-flex;align-items:center;gap:8px}
+  .activity-status .status-dot{
+    width:7px;height:7px;border-radius:50%;background:var(--teal);
+    box-shadow:0 0 8px rgba(94,234,212,.5)
+  }
+  .activity-status.loading .status-dot{background:var(--copper);animation:pulse 1s infinite}
+  .activity-status.error .status-dot{background:#ef6b73}
+  .activity-feed{display:grid;gap:12px}
+  .activity-card{
+    position:relative;display:grid;grid-template-columns:42px 1fr auto;
+    gap:14px;align-items:start;padding:18px;background:var(--surface);
+    border:1px solid var(--border);border-radius:14px;transition:.18s;
+  }
+  .activity-card:hover{transform:translateY(-2px);border-color:var(--copper-line);background:var(--copper-soft)}
+  .activity-card.is-new{border-color:rgba(94,234,212,.35)}
+  .activity-card.is-new::before{
+    content:'';position:absolute;left:0;top:18px;bottom:18px;width:2px;
+    background:var(--teal);border-radius:2px;
+  }
+  .activity-icon{
+    width:42px;height:42px;border:1px solid var(--border-bright);border-radius:11px;
+    display:flex;align-items:center;justify-content:center;background:var(--bg-soft);
+    color:var(--copper);font-family:var(--font-mono);font-size:11px;font-weight:700;
+  }
+  .activity-icon.linkedin{color:#70a9ff}
+  .activity-icon.github{color:var(--text)}
+  .activity-content{min-width:0}
+  .activity-topline{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:5px}
+  .activity-source,.activity-type{
+    font-family:var(--font-mono);font-size:9.5px;text-transform:uppercase;
+    letter-spacing:.07em;padding:3px 7px;border:1px solid var(--border-bright);
+    border-radius:5px;color:var(--text-faint)
+  }
+  .activity-type{color:var(--copper)}
+  .activity-title{font-family:var(--font-display);font-size:15px;font-weight:600;margin:0 0 5px}
+  .activity-description{margin:0;color:var(--text-dim);font-size:13px;line-height:1.5}
+  .activity-meta{display:flex;flex-direction:column;align-items:flex-end;gap:8px;white-space:nowrap}
+  .activity-time{font-family:var(--font-mono);font-size:10px;color:var(--text-faint)}
+  .activity-new{font-family:var(--font-mono);font-size:9px;color:var(--teal);border:1px solid rgba(94,234,212,.35);padding:3px 6px;border-radius:5px}
+  .activity-link{font-family:var(--font-mono);font-size:10.5px;color:var(--copper);text-decoration:none}
+  .activity-link:hover{text-decoration:underline}
+  .activity-empty,.activity-error{
+    border:1px dashed var(--border-bright);border-radius:12px;padding:22px;
+    color:var(--text-faint);font-family:var(--font-mono);font-size:12px;
+  }
+  .auto-project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .auto-project{padding:16px;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+  .auto-project-label{font-family:var(--font-mono);font-size:9.5px;color:var(--teal);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+  .auto-project h4{font-family:var(--font-display);margin:0 0 7px;font-size:15px}
+  .auto-project p{color:var(--text-dim);font-size:12.5px;margin:0 0 10px}
+  .auto-project-meta{display:flex;gap:7px;flex-wrap:wrap}
+  .auto-project-meta span{font-family:var(--font-mono);font-size:9.5px;padding:4px 7px;border:1px solid var(--border-bright);border-radius:5px;color:var(--text-faint)}
+
   /* ---------- Responsive ---------- */
   @media (max-width:880px){
     .hero-grid{ grid-template-columns:1fr; }
@@ -361,6 +424,10 @@
     .modules::before, .module-marker{ display:none; }
     .module{ grid-template-columns:1fr; padding:52px 0; gap:0; }
     .telemetry-grid{ grid-template-columns:repeat(2,1fr); }
+    .activity-card{grid-template-columns:36px 1fr}
+    .activity-icon{width:36px;height:36px}
+    .activity-meta{grid-column:2;align-items:flex-start;flex-direction:row;flex-wrap:wrap}
+    .auto-project-grid{grid-template-columns:1fr}
   }
 </style>
 </head>
@@ -371,10 +438,12 @@
     <a href="#top" class="logo"><span class="blip"></span>S.CHOUDHARY</a>
     <nav class="primary-nav" id="primaryNav">
       <a href="#profile">Profile</a>
-      <a href="#telemetry">GitHub</a>
+      <a href="#activity">Activity</a>
       <a href="#projects">Projects</a>
+      <a href="#telemetry">GitHub</a>
       <a href="#education">Education</a>
       <a href="#skills">Skills</a>
+      <a href="#achievements">Achievements</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="topbar-actions">
@@ -451,10 +520,49 @@
       </div>
     </section>
 
+
+    <section class="module" id="activity">
+      <div class="module-marker"><span class="dot"></span></div>
+      <div class="module-body">
+        <p class="eyebrow">M02 // Live Activity</p>
+        <h2>Recent Work &amp; Updates</h2>
+        <p class="module-intro">
+          Automatically synchronized public activity from GitHub and LinkedIn.
+          Meaningful updates are normalized, ranked, and presented without manually editing this portfolio.
+        </p>
+
+        <div class="activity-toolbar">
+          <div class="activity-status loading" id="activityStatus">
+            <span class="status-dot"></span>
+            <span id="activityStatusText">Synchronizing</span>
+          </div>
+          <div class="activity-sync" id="activitySync">
+            Last synchronized: waiting...
+          </div>
+        </div>
+
+        <div id="activityFeed" class="activity-feed" aria-live="polite">
+          <div class="activity-empty">
+            <span class="blip"></span>
+            Loading recent activity...
+          </div>
+        </div>
+
+        <div style="margin-top:24px;">
+          <h3 style="font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);margin:0 0 14px;">
+            Automatically Discovered Projects
+          </h3>
+          <div id="autoProjects" class="auto-project-grid">
+            <div class="activity-empty">Scanning GitHub projects...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="module" id="telemetry">
       <div class="module-marker"><span class="dot"></span></div>
       <div class="module-body">
-        <p class="eyebrow">M02 // Live Telemetry</p>
+        <p class="eyebrow">M03 // Live Telemetry</p>
         <h2>GitHub Activity</h2>
         <p class="module-intro">Pulled live from the GitHub API on every page load — always current, no manual updates needed.</p>
 
@@ -481,7 +589,7 @@
     <section class="module" id="projects">
       <div class="module-marker"><span class="dot"></span></div>
       <div class="module-body">
-        <p class="eyebrow">M03 // Projects</p>
+        <p class="eyebrow">M04 // Projects</p>
         <h2>Project Experience</h2>
         <p class="module-intro module-intro-compact">Three selected projects, written in a more resume-oriented style: each one emphasizes scope, tech stack, and what I actually built or improved.</p>
         <div class="project-grid">
@@ -542,7 +650,7 @@
     <section class="module" id="education">
       <div class="module-marker"><span class="dot"></span></div>
       <div class="module-body">
-        <p class="eyebrow">M04 // Education</p>
+        <p class="eyebrow">M05 // Education</p>
         <h2>Academic Record</h2>
         <table class="edu-table">
           <thead><tr><th>Level</th><th>Institution</th><th>Score</th><th>Year</th></tr></thead>
@@ -558,7 +666,7 @@
     <section class="module" id="skills">
       <div class="module-marker"><span class="dot"></span></div>
       <div class="module-body">
-        <p class="eyebrow">M05 // Skills</p>
+        <p class="eyebrow">M06 // Skills</p>
         <h2>Technical Skills</h2>
         <div class="skills-summary">
           <div class="skill-stat"><strong>7+</strong><span>Core technical categories</span></div>
@@ -598,7 +706,7 @@
     <section class="module" id="achievements">
       <div class="module-marker"><span class="dot"></span></div>
       <div class="module-body">
-        <p class="eyebrow">M06 // Achievements</p>
+        <p class="eyebrow">M07 // Achievements</p>
         <h2>Leadership &amp; Achievements</h2>
         <ul class="ach-list">
           <li>Campus Ambassador for Google Gemini and Kreo Gaming.</li>
@@ -782,14 +890,17 @@
 
   // ---------- GitHub live telemetry ----------
   const GH_USERNAME = 'sarthak1778';
+  const ACTIVITY_REFRESH_INTERVAL = 10 * 60 * 1000;
 
   function escapeHtml(str){
     const d = document.createElement('div');
     d.textContent = str || '';
     return d.innerHTML;
   }
+
   function timeAgo(iso){
     const diffMs = Date.now() - new Date(iso).getTime();
+    if(!Number.isFinite(diffMs)) return 'unknown';
     const days = Math.floor(diffMs / 86400000);
     if(days < 1) return 'today';
     if(days === 1) return '1 day ago';
@@ -799,7 +910,150 @@
     return `${Math.floor(months/12)} yr ago`;
   }
 
-  async function loadGithubTelemetry(){
+  function setActivityStatus(state, text){
+    const status = document.getElementById('activityStatus');
+    const label = document.getElementById('activityStatusText');
+    if(!status || !label) return;
+    status.classList.remove('loading','error');
+    if(state === 'loading') status.classList.add('loading');
+    if(state === 'error') status.classList.add('error');
+    label.textContent = text;
+  }
+
+  function renderActivities(activities){
+    const feed = document.getElementById('activityFeed');
+    if(!feed) return;
+
+    if(!Array.isArray(activities) || !activities.length){
+      feed.innerHTML = `<div class="activity-empty">No meaningful public activity found yet.</div>`;
+      return;
+    }
+
+    const sorted = [...activities].sort(
+      (a,b) => new Date(b.timestamp) - new Date(a.timestamp)
+    );
+
+    feed.innerHTML = sorted.map(item => {
+      const source = item.source === 'linkedin' ? 'LinkedIn' : 'GitHub';
+      const recent = item.timestamp &&
+        (Date.now() - new Date(item.timestamp).getTime()) <= 48 * 60 * 60 * 1000;
+
+      return `
+        <article class="activity-card ${recent ? 'is-new' : ''}">
+          <div class="activity-icon ${escapeHtml(item.source || 'github')}">
+            ${item.source === 'linkedin' ? 'IN' : 'GH'}
+          </div>
+
+          <div class="activity-content">
+            <div class="activity-topline">
+              <span class="activity-source">${escapeHtml(source)}</span>
+              <span class="activity-type">${escapeHtml(item.type || 'update')}</span>
+            </div>
+            <h3 class="activity-title">${escapeHtml(item.title || 'Portfolio activity')}</h3>
+            <p class="activity-description">${escapeHtml(item.description || 'Activity detected.')}</p>
+          </div>
+
+          <div class="activity-meta">
+            ${recent ? '<span class="activity-new">NEW</span>' : ''}
+            <span class="activity-time">${escapeHtml(timeAgo(item.timestamp))}</span>
+            ${item.url ? `<a class="activity-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">View →</a>` : ''}
+          </div>
+        </article>
+      `;
+    }).join('');
+  }
+
+  function renderAutoProjects(projects){
+    const wrap = document.getElementById('autoProjects');
+    if(!wrap) return;
+
+    if(!Array.isArray(projects) || !projects.length){
+      wrap.innerHTML = `<div class="activity-empty">No automatically discovered projects yet.</div>`;
+      return;
+    }
+
+    wrap.innerHTML = projects.map(project => {
+      const tech = Array.isArray(project.technologies) ? project.technologies.slice(0,5) : [];
+      return `
+        <article class="auto-project">
+          <div class="auto-project-label">AUTO-DISCOVERED</div>
+          <h4>${escapeHtml(project.name || 'Unnamed Project')}</h4>
+          <p>${escapeHtml(project.description || 'GitHub project detected automatically.')}</p>
+          <div class="auto-project-meta">
+            ${project.language ? `<span>${escapeHtml(project.language)}</span>` : ''}
+            ${tech.map(t => `<span>${escapeHtml(t)}</span>`).join('')}
+            ${project.url ? `<a class="activity-link" href="${escapeHtml(project.url)}" target="_blank" rel="noopener noreferrer">GitHub →</a>` : ''}
+          </div>
+        </article>
+      `;
+    }).join('');
+  }
+
+  async function loadLiveActivity(){
+    setActivityStatus('loading','Synchronizing');
+
+    try{
+      const response = await fetch('/api/activity?limit=12', {
+        headers:{'Accept':'application/json'},
+        cache:'no-store'
+      });
+
+      if(!response.ok) throw new Error(`Activity API ${response.status}`);
+
+      const data = await response.json();
+
+      renderActivities(data.activities || []);
+      renderAutoProjects(data.projects || []);
+
+      const sync = document.getElementById('activitySync');
+      if(sync){
+        sync.textContent = `Last synchronized: ${timeAgo(data.generatedAt || new Date().toISOString())}`;
+      }
+
+      const sources = data.sources || {};
+      if(sources.github === 'ok' || sources.linkedin === 'ok'){
+        setActivityStatus('ready','Live');
+      }else{
+        setActivityStatus('error','Limited');
+      }
+
+      // Keep the existing GitHub telemetry populated from the same backend response.
+      if(data.githubTelemetry){
+        const t = data.githubTelemetry;
+        const statsWrap = document.getElementById('ghStats');
+        if(statsWrap){
+          statsWrap.innerHTML = `
+            <div class="stat"><span class="stat-value">${t.repositories ?? '—'}</span><span class="stat-label">Repositories</span></div>
+            <div class="stat"><span class="stat-value">${t.followers ?? '—'}</span><span class="stat-label">Followers</span></div>
+            <div class="stat"><span class="stat-value">${t.stars ?? 0}</span><span class="stat-label">Stars Earned</span></div>
+            <div class="stat"><span class="stat-value">${t.githubSince ? new Date(t.githubSince).getFullYear() : '—'}</span><span class="stat-label">On GitHub Since</span></div>
+          `;
+        }
+      }
+
+    }catch(err){
+      console.error('Live activity error:', err);
+      setActivityStatus('error','Unavailable');
+
+      const sync = document.getElementById('activitySync');
+      if(sync) sync.textContent = 'Live activity temporarily unavailable';
+
+      const feed = document.getElementById('activityFeed');
+      if(feed){
+        feed.innerHTML = `<div class="activity-error">Live activity temporarily unavailable. The rest of the portfolio remains operational.</div>`;
+      }
+
+      const projects = document.getElementById('autoProjects');
+      if(projects){
+        projects.innerHTML = `<div class="activity-empty">Automatic project discovery unavailable.</div>`;
+      }
+
+      // Preserve direct GitHub telemetry as a fallback.
+      loadGithubTelemetryFallback();
+    }
+  }
+
+  async function loadGithubTelemetryFallback(){
     const statsWrap = document.getElementById('ghStats');
     const langWrap = document.getElementById('ghLanguages');
     const repoWrap = document.getElementById('ghRepos');
@@ -809,11 +1063,13 @@
         fetch(`https://api.github.com/users/${GH_USERNAME}`),
         fetch(`https://api.github.com/users/${GH_USERNAME}/repos?per_page=100&sort=updated`)
       ]);
+
       if(!userRes.ok || !reposRes.ok) throw new Error('GitHub API error');
+
       const user = await userRes.json();
       const repos = await reposRes.json();
 
-      const totalStars = repos.reduce((s, r) => s + (r.stargazers_count || 0), 0);
+      const totalStars = repos.reduce((s,r) => s + (r.stargazers_count || 0), 0);
 
       statsWrap.innerHTML = `
         <div class="stat"><span class="stat-value">${user.public_repos ?? '—'}</span><span class="stat-label">Repositories</span></div>
@@ -822,10 +1078,10 @@
         <div class="stat"><span class="stat-value">${user.created_at ? new Date(user.created_at).getFullYear() : '—'}</span><span class="stat-label">On GitHub Since</span></div>
       `;
 
-      // Languages
       const langCount = {};
       repos.forEach(r => { if(r.language) langCount[r.language] = (langCount[r.language] || 0) + 1; });
       const topLangs = Object.entries(langCount).sort((a,b) => b[1]-a[1]).slice(0,5);
+
       if(topLangs.length){
         const max = topLangs[0][1];
         langWrap.classList.remove('skeleton');
@@ -836,20 +1092,19 @@
             <span class="lang-count">${count}</span>
           </div>
         `).join('');
-      } else {
+      }else{
         langWrap.classList.remove('skeleton');
         langWrap.innerHTML = `<p class="error-state">No public language data yet.</p>`;
       }
 
-      // Recent repos
-      const topRepos = repos
-        .filter(r => !r.fork)
+      const topRepos = repos.filter(r => !r.fork)
         .sort((a,b) => new Date(b.updated_at) - new Date(a.updated_at))
         .slice(0,4);
+
       if(topRepos.length){
         repoWrap.classList.remove('skeleton');
         repoWrap.innerHTML = `<div class="repo-list">` + topRepos.map(r => `
-          <a class="repo-card" href="${r.html_url}" target="_blank" rel="noopener">
+          <a class="repo-card" href="${escapeHtml(r.html_url)}" target="_blank" rel="noopener">
             <div class="repo-card-head">
               <span class="repo-name">${escapeHtml(r.name)}</span>
               <span class="repo-star">★ ${r.stargazers_count || 0}</span>
@@ -861,12 +1116,12 @@
             </div>
           </a>
         `).join('') + `</div>`;
-      } else {
+      }else{
         repoWrap.classList.remove('skeleton');
         repoWrap.innerHTML = `<p class="error-state">No public repositories yet.</p>`;
       }
 
-    } catch (err) {
+    }catch(err){
       statsWrap.innerHTML = `<div class="stat" style="grid-column:1/-1;"><p class="error-state">Live data temporarily unavailable. <a href="https://github.com/${GH_USERNAME}" target="_blank" rel="noopener">View profile on GitHub →</a></p></div>`;
       langWrap.classList.remove('skeleton');
       langWrap.innerHTML = `<p class="error-state">Unavailable right now.</p>`;
@@ -874,7 +1129,9 @@
       repoWrap.innerHTML = `<p class="error-state">Unavailable right now.</p>`;
     }
   }
-  loadGithubTelemetry();
+
+  loadLiveActivity();
+  setInterval(loadLiveActivity, ACTIVITY_REFRESH_INTERVAL);
 
   // ---------- PDF export ----------
   const allResumeBtns = Array.from(document.querySelectorAll('.resume-download-btn'));
