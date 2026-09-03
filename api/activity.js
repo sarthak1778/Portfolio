@@ -1,6 +1,6 @@
 // Unified Live Activity API Route (/api/activity)
 // Handles data acquisition via GitHubAdapter & LinkedInAdapter,
-// processes normalization via ActivityNormalizer, and supports on-demand refresh.
+// processes normalization via ActivityNormalizer, synchronizes certifications, and supports on-demand refresh.
 
 const { GitHubAdapter } = require('./lib/github');
 const { LinkedInAdapter } = require('./lib/linkedin');
@@ -23,10 +23,11 @@ module.exports = async function handler(req, res) {
     const filter = url.searchParams.get('filter') || 'all';
     const forceRefresh = url.searchParams.get('refresh') === 'true';
 
-    // Parallel fetch from modular adapters
-    const [githubResult, linkedinResult] = await Promise.all([
+    // Parallel fetch from modular adapters: GitHub, LinkedIn activity, and LinkedIn certifications
+    const [githubResult, linkedinResult, certsResult] = await Promise.all([
       GitHubAdapter.fetchActivity(forceRefresh),
-      LinkedInAdapter.fetchActivity(forceRefresh)
+      LinkedInAdapter.fetchActivity(forceRefresh),
+      LinkedInAdapter.fetchCertifications(forceRefresh)
     ]);
 
     // Data normalization & ranking
@@ -39,13 +40,15 @@ module.exports = async function handler(req, res) {
       latestLinkedInUpdate: normalized.latestLinkedInUpdate,
       latestGithubBuild: normalized.latestGithubBuild,
       currentlyBuilding: githubResult.currentlyBuilding || null,
+      certifications: certsResult.certifications || [],
       sources: {
         github: githubResult.status === 'ok' ? 'ok' : 'fallback',
         githubSourceType: githubResult.sourceType,
         linkedin: linkedinResult.status === 'ok' ? 'ok' : 'fallback',
         linkedinSourceType: linkedinResult.sourceType,
         linkedinProfileUrl: LinkedInAdapter.getProfileUrl(),
-        linkedinHandle: LinkedInAdapter.getHandle()
+        linkedinHandle: LinkedInAdapter.getHandle(),
+        certificationsSource: certsResult.sourceType
       },
       githubTelemetry: {
         username: githubResult.user?.login || 'sarthak1778',

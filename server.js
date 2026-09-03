@@ -23,7 +23,8 @@ const MIME_TYPES = {
 // Route mapping for /api
 const API_ROUTES = {
   '/api/activity': require('./api/activity'),
-  '/api/github': require('./api/github')
+  '/api/github': require('./api/github'),
+  '/api/certifications': require('./api/certifications')
 };
 
 const server = http.createServer(async (req, res) => {

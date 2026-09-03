@@ -1513,6 +1513,110 @@
   #resume-sheet .r-proj-meta { font-size: 10px; color: #555; margin-bottom: 3px; font-style: italic; }
   #resume-sheet ul { margin: 0; padding-left: 16px; }
 
+  /* ---------- Licenses & Certifications Section ---------- */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .cert-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
+    position: relative;
+  }
+  .cert-card:hover {
+    border-color: var(--copper-line);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+  }
+  .cert-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .cert-issuer-badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--teal);
+    background: rgba(94, 234, 212, 0.1);
+    border: 1px solid rgba(94, 234, 212, 0.25);
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+  .cert-sync-badge {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    text-transform: uppercase;
+    color: #60A5FA;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .cert-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 6px;
+    color: var(--text);
+  }
+  .cert-org {
+    font-size: 13.5px;
+    color: var(--copper);
+    font-family: var(--font-mono);
+    margin-bottom: 10px;
+  }
+  .cert-desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin-bottom: 14px;
+    flex-grow: 1;
+  }
+  .cert-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .cert-skills span {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 2px 7px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border-bright);
+    border-radius: 4px;
+    color: var(--text-faint);
+  }
+  .cert-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-faint);
+  }
+  .cert-link {
+    color: var(--copper);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+  }
+  .cert-link:hover { text-decoration: underline; }
+
   /* ---------- Responsive Breakpoints ---------- */
   @media (max-width: 960px) {
     .hero-grid { grid-template-columns: 1fr; }
@@ -1520,6 +1624,7 @@
     .projects-grid { grid-template-columns: 1fr; }
     .proof-grid { grid-template-columns: repeat(2, 1fr); }
     .skills-category-grid { grid-template-columns: 1fr; }
+    .cert-grid { grid-template-columns: 1fr; }
     .recruiter-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; }
     .gh-stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1592,6 +1697,7 @@
       <a href="#github" class="nav-item">GitHub</a>
       <a href="#journey" class="nav-item">Journey</a>
       <a href="#skills" class="nav-item">Skills</a>
+      <a href="#certifications" class="nav-item">Certifications</a>
       <a href="#recruiter" class="nav-item">Why Me</a>
       <a href="#contact" class="nav-item">Contact</a>
     </nav>
@@ -1893,6 +1999,21 @@
     </div>
   </section>
 
+  <!-- Licenses & Certifications Section (Synchronized from LinkedIn) -->
+  <section class="section-pad wrap" id="certifications">
+    <div class="section-header">
+      <div class="eyebrow">Verified Credentials</div>
+      <h2 class="section-title">Licenses &amp; Certifications</h2>
+      <p class="section-intro">
+        Accredited technical credentials, developer ambassadorships, and engineering qualifications automatically synchronized with LinkedIn.
+      </p>
+    </div>
+
+    <div class="cert-grid" id="certGrid">
+      <!-- Populated dynamically via LinkedIn data layer -->
+    </div>
+  </section>
+
   <!-- Recruiter-Focused Section: Why Work With Me -->
   <section class="section-pad wrap" id="recruiter">
     <div class="section-header">
@@ -2112,11 +2233,19 @@
   </div>
 
   <div class="r-sec">
-    <h2>Certifications &amp; Leadership</h2>
+    <h2>Licenses &amp; Certifications</h2>
     <ul>
-      <li><strong>Google Gemini Campus Ambassador:</strong> Appointed campus lead organizing developer literacy sessions and modern AI workflow demonstrations.</li>
+      <li><strong>Data Analytics Foundations:</strong> Coursera (Credential ID: COURSERA-DAF-2024) — Exploratory data analysis, SQL querying, data cleaning, and business intelligence.</li>
+      <li><strong>Google Gemini Ambassador &amp; AI Enablement:</strong> Google (Credential ID: GOOGLE-GEMINI-AMB-2024) — Campus developer lead for modern AI workflows, prompt engineering, and LLMs.</li>
+      <li><strong>Control Systems Modeling:</strong> MathWorks (Credential ID: MATHWORKS-CTRL-2024) — MATLAB &amp; Simulink transfer function simulation, PID tuning, and motor control.</li>
+      <li><strong>IoT Systems &amp; Microcontroller Sensing:</strong> Sir MVIT (Credential ID: SMVIT-IOT-2024) — Embedded C/C++, Arduino Uno, ESP8266 Wi-Fi telemetry, and ThingSpeak integration.</li>
+    </ul>
+  </div>
+
+  <div class="r-sec">
+    <h2>Leadership &amp; Key Honors</h2>
+    <ul>
       <li><strong>Aero India 2025 Logistics Operations:</strong> Volunteer coordinator managing event flow and attendee routing for 1,200+ international participants.</li>
-      <li><strong>Coursera:</strong> Data Analytics Foundations Certificate.</li>
       <li><strong>Kreo Gaming Campus Ambassador:</strong> Youth community engagement and technical event coordination.</li>
     </ul>
   </div>
@@ -2357,6 +2486,46 @@
         <li class="ach-item">${escapeHtml(a)}</li>
       `).join('');
     }
+
+    // 8. Licenses & Certifications (Baseline)
+    if (Array.isArray(PROFILE_DATA.certifications)) {
+      renderCertifications(PROFILE_DATA.certifications);
+    }
+  }
+
+  // Render Licenses & Certifications
+  function renderCertifications(certs) {
+    const certGrid = document.getElementById('certGrid');
+    if (!certGrid) return;
+    if (!Array.isArray(certs) || certs.length === 0) {
+      certGrid.innerHTML = '<div class="state-box">No credentials listed yet.</div>';
+      return;
+    }
+    certGrid.innerHTML = certs.map(c => `
+      <article class="cert-card" id="${escapeHtml(c.id)}">
+        <div class="cert-topline">
+          <span class="cert-issuer-badge">${escapeHtml(c.issuer || 'Accredited')}</span>
+          <span class="cert-sync-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.27 2.38 4.27 5.48v6.26ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+            LinkedIn Verified
+          </span>
+        </div>
+        <h3 class="cert-title">${escapeHtml(c.title)}</h3>
+        <div class="cert-org">${escapeHtml(c.issuer)} • Issued ${escapeHtml(c.issueDate || '2024')}</div>
+        <p class="cert-desc">${escapeHtml(c.description || '')}</p>
+        ${Array.isArray(c.skills) && c.skills.length ? `
+          <div class="cert-skills">
+            ${c.skills.map(s => `<span>${escapeHtml(s)}</span>`).join('')}
+          </div>
+        ` : ''}
+        <div class="cert-footer">
+          <span>Credential ID: ${escapeHtml(c.credentialId || 'Verified')}</span>
+          <a href="${escapeHtml(c.credentialUrl || 'https://www.linkedin.com/in/sarthak-choudhary-455098293/')}" target="_blank" rel="noopener noreferrer" class="cert-link">
+            Verify on LinkedIn ↗
+          </a>
+        </div>
+      </article>
+    `).join('');
   }
 
   // Toggle timeline item drawer
@@ -2450,6 +2619,11 @@
 
       // Render GitHub Telemetry
       renderGithubTelemetry(data.githubTelemetry);
+
+      // Render Certifications from LinkedIn Data Layer
+      if (Array.isArray(data.certifications) && data.certifications.length > 0) {
+        renderCertifications(data.certifications);
+      }
 
       if (forceRefresh) {
         showToast('Activity successfully refreshed!');

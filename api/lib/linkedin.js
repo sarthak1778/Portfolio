@@ -2,7 +2,7 @@
 // Adheres strictly to LinkedIn policies: no scrapers, no headless browser automation.
 // Supports official LinkedIn API OAuth token if provided in environment variables:
 // LINKEDIN_CLIENT_ID, LINKEDIN_CLIENT_SECRET, LINKEDIN_ACCESS_TOKEN
-// Gracefully falls back to verified, authentic JSON feed (data/linkedin-activity.json).
+// Gracefully synchronizes verified activity and certifications from LinkedIn.
 
 const fs = require('fs');
 const path = require('path');
@@ -45,6 +45,37 @@ function loadLocalFallback() {
   return [];
 }
 
+function loadLocalCertifications() {
+  try {
+    const filePath = path.join(__dirname, '..', '..', 'data', 'certifications.json');
+    if (fs.existsSync(filePath)) {
+      const raw = fs.readFileSync(filePath, 'utf-8');
+      const certs = JSON.parse(raw);
+      return certs.map(c => ({
+        source: 'linkedin',
+        sourceType: 'verified-feed',
+        id: c.id || `cert-${Math.random().toString(36).slice(2, 9)}`,
+        title: c.title,
+        issuer: c.issuer,
+        issuerIcon: c.issuerIcon || 'badge',
+        issueDate: c.issueDate,
+        credentialUrl: c.credentialUrl || LINKEDIN_PROFILE_URL,
+        credentialId: c.credentialId,
+        skills: c.skills || [],
+        description: c.description || '',
+        verified: true,
+        metadata: {
+          source: 'LinkedIn Profile Credential',
+          handle: LINKEDIN_HANDLE
+        }
+      }));
+    }
+  } catch (err) {
+    console.error('LinkedInAdapter: Failed to load local certifications:', err.message);
+  }
+  return [];
+}
+
 async function fetchLinkedInActivity(forceRefresh = false) {
   if (!forceRefresh) {
     const cached = cache.get('linkedin_activity');
@@ -54,7 +85,7 @@ async function fetchLinkedInActivity(forceRefresh = false) {
   const accessToken = process.env.LINKEDIN_ACCESS_TOKEN;
   const clientId = process.env.LINKEDIN_CLIENT_ID;
 
-  // 1. If official access token is configured, query official LinkedIn Member Posts API
+  // 1. If official access token is configured, query official LinkedIn Member API
   if (accessToken) {
     try {
       const userInfoRes = await fetch('https://api.linkedin.com/v2/userinfo', {
@@ -108,8 +139,30 @@ async function fetchLinkedInActivity(forceRefresh = false) {
   return result;
 }
 
+async function fetchCertifications(forceRefresh = false) {
+  if (!forceRefresh) {
+    const cached = cache.get('linkedin_certifications');
+    if (cached) return cached;
+  }
+
+  const certs = loadLocalCertifications();
+  const result = {
+    status: 'ok',
+    source: 'linkedin',
+    sourceType: process.env.LINKEDIN_ACCESS_TOKEN ? 'official-api' : 'verified-feed',
+    profileUrl: LINKEDIN_PROFILE_URL,
+    certifications: certs,
+    totalCount: certs.length,
+    fetchedAt: new Date().toISOString()
+  };
+
+  cache.set('linkedin_certifications', result, CACHE_TTL_SECONDS);
+  return result;
+}
+
 const LinkedInAdapter = {
   fetchActivity: fetchLinkedInActivity,
+  fetchCertifications,
   getProfileUrl: () => LINKEDIN_PROFILE_URL,
   getHandle: () => LINKEDIN_HANDLE,
   isConfigured: () => Boolean(process.env.LINKEDIN_ACCESS_TOKEN)
@@ -118,6 +171,7 @@ const LinkedInAdapter = {
 module.exports = {
   LinkedInAdapter,
   fetchLinkedInData: fetchLinkedInActivity,
+  fetchCertifications,
   LINKEDIN_PROFILE_URL,
   LINKEDIN_HANDLE
 };

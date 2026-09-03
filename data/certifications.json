@@ -1,0 +1,54 @@
+[
+  {
+    "id": "cert-data-analytics-coursera",
+    "title": "Data Analytics Foundations",
+    "issuer": "Coursera",
+    "issuerIcon": "coursera",
+    "issueDate": "2024",
+    "credentialUrl": "https://www.linkedin.com/in/sarthak-choudhary-455098293/",
+    "credentialId": "COURSERA-DAF-2024",
+    "skills": ["Data Analytics", "SQL", "Data Cleaning", "Data Visualization"],
+    "source": "linkedin",
+    "verified": true,
+    "description": "Foundational training in exploratory data analysis, relational SQL querying, spreadsheet modeling, and business intelligence reporting."
+  },
+  {
+    "id": "cert-gemini-ambassador",
+    "title": "Google Gemini Ambassador & Technical Enablement",
+    "issuer": "Google",
+    "issuerIcon": "google",
+    "issueDate": "2024",
+    "credentialUrl": "https://www.linkedin.com/in/sarthak-choudhary-455098293/",
+    "credentialId": "GOOGLE-GEMINI-AMB-2024",
+    "skills": ["Google Gemini", "Generative AI", "Prompt Engineering", "LLM Integration"],
+    "source": "linkedin",
+    "verified": true,
+    "description": "Appointed campus technical lead by Google for AI developer literacy, organizing hands-on engineering workshops on Gemini tools and prompt workflows."
+  },
+  {
+    "id": "cert-matlab-simulink",
+    "title": "MATLAB & Simulink: Control Systems Modeling",
+    "issuer": "MathWorks",
+    "issuerIcon": "mathworks",
+    "issueDate": "2024",
+    "credentialUrl": "https://www.linkedin.com/in/sarthak-choudhary-455098293/",
+    "credentialId": "MATHWORKS-CTRL-2024",
+    "skills": ["MATLAB", "Simulink", "Control Systems", "PID Tuning", "ANN"],
+    "source": "linkedin",
+    "verified": true,
+    "description": "Mathematical simulation, transfer function modeling, dynamic response analysis, and adaptive controller tuning for electrical drives."
+  },
+  {
+    "id": "cert-iot-embedded",
+    "title": "IoT Systems & Microcontroller Sensing",
+    "issuer": "Sir M Visvesvaraya Institute of Technology",
+    "issuerIcon": "academic",
+    "issueDate": "2024",
+    "credentialUrl": "https://www.linkedin.com/in/sarthak-choudhary-455098293/",
+    "credentialId": "SMVIT-IOT-2024",
+    "skills": ["Arduino Uno", "ESP8266", "Sensor Integration", "ThingSpeak Cloud"],
+    "source": "linkedin",
+    "verified": true,
+    "description": "Hands-on laboratory credential in embedded C/C++, Wi-Fi telemetry protocols, sensor signal conditioning, and cloud dashboard integration."
+  }
+]
