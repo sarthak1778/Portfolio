@@ -1,0 +1,25 @@
+{
+  "name": "sarthak-portfolio",
+  "version": "2.0.0",
+  "description": "Self-updating personal developer profile for Sarthak Choudhary",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "build": "node -e \"console.log('Build complete (static + serverless)')\""
+  },
+  "keywords": [
+    "portfolio",
+    "embedded-systems",
+    "iot",
+    "software",
+    "electrical-engineering",
+    "vercel"
+  ],
+  "author": "Sarthak Choudhary <sarthakchoudhary1778@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
