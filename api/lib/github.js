@@ -1,5 +1,6 @@
-// GitHub API Integration & Activity Normalizer
-// Handles data retrieval, caching, rate limiting, and intelligent event summarization
+// GitHub Integration Adapter (GitHubAdapter)
+// Fetches profile metadata, repositories, and public events from official GitHub REST API v3.
+// Normalizes activity into the unified portfolio activity schema.
 
 const cache = require('./cache');
 
@@ -18,15 +19,21 @@ function getHeaders() {
 }
 
 // Convert raw GitHub event into a clean, human-readable activity item
-function summarizeEvent(event) {
-  const repoName = event.repo ? event.repo.name.replace(`${GH_USERNAME}/`, '') : 'Repository';
+function summarizeEvent(event, repoLookup = {}) {
+  const repoFullName = event.repo ? event.repo.name : `${GH_USERNAME}/portfolio`;
+  const repoName = repoFullName.replace(`${GH_USERNAME}/`, '');
+  const repoMeta = repoLookup[repoName] || {};
   const repoUrl = event.repo ? `https://github.com/${event.repo.name}` : `https://github.com/${GH_USERNAME}`;
   const timestamp = event.created_at;
 
-  let title = `Activity in ${repoName}`;
-  let description = `Contributed to ${repoName}`;
-  let type = 'update';
-  let category = 'github';
+  const tech = [];
+  if (repoMeta.language) tech.push(repoMeta.language);
+  if (Array.isArray(repoMeta.topics)) tech.push(...repoMeta.topics.slice(0, 3));
+
+  let title = `Updated ${repoName}`;
+  let description = `Contributed code to ${repoName}.`;
+  let type = 'commit';
+  let priority = 60;
 
   switch (event.type) {
     case 'PushEvent': {
@@ -36,11 +43,12 @@ function summarizeEvent(event) {
       const messages = commits.map(c => c.message.trim()).filter(Boolean);
 
       type = 'commit';
-      title = `Pushed ${commitCount} commit${commitCount > 1 ? 's' : ''} to ${repoName}`;
+      priority = 65;
+      title = `Updated ${repoName}`;
       if (messages.length > 0) {
         description = messages.slice(0, 2).join(' • ');
       } else {
-        description = `Committed improvements to branch ${branch} in ${repoName}.`;
+        description = `Committed improvements to ${branch} branch in ${repoName}.`;
       }
       break;
     }
@@ -48,24 +56,28 @@ function summarizeEvent(event) {
       const refType = event.payload?.ref_type || 'repository';
       const refName = event.payload?.ref;
       if (refType === 'repository') {
-        type = 'create-repo';
+        type = 'repository';
+        priority = 80;
         title = `Created repository "${repoName}"`;
-        description = event.payload?.description || `Initialized a new public repository: ${repoName}.`;
+        description = event.payload?.description || `Initialized new public repository: ${repoName}.`;
       } else {
-        type = 'create-branch';
-        title = `Created ${refType} "${refName || 'feature'}" in ${repoName}`;
-        description = `Branched for new development in ${repoName}.`;
+        type = 'commit';
+        priority = 50;
+        title = `Created ${refType} "${refName || 'main'}" in ${repoName}`;
+        description = `Initialized branch for active development in ${repoName}.`;
       }
       break;
     }
     case 'WatchEvent': {
       type = 'star';
+      priority = 40;
       title = `Starred ${repoName}`;
       description = `Marked ${repoName} as a tracked project on GitHub.`;
       break;
     }
     case 'ForkEvent': {
       type = 'fork';
+      priority = 45;
       title = `Forked ${repoName}`;
       description = `Created personal fork for technical exploration.`;
       break;
@@ -73,7 +85,8 @@ function summarizeEvent(event) {
     case 'PullRequestEvent': {
       const action = event.payload?.action || 'updated';
       const prNumber = event.payload?.pull_request?.number;
-      type = 'pull-request';
+      type = 'pull_request';
+      priority = 75;
       title = `PR #${prNumber || ''} ${action} in ${repoName}`;
       description = event.payload?.pull_request?.title || `Pull request activity in ${repoName}.`;
       break;
@@ -81,35 +94,44 @@ function summarizeEvent(event) {
     case 'IssuesEvent': {
       const action = event.payload?.action || 'updated';
       type = 'issue';
+      priority = 55;
       title = `Issue ${action} in ${repoName}`;
       description = event.payload?.issue?.title || `Issue tracking in ${repoName}.`;
       break;
     }
     case 'ReleaseEvent': {
       type = 'release';
+      priority = 85;
       title = `Published release in ${repoName}`;
       description = event.payload?.release?.name || `Tagged release version for ${repoName}.`;
       break;
     }
     default: {
-      type = 'activity';
+      type = 'commit';
+      priority = 50;
       title = `Updated ${repoName}`;
       description = `Public activity registered on GitHub.`;
     }
   }
 
   return {
-    id: `gh-${event.id}`,
     source: 'github',
     sourceType: 'official-api',
+    id: `gh-${event.id}`,
     type,
-    category,
+    priority,
     title,
     description,
-    timestamp,
     url: repoUrl,
-    repoName,
-    technologies: []
+    date: timestamp,
+    timestamp,
+    image: null,
+    technologies: tech,
+    metadata: {
+      repo: repoName,
+      branch: event.payload?.ref ? event.payload.ref.replace('refs/heads/', '') : 'main',
+      commitsCount: event.payload?.commits?.length || 1
+    }
   };
 }
 
@@ -119,7 +141,6 @@ function buildActivityMatrix(events, repos) {
   const weeks = [];
   const dayCounts = {};
 
-  // Count events per YYYY-MM-DD
   events.forEach(e => {
     if (e.created_at) {
       const day = e.created_at.slice(0, 10);
@@ -127,7 +148,6 @@ function buildActivityMatrix(events, repos) {
     }
   });
 
-  // Also factor in repo pushed_at dates
   repos.forEach(r => {
     if (r.pushed_at) {
       const day = r.pushed_at.slice(0, 10);
@@ -135,7 +155,6 @@ function buildActivityMatrix(events, repos) {
     }
   });
 
-  // Generate past 12 weeks (84 days)
   for (let w = 11; w >= 0; w--) {
     const days = [];
     for (let d = 6; d >= 0; d--) {
@@ -148,11 +167,7 @@ function buildActivityMatrix(events, repos) {
       else if (count >= 1) level = 2;
       else level = 0;
 
-      days.push({
-        date: key,
-        count,
-        level
-      });
+      days.push({ date: key, count, level });
     }
     weeks.push({ weekIndex: 11 - w, days });
   }
@@ -164,7 +179,6 @@ function buildActivityMatrix(events, repos) {
 function extractCurrentlyBuilding(repos) {
   if (!Array.isArray(repos) || repos.length === 0) return null;
 
-  // Filter out forks, sort by pushed_at descending
   const candidates = repos
     .filter(r => !r.fork && r.name.toLowerCase() !== GH_USERNAME.toLowerCase())
     .sort((a, b) => new Date(b.pushed_at || b.updated_at) - new Date(a.pushed_at || a.updated_at));
@@ -176,29 +190,30 @@ function extractCurrentlyBuilding(repos) {
   const diffDays = Math.floor((Date.now() - lastActivityDate.getTime()) / 86400000);
 
   let status = 'IN DEVELOPMENT';
-  if (diffDays <= 7) {
-    status = 'ACTIVE';
-  } else if (diffDays <= 30) {
-    status = 'RECENTLY UPDATED';
-  }
+  if (diffDays <= 7) status = 'ACTIVE';
+  else if (diffDays <= 30) status = 'RECENTLY UPDATED';
 
   return {
     name: active.name,
     description: active.description || 'Active software repository under development.',
     language: active.language || 'Code',
+    technologies: [active.language].filter(Boolean).concat(active.topics || []),
     topics: active.topics || [],
     stars: active.stargazers_count || 0,
     forks: active.forks_count || 0,
     url: active.html_url,
     pushedAt: active.pushed_at || active.updated_at,
+    date: active.pushed_at || active.updated_at,
     status,
     daysAgo: diffDays
   };
 }
 
-async function fetchGithubData() {
-  const cached = cache.get('github_data');
-  if (cached) return cached;
+async function fetchGithubActivity(forceRefresh = false) {
+  if (!forceRefresh) {
+    const cached = cache.get('github_activity');
+    if (cached) return cached;
+  }
 
   try {
     const headers = getHeaders();
@@ -217,12 +232,16 @@ async function fetchGithubData() {
     const repos = await reposRes.json();
     const rawEvents = eventsRes.ok ? await eventsRes.json() : [];
 
-    // Calculate total stars
+    // Create repo lookup for metadata & technologies
+    const repoLookup = {};
+    if (Array.isArray(repos)) {
+      repos.forEach(r => { repoLookup[r.name] = r; });
+    }
+
     const totalStars = Array.isArray(repos)
       ? repos.reduce((sum, r) => sum + (r.stargazers_count || 0), 0)
       : 0;
 
-    // Calculate languages
     const langCount = {};
     if (Array.isArray(repos)) {
       repos.forEach(r => {
@@ -235,36 +254,17 @@ async function fetchGithubData() {
       .sort((a, b) => b[1] - a[1])
       .map(([name, count]) => ({ name, count }));
 
-    // Map events
+    // Map events using repoLookup for rich tech tags
     const activities = Array.isArray(rawEvents)
-      ? rawEvents.slice(0, 15).map(summarizeEvent)
+      ? rawEvents.slice(0, 15).map(e => summarizeEvent(e, repoLookup))
       : [];
 
-    // Currently building
     const currentlyBuilding = extractCurrentlyBuilding(repos);
-
-    // Contribution Matrix
     const activityMatrix = buildActivityMatrix(Array.isArray(rawEvents) ? rawEvents : [], Array.isArray(repos) ? repos : []);
-
-    // Recent repos for cards
-    const recentRepos = Array.isArray(repos)
-      ? repos
-          .filter(r => !r.fork)
-          .sort((a, b) => new Date(b.pushed_at || b.updated_at) - new Date(a.pushed_at || a.updated_at))
-          .slice(0, 6)
-          .map(r => ({
-            name: r.name,
-            description: r.description || 'Public engineering repository.',
-            language: r.language,
-            stars: r.stargazers_count || 0,
-            forks: r.forks_count || 0,
-            updatedAt: r.pushed_at || r.updated_at,
-            url: r.html_url
-          }))
-      : [];
 
     const result = {
       status: 'ok',
+      sourceType: 'official-api',
       user: {
         login: user.login,
         name: user.name || 'Sarthak Choudhary',
@@ -277,20 +277,18 @@ async function fetchGithubData() {
         stars: totalStars
       },
       topLanguages,
-      recentRepos,
       activities,
       currentlyBuilding,
       activityMatrix,
       fetchedAt: new Date().toISOString()
     };
 
-    cache.set('github_data', result, CACHE_TTL_SECONDS);
+    cache.set('github_activity', result, CACHE_TTL_SECONDS);
     return result;
 
   } catch (err) {
-    console.error('GitHub API fetch error:', err.message);
+    console.error('GitHubAdapter: fetch error:', err.message);
 
-    // Return structured graceful fallback if offline or rate limited
     return {
       status: 'fallback',
       error: err.message,
@@ -309,70 +307,47 @@ async function fetchGithubData() {
         { name: 'Python', count: 2 },
         { name: 'HTML', count: 1 }
       ],
-      recentRepos: [
-        {
-          name: 'Colourselector',
-          description: 'Color selection and visualization utility',
-          language: 'TypeScript',
-          stars: 0,
-          forks: 0,
-          updatedAt: '2026-08-30T18:29:27Z',
-          url: 'https://github.com/sarthak1778/Colourselector'
-        },
-        {
-          name: 'DocMind-AI',
-          description: 'Transform documents into actionable intelligence using LLMs.',
-          language: 'Python',
-          stars: 0,
-          forks: 0,
-          updatedAt: '2026-08-07T17:45:30Z',
-          url: 'https://github.com/sarthak1778/DocMind-AI'
-        },
-        {
-          name: 'Portfolio',
-          description: 'Personal engineer portfolio and living telemetry profile.',
-          language: 'HTML',
-          stars: 0,
-          forks: 0,
-          updatedAt: '2026-08-17T18:24:09Z',
-          url: 'https://github.com/sarthak1778/Portfolio'
-        }
-      ],
       activities: [
         {
-          id: 'gh-fallback-1',
           source: 'github',
-          sourceType: 'cached',
+          sourceType: 'cached-fallback',
+          id: 'gh-fallback-1',
           type: 'commit',
-          category: 'github',
-          title: 'Pushed updates to Colourselector',
+          priority: 60,
+          title: 'Updated Colourselector',
           description: 'Updated color palette tools and reactive state.',
-          timestamp: '2026-08-30T18:29:28Z',
           url: 'https://github.com/sarthak1778/Colourselector',
-          repoName: 'Colourselector'
+          date: '2026-08-30T18:29:28Z',
+          timestamp: '2026-08-30T18:29:28Z',
+          technologies: ['TypeScript'],
+          metadata: { repo: 'Colourselector' }
         },
         {
-          id: 'gh-fallback-2',
           source: 'github',
-          sourceType: 'cached',
+          sourceType: 'cached-fallback',
+          id: 'gh-fallback-2',
           type: 'commit',
-          category: 'github',
-          title: 'Pushed commits to DocMind-AI',
+          priority: 65,
+          title: 'Updated DocMind-AI',
           description: 'Document intelligence pipeline optimizations and prompt structuring.',
-          timestamp: '2026-08-07T17:45:30Z',
           url: 'https://github.com/sarthak1778/DocMind-AI',
-          repoName: 'DocMind-AI'
+          date: '2026-08-07T17:45:30Z',
+          timestamp: '2026-08-07T17:45:30Z',
+          technologies: ['Python', 'LLM'],
+          metadata: { repo: 'DocMind-AI' }
         }
       ],
       currentlyBuilding: {
         name: 'Colourselector',
         description: 'Color selection and reactive visual tool.',
         language: 'TypeScript',
+        technologies: ['TypeScript'],
         topics: [],
         stars: 0,
         forks: 0,
         url: 'https://github.com/sarthak1778/Colourselector',
         pushedAt: '2026-08-30T18:29:28Z',
+        date: '2026-08-30T18:29:28Z',
         status: 'ACTIVE',
         daysAgo: 4
       },
@@ -382,8 +357,13 @@ async function fetchGithubData() {
   }
 }
 
+const GitHubAdapter = {
+  fetchActivity: fetchGithubActivity,
+  getUsername: () => GH_USERNAME
+};
+
 module.exports = {
-  fetchGithubData,
-  summarizeEvent,
+  GitHubAdapter,
+  fetchGithubData: fetchGithubActivity,
   GH_USERNAME
 };

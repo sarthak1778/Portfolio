@@ -1,16 +1,16 @@
-// Unified Activity & Telemetry API Handler
-// Path: /api/activity
-// Deployed as a Vercel Serverless Function
+// Unified Live Activity API Route (/api/activity)
+// Handles data acquisition via GitHubAdapter & LinkedInAdapter,
+// processes normalization via ActivityNormalizer, and supports on-demand refresh.
 
-const { fetchGithubData } = require('./lib/github');
-const { fetchLinkedInData } = require('./lib/linkedin');
+const { GitHubAdapter } = require('./lib/github');
+const { LinkedInAdapter } = require('./lib/linkedin');
+const { normalizeActivities } = require('./lib/normalizer');
 
 module.exports = async function handler(req, res) {
-  // CORS & Cache-Control headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=600');
+  res.setHeader('Cache-Control', 'public, s-maxage=180, stale-while-revalidate=300');
 
   if (req.method === 'OPTIONS') {
     res.statusCode = 204;
@@ -19,62 +19,33 @@ module.exports = async function handler(req, res) {
 
   try {
     const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
-    const limit = parseInt(url.searchParams.get('limit') || '20', 10);
+    const limit = parseInt(url.searchParams.get('limit') || '25', 10);
     const filter = url.searchParams.get('filter') || 'all';
+    const forceRefresh = url.searchParams.get('refresh') === 'true';
 
-    // Parallel fetch from data layers
+    // Parallel fetch from modular adapters
     const [githubResult, linkedinResult] = await Promise.all([
-      fetchGithubData(),
-      fetchLinkedInData()
+      GitHubAdapter.fetchActivity(forceRefresh),
+      LinkedInAdapter.fetchActivity(forceRefresh)
     ]);
 
-    // Merge activities
-    const ghActivities = githubResult.activities || [];
-    const liActivities = linkedinResult.activities || [];
-
-    let combined = [...ghActivities, ...liActivities];
-
-    // Filter if requested via query param
-    if (filter !== 'all') {
-      combined = combined.filter(item => {
-        if (filter === 'github') return item.source === 'github';
-        if (filter === 'linkedin') return item.source === 'linkedin';
-        if (filter === 'projects') return item.type === 'project' || item.type === 'launch' || item.type === 'create-repo';
-        if (filter === 'achievements') return item.type === 'milestone' || item.type === 'announcement';
-        return true;
-      });
-    }
-
-    // Sort chronologically descending
-    combined.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-
-    // Limit items
-    const limitedActivities = combined.slice(0, limit);
-
-    // Compute latest activity ticker
-    let latestActivityText = 'Synchronized with public profiles';
-    let latestActivityTimestamp = null;
-
-    if (combined.length > 0) {
-      const top = combined[0];
-      latestActivityTimestamp = top.timestamp;
-      const platform = top.source === 'linkedin' ? 'LinkedIn' : 'GitHub';
-      latestActivityText = `${platform}: ${top.title}`;
-    }
+    // Data normalization & ranking
+    const normalized = normalizeActivities(githubResult, linkedinResult, { limit, filter });
 
     const payload = {
       status: 'ok',
       generatedAt: new Date().toISOString(),
-      latestActivity: {
-        text: latestActivityText,
-        timestamp: latestActivityTimestamp,
-        source: combined[0]?.source || 'github'
-      },
+      latestActivity: normalized.ticker,
+      latestLinkedInUpdate: normalized.latestLinkedInUpdate,
+      latestGithubBuild: normalized.latestGithubBuild,
+      currentlyBuilding: githubResult.currentlyBuilding || null,
       sources: {
         github: githubResult.status === 'ok' ? 'ok' : 'fallback',
-        githubSourceType: githubResult.status === 'ok' ? 'official-api' : 'fallback-cache',
+        githubSourceType: githubResult.sourceType,
         linkedin: linkedinResult.status === 'ok' ? 'ok' : 'fallback',
-        linkedinSourceType: linkedinResult.sourceType
+        linkedinSourceType: linkedinResult.sourceType,
+        linkedinProfileUrl: LinkedInAdapter.getProfileUrl(),
+        linkedinHandle: LinkedInAdapter.getHandle()
       },
       githubTelemetry: {
         username: githubResult.user?.login || 'sarthak1778',
@@ -85,12 +56,10 @@ module.exports = async function handler(req, res) {
         stars: githubResult.user?.stars || 0,
         githubSince: githubResult.user?.createdAt,
         topLanguages: githubResult.topLanguages || [],
-        recentRepos: githubResult.recentRepos || [],
         activityMatrix: githubResult.activityMatrix || []
       },
-      currentlyBuilding: githubResult.currentlyBuilding || null,
-      activities: limitedActivities,
-      totalActivities: combined.length
+      activities: normalized.activities,
+      totalCount: normalized.totalCount
     };
 
     res.statusCode = 200;

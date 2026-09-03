@@ -39,7 +39,7 @@
   "url": "https://sarthak-choudhary.vercel.app/",
   "sameAs": [
     "https://github.com/sarthak1778",
-    "https://www.linkedin.com/in/sarthakchoudhary"
+    "https://www.linkedin.com/in/sarthak-choudhary-455098293/"
   ],
   "jobTitle": "Electrical & Electronics Engineer / Software Developer",
   "alumniOf": "Sir M Visvesvaraya Institute of Technology",
@@ -535,37 +535,45 @@
     line-height: 1.4;
   }
 
-  /* ---------- Currently Building Spotlight ---------- */
-  .currently-building-section {
+  /* ---------- Live Highlights Section (Building + Latest Updates) ---------- */
+  .highlights-section {
     background: linear-gradient(180deg, var(--bg), var(--bg-soft));
     border-bottom: 1px solid var(--border);
-    padding: 44px 0;
+    padding: 50px 0;
   }
-  .spotlight-card {
-    background: var(--surface);
-    border: 1px solid var(--copper-line);
-    border-radius: var(--radius-lg);
-    padding: 24px 28px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(240, 147, 90, 0.05);
+  .highlights-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 24px;
-    align-items: center;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 20px;
   }
-  .spotlight-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; bottom: 0; width: 4px;
-    background: linear-gradient(180deg, var(--copper), var(--teal));
+  .highlight-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
   }
-  .spotlight-header {
+  .highlight-card:hover {
+    border-color: var(--copper-line);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  }
+  .highlight-card.featured-building {
+    border-color: var(--copper-line);
+    background: linear-gradient(180deg, var(--surface), rgba(20, 25, 35, 0.8));
+  }
+  .highlight-card-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 8px;
-    flex-wrap: wrap;
+    justify-content: space-between;
   }
   .status-badge {
     font-family: var(--font-mono);
@@ -573,54 +581,56 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     font-weight: 700;
-    padding: 4px 10px;
+    padding: 3px 8px;
     border-radius: 999px;
     background: rgba(94, 234, 212, 0.15);
     color: var(--teal);
     border: 1px solid rgba(94, 234, 212, 0.35);
-  }
-  .status-badge.active {
-    background: rgba(94, 234, 212, 0.15);
-    color: var(--teal);
-    border-color: rgba(94, 234, 212, 0.35);
   }
   .status-badge.updated {
     background: rgba(240, 147, 90, 0.15);
     color: var(--copper);
     border-color: var(--copper-line);
   }
-  .spotlight-time {
-    font-family: var(--font-mono);
-    font-size: 11.5px;
-    color: var(--text-faint);
-  }
-  .spotlight-title {
+  .highlight-card-title {
     font-family: var(--font-display);
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     margin: 0 0 8px;
     color: var(--text);
   }
-  .spotlight-desc {
-    font-size: 14.5px;
+  .highlight-card-desc {
+    font-size: 13.5px;
     color: var(--text-dim);
-    margin: 0 0 16px;
-    max-width: 680px;
+    line-height: 1.5;
+    margin: 0 0 14px;
+    flex-grow: 1;
   }
-  .spotlight-tech {
+  .highlight-card-meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
+    margin-top: auto;
+    margin-bottom: 14px;
   }
-  .spotlight-tech span {
+  .highlight-card-meta span {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 10.5px;
     padding: 3px 8px;
-    border-radius: var(--radius-sm);
+    border-radius: 4px;
     background: var(--bg-soft);
     border: 1px solid var(--border-bright);
     color: var(--text-dim);
   }
+  .highlight-card-link {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--copper);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .highlight-card-link:hover { text-decoration: underline; }
 
   /* ---------- Unified Live Activity Feed ---------- */
   .activity-toolbar {
@@ -664,6 +674,21 @@
     font-family: var(--font-mono);
     font-size: 11px;
     color: var(--text-faint);
+  }
+  .refresh-btn {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--copper);
+    background: var(--surface);
+    border: 1px solid var(--border-bright);
+    border-radius: var(--radius-sm);
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .refresh-btn:hover {
+    border-color: var(--copper);
+    background: var(--copper-soft);
   }
   .activity-feed {
     display: grid;
@@ -1491,6 +1516,7 @@
   /* ---------- Responsive Breakpoints ---------- */
   @media (max-width: 960px) {
     .hero-grid { grid-template-columns: 1fr; }
+    .highlights-grid { grid-template-columns: 1fr; }
     .projects-grid { grid-template-columns: 1fr; }
     .proof-grid { grid-template-columns: repeat(2, 1fr); }
     .skills-category-grid { grid-template-columns: 1fr; }
@@ -1498,7 +1524,6 @@
     .contact-grid { grid-template-columns: 1fr; }
     .gh-stats-grid { grid-template-columns: repeat(2, 1fr); }
     .gh-split { grid-template-columns: 1fr; }
-    .spotlight-card { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 768px) {
@@ -1544,6 +1569,7 @@
     </div>
     <div class="ticker-right">
       <span id="syncStatus">Syncing...</span>
+      <button class="refresh-btn" id="tickerRefreshBtn" aria-label="Refresh live activity">↻ Refresh</button>
       <a href="#activity" class="ticker-meta-link">View Timeline ↓</a>
     </div>
   </div>
@@ -1560,7 +1586,7 @@
     <nav class="primary-nav" id="primaryNav">
       <a href="#profile" class="nav-item">Profile</a>
       <a href="#activity" class="nav-item">Activity</a>
-      <a href="#building" class="nav-item">Building</a>
+      <a href="#building" class="nav-item">Highlights</a>
       <a href="#projects" class="nav-item">Projects</a>
       <a href="#proof" class="nav-item">Proof</a>
       <a href="#github" class="nav-item">GitHub</a>
@@ -1571,10 +1597,10 @@
     </nav>
 
     <div class="topbar-actions">
-      <a class="icon-btn" href="https://github.com/sarthak1778" target="_blank" rel="noopener" aria-label="GitHub Profile" title="GitHub: sarthak1778">
+      <a class="icon-btn" href="https://github.com/sarthak1778" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" title="GitHub: sarthak1778">
         <svg viewBox="0 0 24 24"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.41-5.27 5.69.42.36.78 1.08.78 2.17 0 1.57-.01 2.83-.01 3.22 0 .31.21.67.8.56A10.52 10.52 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
       </a>
-      <a class="icon-btn" href="https://www.linkedin.com/in/sarthakchoudhary" target="_blank" rel="noopener" aria-label="LinkedIn Profile" title="LinkedIn Profile">
+      <a class="icon-btn" href="https://www.linkedin.com/in/sarthak-choudhary-455098293/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" title="LinkedIn: @sarthak-choudhary">
         <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.27 2.38 4.27 5.48v6.26ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
       </a>
       <button class="btn resume-btn" id="navResumeBtn">Resume PDF</button>
@@ -1605,8 +1631,8 @@
 
         <div class="hero-actions">
           <a href="#projects" class="btn">View Projects</a>
-          <a href="https://github.com/sarthak1778" target="_blank" rel="noopener" class="btn ghost">GitHub</a>
-          <a href="https://www.linkedin.com/in/sarthakchoudhary" target="_blank" rel="noopener" class="btn ghost">LinkedIn</a>
+          <a href="https://github.com/sarthak1778" target="_blank" rel="noopener noreferrer" class="btn ghost">GitHub</a>
+          <a href="https://www.linkedin.com/in/sarthak-choudhary-455098293/" target="_blank" rel="noopener noreferrer" class="btn ghost">LinkedIn @sarthak-choudhary</a>
           <button class="btn ghost resume-btn">Download Resume (PDF)</button>
         </div>
 
@@ -1664,13 +1690,60 @@
     </div>
   </section>
 
-  <!-- Currently Building Section (Dynamic from GitHub) -->
-  <section class="currently-building-section" id="building">
+  <!-- Live Highlights Section: Currently Building + Latest Build + Latest Update -->
+  <section class="highlights-section" id="building">
     <div class="wrap">
       <div class="eyebrow">Continuous Engineering</div>
-      <h2 class="section-title" style="margin-bottom: 20px;">Currently Building</h2>
-      <div id="spotlightWrap">
-        <div class="state-box"><span class="spinner"></span>Detecting most recent active project from GitHub...</div>
+      <h2 class="section-title" style="margin-bottom: 24px;">Active Work &amp; Latest Updates</h2>
+      
+      <div class="highlights-grid">
+        <!-- 1. Currently Building (Most Active Repo) -->
+        <div class="highlight-card featured-building" id="currentlyBuildingCard">
+          <div class="highlight-card-tag">
+            <span style="color: var(--copper); font-weight: 600;">CURRENTLY BUILDING</span>
+            <span class="status-badge" id="cbStatusBadge">ACTIVE</span>
+          </div>
+          <h3 class="highlight-card-title" id="cbTitle">Loading active project...</h3>
+          <p class="highlight-card-desc" id="cbDesc">Detecting latest code activity from GitHub repository telemetry...</p>
+          <div class="highlight-card-meta" id="cbMeta">
+            <span>Scanning...</span>
+          </div>
+          <a href="https://github.com/sarthak1778" target="_blank" rel="noopener noreferrer" class="highlight-card-link" id="cbLink">
+            View on GitHub ↗
+          </a>
+        </div>
+
+        <!-- 2. Latest GitHub Build -->
+        <div class="highlight-card" id="latestBuildCard">
+          <div class="highlight-card-tag">
+            <span style="color: var(--teal); font-weight: 600;">LATEST GITHUB BUILD</span>
+            <span id="lbTime" style="color: var(--text-faint);">recent</span>
+          </div>
+          <h3 class="highlight-card-title" id="lbTitle">Loading latest build...</h3>
+          <p class="highlight-card-desc" id="lbDesc">Fetching most recent meaningful commit from GitHub events...</p>
+          <div class="highlight-card-meta" id="lbMeta">
+            <span>Scanning...</span>
+          </div>
+          <a href="https://github.com/sarthak1778" target="_blank" rel="noopener noreferrer" class="highlight-card-link" id="lbLink">
+            Inspect Commit ↗
+          </a>
+        </div>
+
+        <!-- 3. Latest LinkedIn Update -->
+        <div class="highlight-card" id="latestUpdateCard">
+          <div class="highlight-card-tag">
+            <span style="color: #60A5FA; font-weight: 600;">LATEST UPDATE • LINKEDIN</span>
+            <span id="luTime" style="color: var(--text-faint);">recent</span>
+          </div>
+          <h3 class="highlight-card-title" id="luTitle">Loading LinkedIn update...</h3>
+          <p class="highlight-card-desc" id="luDesc">Connecting to LinkedIn data layer for latest verified announcement...</p>
+          <div class="highlight-card-meta" id="luMeta">
+            <span>LinkedIn Feed</span>
+          </div>
+          <a href="https://www.linkedin.com/in/sarthak-choudhary-455098293/" target="_blank" rel="noopener noreferrer" class="highlight-card-link" id="luLink">
+            Read on LinkedIn ↗
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -1687,16 +1760,18 @@
 
     <div class="activity-toolbar">
       <div class="filter-pills" id="activityFilters">
-        <button class="filter-pill active" data-filter="all">All</button>
-        <button class="filter-pill" data-filter="github">GitHub</button>
-        <button class="filter-pill" data-filter="linkedin">LinkedIn</button>
-        <button class="filter-pill" data-filter="projects">Projects</button>
-        <button class="filter-pill" data-filter="achievements">Achievements</button>
+        <button class="filter-pill active" data-filter="all">ALL</button>
+        <button class="filter-pill" data-filter="linkedin">LINKEDIN</button>
+        <button class="filter-pill" data-filter="github">GITHUB</button>
+        <button class="filter-pill" data-filter="projects">PROJECTS</button>
+        <button class="filter-pill" data-filter="code">CODE</button>
+        <button class="filter-pill" data-filter="achievements">ACHIEVEMENTS</button>
       </div>
 
       <div class="activity-meta-status">
         <span class="live-pulse-dot"></span>
-        <span id="syncDateLabel">Last synchronized: fetching...</span>
+        <span id="syncDateLabel">Activity synced recently</span>
+        <button class="refresh-btn" id="feedRefreshBtn" aria-label="Refresh activity stream">↻ Refresh</button>
       </div>
     </div>
 
@@ -1911,7 +1986,7 @@
           </div>
           <div class="contact-row-info">
             <small>GitHub Profile</small>
-            <a href="https://github.com/sarthak1778" target="_blank" rel="noopener">github.com/sarthak1778</a>
+            <a href="https://github.com/sarthak1778" target="_blank" rel="noopener noreferrer">github.com/sarthak1778</a>
           </div>
         </div>
 
@@ -1921,7 +1996,7 @@
           </div>
           <div class="contact-row-info">
             <small>LinkedIn Network</small>
-            <a href="https://www.linkedin.com/in/sarthakchoudhary" target="_blank" rel="noopener">linkedin.com/in/sarthakchoudhary</a>
+            <a href="https://www.linkedin.com/in/sarthak-choudhary-455098293/" target="_blank" rel="noopener noreferrer">linkedin.com/in/sarthak-choudhary-455098293/ (@sarthak-choudhary)</a>
           </div>
         </div>
       </div>
@@ -1959,7 +2034,7 @@
   <h1>Sarthak Choudhary</h1>
   <p class="r-contact">
     sarthakchoudhary1778@gmail.com &nbsp;|&nbsp; +91 93416 64156 &nbsp;|&nbsp;
-    github.com/sarthak1778 &nbsp;|&nbsp; linkedin.com/in/sarthakchoudhary &nbsp;|&nbsp; Bengaluru, India
+    github.com/sarthak1778 &nbsp;|&nbsp; linkedin.com/in/sarthak-choudhary-455098293/ &nbsp;|&nbsp; Bengaluru, India
   </p>
 
   <div class="r-sec">
@@ -2190,8 +2265,8 @@
           </div>
 
           <div class="project-links-row">
-            ${p.liveUrl ? `<a href="${escapeHtml(p.liveUrl)}" target="_blank" rel="noopener" class="link-pill">Live Demo ↗</a>` : ''}
-            ${p.githubUrl ? `<a href="${escapeHtml(p.githubUrl)}" target="_blank" rel="noopener" class="link-pill">GitHub Repo ↗</a>` : ''}
+            ${p.liveUrl ? `<a href="${escapeHtml(p.liveUrl)}" target="_blank" rel="noopener noreferrer" class="link-pill">Live Demo ↗</a>` : ''}
+            ${p.githubUrl ? `<a href="${escapeHtml(p.githubUrl)}" target="_blank" rel="noopener noreferrer" class="link-pill">GitHub Repo ↗</a>` : ''}
           </div>
         </article>
       `).join('');
@@ -2201,7 +2276,7 @@
     const proofGrid = document.getElementById('proofGrid');
     if (proofGrid && Array.isArray(PROFILE_DATA.proofOfWork)) {
       proofGrid.innerHTML = PROFILE_DATA.proofOfWork.map(item => `
-        <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener" class="proof-card">
+        <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="proof-card">
           <span class="proof-badge">${escapeHtml(item.badge)}</span>
           <h3 class="proof-title">${escapeHtml(item.title)}</h3>
           <p class="proof-evidence">${escapeHtml(item.evidence)}</p>
@@ -2297,7 +2372,6 @@
     const map = PROFILE_DATA.skillProjectMap || {};
     const targetProjectIds = map[skillName] || [];
 
-    // Update active button state
     document.querySelectorAll('.skill-chip').forEach(chip => {
       if (chip.getAttribute('data-skill') === skillName) {
         chip.classList.toggle('active');
@@ -2306,7 +2380,6 @@
       }
     });
 
-    // Remove previous card highlights
     document.querySelectorAll('.project-card').forEach(card => card.classList.remove('highlight-target'));
 
     const statusEl = document.getElementById('skillFilterStatus');
@@ -2336,14 +2409,21 @@
   // ---------- Live API Synchronization Layer ----------
   let allActivities = [];
 
-  async function fetchLiveActivityData() {
+  async function fetchLiveActivityData(forceRefresh = false) {
     const syncStatusEl = document.getElementById('syncStatus');
     const tickerMsgEl = document.getElementById('tickerMsg');
     const tickerTimeEl = document.getElementById('tickerTime');
     const syncDateLabel = document.getElementById('syncDateLabel');
 
+    if (forceRefresh) {
+      syncStatusEl.textContent = 'Syncing...';
+      syncDateLabel.textContent = 'Fetching latest activity...';
+      showToast('Refreshing live activity from GitHub & LinkedIn...');
+    }
+
     try {
-      const response = await fetch('/api/activity?limit=25', {
+      const endpoint = forceRefresh ? '/api/activity?refresh=true&limit=30' : '/api/activity?limit=30';
+      const response = await fetch(endpoint, {
         headers: { 'Accept': 'application/json' },
         cache: 'no-store'
       });
@@ -2359,26 +2439,103 @@
         tickerTimeEl.textContent = `(${formatTimeAgo(data.latestActivity.timestamp)})`;
       }
       syncStatusEl.textContent = 'Synchronized';
-      syncDateLabel.textContent = `Last synchronized: ${formatTimeAgo(data.generatedAt)}`;
+      syncDateLabel.textContent = `Activity synced ${formatTimeAgo(data.generatedAt)}`;
 
-      // Render Activity Cards
-      renderActivityFeed(allActivities);
+      // Render Highlights: Currently Building, Latest Build, Latest Update
+      renderHighlights(data);
 
-      // Render Spotlight Currently Building
-      renderCurrentlyBuilding(data.currentlyBuilding);
+      // Render Live Activity Feed
+      const activeFilter = document.querySelector('.filter-pill.active')?.getAttribute('data-filter') || 'all';
+      filterAndRenderActivities(activeFilter);
 
       // Render GitHub Telemetry
       renderGithubTelemetry(data.githubTelemetry);
 
+      if (forceRefresh) {
+        showToast('Activity successfully refreshed!');
+      }
+
     } catch (err) {
       console.warn('Live activity fetch failed, activating resilient direct fallback:', err);
       syncStatusEl.textContent = 'Offline Mode';
-      syncDateLabel.textContent = 'Using local verified telemetry';
+      syncDateLabel.textContent = 'Using verified local telemetry';
       loadClientSideFallback();
     }
   }
 
-  function renderActivityFeed(items) {
+  function renderHighlights(data) {
+    // 1. Currently Building
+    const cb = data.currentlyBuilding;
+    if (cb) {
+      document.getElementById('cbTitle').textContent = cb.name;
+      document.getElementById('cbDesc').textContent = cb.description || 'Active software repository under development.';
+      document.getElementById('cbStatusBadge').textContent = cb.status || 'ACTIVE';
+      document.getElementById('cbStatusBadge').className = `status-badge ${cb.status === 'ACTIVE' ? 'active' : 'updated'}`;
+      document.getElementById('cbLink').href = cb.url || 'https://github.com/sarthak1778';
+      document.getElementById('cbLink').textContent = `View on GitHub (${formatTimeAgo(cb.pushedAt)}) ↗`;
+
+      const meta = document.getElementById('cbMeta');
+      meta.innerHTML = `
+        ${cb.language ? `<span>${escapeHtml(cb.language)}</span>` : ''}
+        <span>★ ${cb.stars || 0}</span>
+        <span>${formatTimeAgo(cb.pushedAt)}</span>
+      `;
+    }
+
+    // 2. Latest GitHub Build
+    const lb = data.latestGithubBuild;
+    if (lb) {
+      document.getElementById('lbTitle').textContent = lb.title;
+      document.getElementById('lbDesc').textContent = lb.description;
+      document.getElementById('lbTime').textContent = formatTimeAgo(lb.date);
+      document.getElementById('lbLink').href = lb.url || 'https://github.com/sarthak1778';
+      document.getElementById('lbLink').textContent = 'Inspect on GitHub ↗';
+
+      const meta = document.getElementById('lbMeta');
+      meta.innerHTML = `
+        <span>GitHub API</span>
+        ${lb.technologies && lb.technologies.length ? `<span>${escapeHtml(lb.technologies[0])}</span>` : ''}
+        <span>${formatTimeAgo(lb.date)}</span>
+      `;
+    }
+
+    // 3. Latest LinkedIn Update
+    const lu = data.latestLinkedInUpdate;
+    if (lu) {
+      document.getElementById('luTitle').textContent = lu.title;
+      document.getElementById('luDesc').textContent = lu.description;
+      document.getElementById('luTime').textContent = formatTimeAgo(lu.date);
+      document.getElementById('luLink').href = lu.url || 'https://www.linkedin.com/in/sarthak-choudhary-455098293/';
+      document.getElementById('luLink').textContent = 'Read on LinkedIn ↗';
+
+      const meta = document.getElementById('luMeta');
+      meta.innerHTML = `
+        <span>LinkedIn</span>
+        <span>@sarthak-choudhary</span>
+        ${lu.metadata?.engagement?.reactions ? `<span>👍 ${lu.metadata.engagement.reactions}</span>` : ''}
+      `;
+    }
+  }
+
+  function filterAndRenderActivities(filterType) {
+    let filtered = allActivities;
+
+    if (filterType === 'linkedin') {
+      filtered = allActivities.filter(a => a.source === 'linkedin');
+    } else if (filterType === 'github') {
+      filtered = allActivities.filter(a => a.source === 'github');
+    } else if (filterType === 'projects') {
+      filtered = allActivities.filter(a => a.type === 'project' || a.type === 'repository' || a.type === 'launch');
+    } else if (filterType === 'code') {
+      filtered = allActivities.filter(a => a.type === 'commit' || a.type === 'pull_request' || a.type === 'release');
+    } else if (filterType === 'achievements') {
+      filtered = allActivities.filter(a => a.type === 'milestone' || a.type === 'announcement' || a.category === 'achievements');
+    }
+
+    renderActivityCards(filtered);
+  }
+
+  function renderActivityCards(items) {
     const feed = document.getElementById('activityFeed');
     if (!feed) return;
 
@@ -2389,7 +2546,8 @@
 
     feed.innerHTML = items.map(item => {
       const isGh = item.source === 'github';
-      const isRecent = item.timestamp && (Date.now() - new Date(item.timestamp).getTime()) <= 48 * 3600 * 1000;
+      const itemDate = item.date || item.timestamp;
+      const isRecent = itemDate && (Date.now() - new Date(itemDate).getTime()) <= 48 * 3600 * 1000;
       const sourceTag = isGh ? 'GitHub' : 'LinkedIn';
       const sourceBadgeClass = isGh ? 'github' : 'linkedin';
       const sourceIndicator = item.sourceType === 'official-api' ? 'Official API' : 'Verified Feed';
@@ -2416,9 +2574,9 @@
           </div>
 
           <div class="activity-right">
-            <span class="activity-time-str">${escapeHtml(formatTimeAgo(item.timestamp))}</span>
+            <span class="activity-time-str">${escapeHtml(formatTimeAgo(itemDate))}</span>
             ${item.url ? `
-              <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener" class="activity-link-btn">
+              <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="activity-link-btn">
                 View on ${sourceTag} ↗
               </a>
             ` : ''}
@@ -2426,41 +2584,6 @@
         </article>
       `;
     }).join('');
-  }
-
-  function renderCurrentlyBuilding(building) {
-    const wrap = document.getElementById('spotlightWrap');
-    if (!wrap) return;
-
-    if (!building) {
-      wrap.innerHTML = `<div class="state-box">No active repository detected currently.</div>`;
-      return;
-    }
-
-    wrap.innerHTML = `
-      <div class="spotlight-card">
-        <div>
-          <div class="spotlight-header">
-            <span class="status-badge ${building.status === 'ACTIVE' ? 'active' : 'updated'}">
-              ● ${escapeHtml(building.status)}
-            </span>
-            <span class="spotlight-time">Last push ${formatTimeAgo(building.pushedAt)}</span>
-          </div>
-          <h3 class="spotlight-title">${escapeHtml(building.name)}</h3>
-          <p class="spotlight-desc">${escapeHtml(building.description || 'Active software development on GitHub.')}</p>
-          <div class="spotlight-tech">
-            ${building.language ? `<span>Language: ${escapeHtml(building.language)}</span>` : ''}
-            <span>Stars: ${building.stars}</span>
-            <span>Forks: ${building.forks}</span>
-          </div>
-        </div>
-        <div>
-          <a href="${escapeHtml(building.url)}" target="_blank" rel="noopener" class="btn">
-            View on GitHub ↗
-          </a>
-        </div>
-      </div>
-    `;
   }
 
   function renderGithubTelemetry(telemetry) {
@@ -2493,8 +2616,6 @@
           <span style="text-align: right; color: var(--text-faint);">${lang.count}</span>
         </div>
       `).join('');
-    } else if (langContainer) {
-      langContainer.innerHTML = `<div class="state-box">Language statistics updated directly from repository commits.</div>`;
     }
 
     // 12-Week Activity Matrix
@@ -2510,7 +2631,7 @@
     }
   }
 
-  // Fallback if backend API is not responding
+  // Fallback if backend API is offline
   async function loadClientSideFallback() {
     try {
       const [ghUserRes, ghReposRes] = await Promise.all([
@@ -2535,49 +2656,31 @@
           ],
           activityMatrix: []
         });
-
-        if (repos.length > 0) {
-          const top = repos[0];
-          renderCurrentlyBuilding({
-            name: top.name,
-            description: top.description || 'Public engineering project.',
-            language: top.language,
-            stars: top.stargazers_count,
-            forks: top.forks_count,
-            url: top.html_url,
-            pushedAt: top.pushed_at,
-            status: 'ACTIVE'
-          });
-        }
       }
     } catch (e) {
       console.error('Direct fallback also failed:', e);
     }
   }
 
-  // Activity filter pill interactions
+  // Activity filter pill listeners
   const filterButtons = document.querySelectorAll('.filter-pill');
   filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       filterButtons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const filter = btn.getAttribute('data-filter');
-
-      if (filter === 'all') {
-        renderActivityFeed(allActivities);
-      } else if (filter === 'github') {
-        renderActivityFeed(allActivities.filter(a => a.source === 'github'));
-      } else if (filter === 'linkedin') {
-        renderActivityFeed(allActivities.filter(a => a.source === 'linkedin'));
-      } else if (filter === 'projects') {
-        renderActivityFeed(allActivities.filter(a => a.type === 'project' || a.type === 'launch' || a.type === 'create-repo'));
-      } else if (filter === 'achievements') {
-        renderActivityFeed(allActivities.filter(a => a.type === 'milestone' || a.type === 'announcement'));
-      }
+      filterAndRenderActivities(filter);
     });
   });
 
-  // ---------- Copy Email Feature ----------
+  // Refresh buttons
+  const tickerRefreshBtn = document.getElementById('tickerRefreshBtn');
+  const feedRefreshBtn = document.getElementById('feedRefreshBtn');
+
+  if (tickerRefreshBtn) tickerRefreshBtn.addEventListener('click', () => fetchLiveActivityData(true));
+  if (feedRefreshBtn) feedRefreshBtn.addEventListener('click', () => fetchLiveActivityData(true));
+
+  // Copy Email Feature
   const copyBtn = document.getElementById('copyEmailBtn');
   if (copyBtn) {
     copyBtn.addEventListener('click', () => {
@@ -2591,7 +2694,7 @@
     });
   }
 
-  // ---------- PDF Resume Export with html2pdf.js ----------
+  // PDF Resume Export with html2pdf.js
   const resumeButtons = document.querySelectorAll('.resume-btn');
   resumeButtons.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -2627,12 +2730,11 @@
     });
   });
 
-  // ---------- Initialization ----------
+  // Initialization
   document.addEventListener('DOMContentLoaded', () => {
     renderStaticSections();
     fetchLiveActivityData();
-    // Poll updates every 5 minutes
-    setInterval(fetchLiveActivityData, 5 * 60 * 1000);
+    setInterval(() => fetchLiveActivityData(false), 5 * 60 * 1000);
   });
 </script>
 

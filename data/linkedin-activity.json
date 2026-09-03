@@ -2,65 +2,85 @@
   {
     "id": "li-gemini-ambassador-2025",
     "source": "linkedin",
-    "sourceType": "manual-verified",
+    "sourceType": "verified-feed",
+    "type": "post",
     "title": "Selected as Google Gemini Campus Ambassador",
-    "description": "Proud to be representing Google Gemini on campus! Excited to organize hands-on sessions on modern AI workflows, prompt engineering, and developer tooling for fellow engineers.",
+    "description": "Proud to be representing Google Gemini on campus! Organizing hands-on technical workshops covering modern AI workflows, prompt engineering, and developer tooling for engineering students.",
+    "date": "2026-08-20T10:00:00Z",
     "timestamp": "2026-08-20T10:00:00Z",
-    "url": "https://www.linkedin.com/in/sarthakchoudhary",
-    "type": "announcement",
-    "category": "leadership",
-    "engagement": {
-      "reactions": 85,
-      "comments": 14
-    },
-    "technologies": ["Google Gemini", "Generative AI", "Prompt Engineering", "Developer Community"]
+    "url": "https://www.linkedin.com/in/sarthak-choudhary-455098293/",
+    "category": "achievements",
+    "technologies": ["Google Gemini", "Generative AI", "Prompt Engineering", "Developer Community"],
+    "metadata": {
+      "author": "Sarthak Choudhary",
+      "handle": "@sarthak-choudhary",
+      "engagement": {
+        "reactions": 85,
+        "comments": 14
+      }
+    }
   },
   {
     "id": "li-aero-india-2025",
     "source": "linkedin",
-    "sourceType": "manual-verified",
+    "sourceType": "verified-feed",
+    "type": "post",
     "title": "Operations & Logistics Coordination at Aero India 2025",
     "description": "Honored to volunteer at Aero India 2025, managing event logistics, delegate routing, and coordination for over 1,200 attendees at Asia's premier aerospace exposition.",
+    "date": "2026-07-15T09:30:00Z",
     "timestamp": "2026-07-15T09:30:00Z",
-    "url": "https://www.linkedin.com/in/sarthakchoudhary",
-    "type": "milestone",
+    "url": "https://www.linkedin.com/in/sarthak-choudhary-455098293/",
     "category": "achievements",
-    "engagement": {
-      "reactions": 112,
-      "comments": 22
-    },
-    "technologies": ["Event Logistics", "Leadership", "Aero India 2025"]
+    "technologies": ["Event Logistics", "Leadership", "Aero India 2025"],
+    "metadata": {
+      "author": "Sarthak Choudhary",
+      "handle": "@sarthak-choudhary",
+      "engagement": {
+        "reactions": 112,
+        "comments": 22
+      }
+    }
   },
   {
     "id": "li-smart-plant-iot",
     "source": "linkedin",
-    "sourceType": "manual-verified",
+    "sourceType": "verified-feed",
+    "type": "project",
     "title": "Smart Plant Monitoring System Prototype Completed",
     "description": "Completed physical prototyping of our automated IoT plant monitoring & irrigation unit using Arduino Uno, ESP8266 Wi-Fi module, and ThingSpeak cloud telemetry.",
+    "date": "2026-05-18T14:20:00Z",
     "timestamp": "2026-05-18T14:20:00Z",
-    "url": "https://www.linkedin.com/in/sarthakchoudhary",
-    "type": "project",
+    "url": "https://www.linkedin.com/in/sarthak-choudhary-455098293/",
     "category": "projects",
-    "engagement": {
-      "reactions": 94,
-      "comments": 11
-    },
-    "technologies": ["IoT", "Arduino", "ESP8266", "ThingSpeak", "Sensors"]
+    "technologies": ["IoT", "Arduino Uno", "ESP8266", "ThingSpeak", "Sensors"],
+    "metadata": {
+      "author": "Sarthak Choudhary",
+      "handle": "@sarthak-choudhary",
+      "engagement": {
+        "reactions": 94,
+        "comments": 11
+      }
+    }
   },
   {
     "id": "li-prakash-jewellers-launch",
     "source": "linkedin",
-    "sourceType": "manual-verified",
+    "sourceType": "verified-feed",
+    "type": "project",
     "title": "Prakash Jewellers Web Platform Live on Vercel",
     "description": "Shipped a responsive, mobile-first commercial showcase website for Prakash Jewellers, leveraging modern AI-assisted coding to accelerate layout and deployment.",
+    "date": "2026-04-10T11:15:00Z",
     "timestamp": "2026-04-10T11:15:00Z",
     "url": "https://prakashjewellers.vercel.app/",
-    "type": "launch",
     "category": "projects",
-    "engagement": {
-      "reactions": 78,
-      "comments": 9
-    },
-    "technologies": ["JavaScript", "HTML5", "CSS3", "Vercel", "Web Development"]
+    "technologies": ["JavaScript", "HTML5", "CSS3", "Vercel", "Web Development"],
+    "metadata": {
+      "author": "Sarthak Choudhary",
+      "handle": "@sarthak-choudhary",
+      "engagement": {
+        "reactions": 78,
+        "comments": 9
+      }
+    }
   }
 ]

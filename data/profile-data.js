@@ -12,7 +12,8 @@ const PROFILE_DATA = {
     phone: "+91 93416 64156",
     location: "Bengaluru, India",
     githubUrl: "https://github.com/sarthak1778",
-    linkedinUrl: "https://www.linkedin.com/in/sarthakchoudhary",
+    linkedinUrl: "https://www.linkedin.com/in/sarthak-choudhary-455098293/",
+    linkedinHandle: "@sarthak-choudhary",
     livePortfolioUrl: "https://sarthak-choudhary.vercel.app/"
   },
 
@@ -129,14 +130,14 @@ const PROFILE_DATA = {
       title: "Google Gemini Campus Ambassador",
       type: "Official Technical Advocacy",
       evidence: "Selected campus representative leading AI literacy workshops and student enablement",
-      url: "https://www.linkedin.com/in/sarthakchoudhary",
+      url: "https://www.linkedin.com/in/sarthak-choudhary-455098293/",
       badge: "LEADERSHIP"
     },
     {
       title: "Aero India 2025 Coordination",
       type: "Large-Scale Operations",
       evidence: "Managed logistics and attendee movement for 1,200+ delegates and international visitors",
-      url: "https://www.linkedin.com/in/sarthakchoudhary",
+      url: "https://www.linkedin.com/in/sarthak-choudhary-455098293/",
       badge: "OPERATIONS"
     },
     {
