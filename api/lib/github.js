@@ -341,7 +341,6 @@ async function fetchGithubActivity(forceRefresh = false) {
 
     return {
       status: 'fallback',
-      sourceType: 'cached-fallback',
       error: err.message,
       user: {
         login: GH_USERNAME,

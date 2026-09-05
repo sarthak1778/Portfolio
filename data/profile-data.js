@@ -69,25 +69,6 @@ const PROFILE_DATA = {
     }
   ],
 
-  engineeringPrinciples: [
-    {
-      title: "Systems Thinking",
-      desc: "Hardware + software integration. Ensuring sensors, signal conditioning, firmware logic, and cloud layers function as a coherent, fail-safe system."
-    },
-    {
-      title: "Practical Engineering",
-      desc: "Projects move beyond theoretical formulas into working physical breadboard prototypes, bench measurements, and dynamic MATLAB/Simulink simulations."
-    },
-    {
-      title: "Cross-Domain Development",
-      desc: "Bridging electrical power engineering, embedded microcontrollers, signal processing, modern web interfaces, and applied AI heuristics."
-    },
-    {
-      title: "Execution & Leadership",
-      desc: "Rigorous technical work paired with active campus community enablement, Google Gemini advocacy, and operations coordination for 1,200+ attendees."
-    }
-  ],
-
   technicalSkills: {
     languages: {
       category: "Languages",
@@ -468,14 +449,11 @@ const PROFILE_DATA = {
   ],
 
   currentlyBuilding: {
-    project: "Hybrid ANN-PID PMSM Speed Control",
+    project: "Hybrid ANN-PID PMSM Speed Controller",
     category: "Electrical Engineering / Control Systems / AI",
     status: "IN DEVELOPMENT",
     statusDetail: "Active Simulation & Algorithmic Integration",
-    stage: "In Development (Simulation & Parameter Matrix Tuning)",
     lastUpdated: "September 2026",
-    technologies: ["MATLAB", "Simulink", "PMSM", "ANN", "PID", "PWM", "Power Electronics"],
-    githubUrl: "https://github.com/sarthak1778",
     summary: "Simulating adaptive artificial neural network controllers to dynamically adjust PID gains under sudden mechanical load perturbations in permanent magnet synchronous motor drives.",
     currentWorkPackages: [
       { name: "ANN Controller Weight Training", status: "Active", progress: "80%" },

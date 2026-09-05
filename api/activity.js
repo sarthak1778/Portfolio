@@ -35,7 +35,6 @@ module.exports = async function handler(req, res) {
 
     const payload = {
       status: 'ok',
-      sourceType: githubResult.sourceType || (githubResult.status === 'ok' ? 'official-api' : 'cached-fallback'),
       generatedAt: new Date().toISOString(),
       latestActivity: normalized.ticker,
       latestLinkedInUpdate: normalized.latestLinkedInUpdate,
