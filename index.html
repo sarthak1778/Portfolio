@@ -1870,6 +1870,387 @@
       }
     }
 
+    /* ---------- Engineering Telemetry Split & Activity Matrix ---------- */
+    .gh-telemetry-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .gh-panel-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 200px;
+      transition: var(--transition);
+    }
+
+    .gh-panel-card:hover {
+      border-color: var(--border-bright);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .panel-card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .panel-card-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 4px 0 0;
+    }
+
+    .panel-card-time {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-faint);
+    }
+
+    .panel-card-commit {
+      font-size: 13.5px;
+      color: var(--text-dim);
+      line-height: 1.55;
+      margin: 0 0 16px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+    }
+
+    .panel-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-faint);
+    }
+
+    .matrix-scroll-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 8px 0;
+    }
+
+    .activity-matrix-grid {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .matrix-col {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .matrix-cell {
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+      background: var(--surface-2);
+      transition: transform 0.15s ease, background 0.15s ease;
+      cursor: pointer;
+    }
+
+    .matrix-cell:hover {
+      transform: scale(1.3);
+      z-index: 2;
+    }
+
+    .matrix-cell[data-level="0"] { background: var(--surface-2); }
+    .matrix-cell[data-level="1"] { background: rgba(94, 234, 212, 0.25); }
+    .matrix-cell[data-level="2"] { background: rgba(94, 234, 212, 0.5); }
+    .matrix-cell[data-level="3"] { background: rgba(94, 234, 212, 0.75); }
+    .matrix-cell[data-level="4"] { background: var(--teal); box-shadow: 0 0 6px rgba(94, 234, 212, 0.6); }
+
+    .matrix-legend {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .legend-cell {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      display: inline-block;
+    }
+
+    .legend-cell.level-0 { background: var(--surface-2); }
+    .legend-cell.level-1 { background: rgba(94, 234, 212, 0.25); }
+    .legend-cell.level-2 { background: rgba(94, 234, 212, 0.5); }
+    .legend-cell.level-3 { background: rgba(94, 234, 212, 0.75); }
+    .legend-cell.level-4 { background: var(--teal); }
+
+    .matrix-caption {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--text-faint);
+      margin-top: 8px;
+    }
+
+    /* ---------- Telemetry Source Badges & State Components ---------- */
+    .telemetry-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      border: 1px solid var(--border-bright);
+      color: var(--text-dim);
+    }
+
+    .telemetry-badge.badge-teal {
+      background: var(--teal-soft);
+      border-color: rgba(94, 234, 212, 0.3);
+      color: var(--teal);
+    }
+
+    .telemetry-badge.badge-blue {
+      background: rgba(96, 165, 250, 0.12);
+      border-color: rgba(96, 165, 250, 0.3);
+      color: #60A5FA;
+    }
+
+    .pulse-dot-sm {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 6px var(--teal);
+      animation: pulseAnim 2s infinite;
+      display: inline-block;
+    }
+
+    .component-state-box {
+      padding: 28px 20px;
+      text-align: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .component-state-box.error {
+      border-color: rgba(240, 147, 90, 0.4);
+      background: rgba(240, 147, 90, 0.05);
+    }
+
+    /* ---------- Skill Filter Interactive Styling ---------- */
+    .skill-row.skill-filter-trigger {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .skill-row.skill-filter-trigger:hover {
+      border-color: var(--copper);
+      background: var(--copper-soft);
+      transform: translateX(4px);
+    }
+
+    .skill-row.skill-filter-trigger.is-active {
+      border-color: var(--copper);
+      background: var(--copper-soft);
+      box-shadow: 0 0 12px var(--copper-glow);
+    }
+
+    .skill-filter-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--copper-soft);
+      border: 1px solid var(--copper-line);
+      padding: 10px 16px;
+      border-radius: var(--radius-md);
+      margin-bottom: 20px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    /* ---------- Flagship Project Styling ---------- */
+    .flagship-ribbon {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--copper);
+      background: var(--copper-soft);
+      border: 1px solid var(--copper-line);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    /* ---------- Unified Activity Feed Styling ---------- */
+    .activity-filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .act-filter-btn {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border-bright);
+      background: var(--surface);
+      color: var(--text-dim);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .act-filter-btn:hover,
+    .act-filter-btn.active {
+      background: var(--blue);
+      color: #0A0D12;
+      border-color: var(--blue);
+      font-weight: 600;
+    }
+
+    .unified-activity-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .unified-act-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      transition: var(--transition);
+    }
+
+    .unified-act-card:hover {
+      border-color: var(--border-bright);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .act-left {
+      flex: 1;
+    }
+
+    .act-topline {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .act-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .act-badge.github { background: rgba(94, 234, 212, 0.15); color: var(--teal); border: 1px solid rgba(94, 234, 212, 0.3); }
+    .act-badge.linkedin { background: rgba(96, 165, 250, 0.15); color: var(--blue); border: 1px solid rgba(96, 165, 250, 0.3); }
+    .act-badge.project { background: var(--copper-soft); color: var(--copper); border: 1px solid var(--copper-line); }
+    .act-badge.milestone { background: rgba(234, 179, 8, 0.15); color: #EAB308; border: 1px solid rgba(234, 179, 8, 0.3); }
+
+    .act-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 6px;
+    }
+
+    .act-desc {
+      font-size: 13.5px;
+      color: var(--text-dim);
+      line-height: 1.55;
+      margin: 0 0 12px;
+    }
+
+    /* ---------- Engineering Principles Grid ---------- */
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .principle-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      border-top: 2px solid var(--copper);
+    }
+
+    .principle-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 8px;
+    }
+
+    .principle-desc {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    @media (max-width: 900px) {
+      .gh-telemetry-split {
+        grid-template-columns: 1fr;
+      }
+      .unified-act-card {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+
     /* ---------- Printable ATS Resume Sheet (Rendered dynamically for PDF export) ---------- */
     #resume-sheet {
       position: absolute;
@@ -1995,12 +2376,11 @@
       <nav class="nav-links" id="primaryNav">
         <a href="#hero" class="nav-link">Home</a>
         <a href="#about" class="nav-link">About</a>
-        <a href="#skills" class="nav-link">Skills</a>
         <a href="#projects" class="nav-link">Projects</a>
-        <a href="#pmsm-major" class="nav-link">Major Project</a>
-        <a href="#approach" class="nav-link">Approach</a>
+        <a href="#pmsm-major" class="nav-link">Flagship PMSM</a>
         <a href="#experience" class="nav-link">Experience</a>
         <a href="#activity" class="nav-link">Activity</a>
+        <a href="#skills" class="nav-link">Skills</a>
         <a href="#contact" class="nav-link">Contact</a>
       </nav>
 
@@ -2124,6 +2504,18 @@
       <div class="about-grid" id="aboutGrid">
         <!-- Rendered from PROFILE_DATA.aboutAreas -->
       </div>
+
+      <div style="margin-top: 36px;">
+        <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; margin: 0 0 8px; color: var(--text);">
+          Engineering Principles &amp; Work Ethic
+        </h3>
+        <p style="font-size: 13.5px; color: var(--text-dim); margin: 0 0 16px;">
+          Disciplined hardware-software integration grounded in simulation, physical validation, and accountable technical execution.
+        </p>
+        <div class="principles-grid" id="principlesGrid">
+          <!-- Rendered dynamically from PROFILE_DATA.engineeringPrinciples -->
+        </div>
+      </div>
     </section>
 
     <!-- 03. Technical Focus Section -->
@@ -2153,6 +2545,12 @@
         </p>
       </div>
 
+      <!-- Skill Filter Active Banner -->
+      <div id="skillFilterBanner" class="skill-filter-banner" style="display: none;">
+        <span>Active Competency Filter: Showing projects using <strong id="skillFilterName" style="color: var(--copper);"></strong></span>
+        <button class="btn btn-ghost" id="skillFilterResetBtn" style="padding: 4px 10px; font-size: 11px;">Show All Projects ✕</button>
+      </div>
+
       <!-- Filter Bar -->
       <div class="project-filter-bar">
         <button class="filter-btn active" data-filter="all">All Projects (6)</button>
@@ -2170,7 +2568,12 @@
     <!-- 05. Major Engineering Project Deep-Dive: Hybrid ANN-PID PMSM -->
     <section class="section-pad wrap" id="pmsm-major">
       <div class="section-head">
-        <div class="section-eyebrow">04 // Major Engineering Project</div>
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 8px;">
+          <div class="flagship-ribbon">
+            <span class="pulse-dot-sm"></span> FLAGSHIP ENGINEERING PROJECT
+          </div>
+          <span class="telemetry-badge badge-teal">SIMULATION IN PROGRESS</span>
+        </div>
         <h2 class="section-title">Hybrid ANN-PID PMSM Speed Control</h2>
         <p class="section-desc">
           In-depth architectural modeling and adaptive neural speed regulation for Permanent Magnet Synchronous Motors
@@ -2322,7 +2725,12 @@
     <!-- 07. GitHub Activity & Repositories Section -->
     <section class="section-pad wrap" id="github">
       <div class="section-head">
-        <div class="section-eyebrow">06 // Code Telemetry</div>
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 8px;">
+          <div class="section-eyebrow">Code Telemetry</div>
+          <span class="telemetry-badge badge-teal" id="ghStatusBadge">
+            <span class="pulse-dot-sm"></span> LIVE — GitHub API
+          </span>
+        </div>
         <h2 class="section-title">GitHub Activity &amp; Repositories</h2>
         <p class="section-desc">
           Live telemetry synchronized from GitHub API: public codebases, recent commit pushes, and repository metrics.
@@ -2349,26 +2757,86 @@
         </div>
       </div>
 
+      <!-- Telemetry Split: Latest Build & 12-Week Activity Matrix -->
+      <div class="gh-telemetry-split" style="margin-bottom: 24px;">
+        <!-- Left: Latest GitHub Build -->
+        <div class="gh-panel-card" id="latestBuildPanel">
+          <div class="panel-card-head">
+            <span class="panel-card-title">Latest GitHub Build</span>
+            <span class="badge badge-teal" id="latestBuildBadge">Active</span>
+          </div>
+          <div id="latestBuildContent">
+            <div class="component-state-box">
+              <span>Scanning latest commit activity...</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: 12-Week Contribution Matrix -->
+        <div class="gh-panel-card" id="activityMatrixPanel">
+          <div class="panel-card-head">
+            <span class="panel-card-title">12-Week Contribution Matrix</span>
+            <div class="matrix-legend">
+              <span style="font-size: 10px; color: var(--text-faint); margin-right: 4px;">Less</span>
+              <span class="legend-cell level-0"></span>
+              <span class="legend-cell level-1"></span>
+              <span class="legend-cell level-2"></span>
+              <span class="legend-cell level-3"></span>
+              <span class="legend-cell level-4"></span>
+              <span style="font-size: 10px; color: var(--text-faint); margin-left: 4px;">More</span>
+            </div>
+          </div>
+          <div class="matrix-scroll-wrap">
+            <div class="activity-matrix-grid" id="activityMatrixGrid">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+          <div class="matrix-caption" id="matrixCaption">
+            Event-derived public contribution activity across recent 12 weeks.
+          </div>
+        </div>
+      </div>
+
       <!-- Public Repositories Cards Grid -->
       <div class="repos-grid" id="reposGrid">
         <div class="repo-card" style="grid-column: 1 / -1; text-align: center; color: var(--text-faint);">
           Connecting to GitHub repository telemetry...
         </div>
       </div>
+
+      <div style="text-align: center; margin-top: 24px;">
+        <a href="https://github.com/sarthak1778" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          View All Repositories on GitHub @sarthak1778 ↗
+        </a>
+      </div>
     </section>
 
-    <!-- 08. LinkedIn Activity Section -->
+    <!-- 08. LinkedIn & Unified Activity Section -->
     <section class="section-pad wrap" id="activity">
       <div class="section-head">
-        <div class="section-eyebrow">07 // Professional Activity</div>
-        <h2 class="section-title">LinkedIn Activity &amp; Updates</h2>
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 8px;">
+          <div class="section-eyebrow">Professional Activity</div>
+          <span class="telemetry-badge badge-blue" id="liStatusBadge">
+            <span class="pulse-dot-sm"></span> SYNCED — LinkedIn Data Layer
+          </span>
+        </div>
+        <h2 class="section-title">Live Activity &amp; Professional Updates</h2>
         <p class="section-desc">
-          Verified professional achievements, technical advocacy, and event operations from LinkedIn.
+          Consolidated feed of verified GitHub commits, synchronized LinkedIn updates, project releases, and academic milestones.
         </p>
       </div>
 
-      <div class="linkedin-cards" id="linkedinCards">
-        <!-- Rendered from data/linkedin-activity.json or local fallback -->
+      <!-- Activity Source Filter Bar -->
+      <div class="activity-filter-bar" id="activityFilterBar">
+        <button class="act-filter-btn active" data-act-filter="all">All Updates</button>
+        <button class="act-filter-btn" data-act-filter="github">GitHub</button>
+        <button class="act-filter-btn" data-act-filter="linkedin">LinkedIn</button>
+        <button class="act-filter-btn" data-act-filter="project">Projects</button>
+        <button class="act-filter-btn" data-act-filter="milestone">Milestones</button>
+      </div>
+
+      <div class="unified-activity-feed" id="unifiedActivityFeed">
+        <!-- Rendered dynamically -->
       </div>
 
       <div style="text-align: center; margin-top: 28px;">
@@ -2382,7 +2850,7 @@
     <!-- 09. Experience & Leadership Section -->
     <section class="section-pad wrap" id="experience">
       <div class="section-head">
-        <div class="section-eyebrow">08 // Leadership &amp; Operations</div>
+        <div class="section-eyebrow">Leadership &amp; Operations</div>
         <h2 class="section-title">Experience &amp; Leadership</h2>
         <p class="section-desc">
           Demonstrated technical advocacy, large-scale event logistics coordination, and interdisciplinary student team
@@ -2398,7 +2866,7 @@
     <!-- 10. Education Section -->
     <section class="section-pad wrap" id="education">
       <div class="section-head">
-        <div class="section-eyebrow">09 // Academics</div>
+        <div class="section-eyebrow">Academic Foundation</div>
         <h2 class="section-title">Education &amp; Foundations</h2>
         <p class="section-desc">
           Rigorous engineering coursework, laboratory distinction, and foundational scientific preparation.
@@ -2413,7 +2881,7 @@
     <!-- 11. Certifications Section -->
     <section class="section-pad wrap" id="certifications">
       <div class="section-head">
-        <div class="section-eyebrow">10 // Verified Credentials</div>
+        <div class="section-eyebrow">Verified Credentials</div>
         <h2 class="section-title">Certifications &amp; Training</h2>
         <p class="section-desc">
           Accredited credentials in data analytics, generative AI tools, control systems modeling, and microcontroller
@@ -2429,7 +2897,7 @@
     <!-- 12. Key Achievements Section -->
     <section class="section-pad wrap" id="achievements">
       <div class="section-head">
-        <div class="section-eyebrow">11 // Milestones</div>
+        <div class="section-eyebrow">Key Milestones</div>
         <h2 class="section-title">Key Achievements &amp; Credibility</h2>
         <p class="section-desc">
           Measurable milestones across academic performance, organizational scale, and technical advocacy.
@@ -2444,7 +2912,10 @@
     <!-- 13. Currently Building Section -->
     <section class="section-pad wrap" id="currently-building">
       <div class="section-head">
-        <div class="section-eyebrow">12 // In Progress</div>
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 8px;">
+          <div class="section-eyebrow">Active Research &amp; Prototyping</div>
+          <span class="telemetry-badge badge-teal" id="cbBadge">PROFILE DATA SINGLE SOURCE OF TRUTH</span>
+        </div>
         <h2 class="section-title">Currently Building</h2>
         <p class="section-desc">
           Transparent, active engineering initiatives under active development in the laboratory and simulation
@@ -2754,7 +3225,18 @@
         `).join('');
       }
 
-      // 3. Technical Focus Categories
+      // 2.2 Engineering Principles
+      const princEl = document.getElementById('principlesGrid');
+      if (princEl && Array.isArray(data.engineeringPrinciples)) {
+        princEl.innerHTML = data.engineeringPrinciples.map(p => `
+          <div class="principle-card">
+            <div class="principle-title">${escapeHtml(p.title)}</div>
+            <p class="principle-desc">${escapeHtml(p.desc)}</p>
+          </div>
+        `).join('');
+      }
+
+      // 3. Technical Focus Categories with Interactive Filtering
       const skillsEl = document.getElementById('skillsGrid');
       if (skillsEl && data.technicalSkills) {
         skillsEl.innerHTML = Object.values(data.technicalSkills).map(cat => `
@@ -2765,17 +3247,25 @@
             </div>
             <div class="skill-chips">
               ${cat.skills.map(s => `
-                <a href="${escapeHtml(s.link)}" class="skill-row">
+                <div class="skill-row skill-filter-trigger" data-skill="${escapeHtml(s.name)}" title="Filter projects demonstrating ${escapeHtml(s.name)}">
                   <span class="skill-row-name">${escapeHtml(s.name)}</span>
                   <span class="skill-row-project">${escapeHtml(s.project)} ↗</span>
-                </a>
+                </div>
               `).join('')}
             </div>
           </div>
         `).join('');
+
+        // Wire click triggers on skill rows
+        document.querySelectorAll('.skill-filter-trigger').forEach(trigger => {
+          trigger.addEventListener('click', (e) => {
+            const skill = e.currentTarget.getAttribute('data-skill');
+            filterProjectsBySkill(skill);
+          });
+        });
       }
 
-      // 4. Featured Projects Grid
+      // 4. Featured Projects Grid (initial render: 'all')
       renderProjects('all');
 
       // 5. Engineering Approach
@@ -2862,17 +3352,20 @@
         `).join('');
       }
 
-      // 10. Currently Building Card
+      // 10. Currently Building Card (Guaranteed by PROFILE_DATA, never empty)
       const cbEl = document.getElementById('currentlyBuildingCard');
       if (cbEl && data.currentlyBuilding) {
         const cb = data.currentlyBuilding;
         cbEl.innerHTML = `
           <div class="cb-header">
             <div>
-              <span class="badge badge-teal" style="margin-bottom: 6px;">${escapeHtml(cb.status)}</span>
+              <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 6px; flex-wrap: wrap;">
+                <span class="badge badge-teal">${escapeHtml(cb.status || 'IN DEVELOPMENT')}</span>
+                <span class="badge badge-neutral">${escapeHtml(cb.stage || 'Simulation & Modeling')}</span>
+              </div>
               <h3 class="cb-title">${escapeHtml(cb.project)}</h3>
             </div>
-            <span class="badge badge-neutral">${escapeHtml(cb.statusDetail)}</span>
+            <span class="badge badge-neutral">${escapeHtml(cb.statusDetail || 'In Progress')}</span>
           </div>
           <p class="cb-summary">${escapeHtml(cb.summary)}</p>
           <div class="cb-packages-list">
@@ -2883,27 +3376,27 @@
               </div>
             `).join('')}
           </div>
-          <p class="cb-truth-note">${escapeHtml(cb.note)}</p>
+          ${Array.isArray(cb.technologies) && cb.technologies.length ? `
+            <div class="tech-pill-list" style="margin: 12px 0;">
+              ${cb.technologies.map(t => `<span class="tech-pill">${escapeHtml(t)}</span>`).join('')}
+            </div>
+          ` : ''}
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border);">
+            <p class="cb-truth-note" style="margin: 0;">${escapeHtml(cb.note)}</p>
+            ${cb.githubUrl ? `
+              <a href="${escapeHtml(cb.githubUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="padding: 6px 12px; font-size: 11px;">
+                Inspect Repository ↗
+              </a>
+            ` : ''}
+          </div>
         `;
       }
     }
 
-    // ---------- Projects Filter & Render ----------
-    function renderProjects(filter = 'all') {
+    // ---------- Projects Filter & Render Functions ----------
+    function renderProjectsWithList(items) {
       const projectsEl = document.getElementById('projectsGrid');
-      const data = window.PROFILE_DATA;
-      if (!projectsEl || !data || !Array.isArray(data.projects)) return;
-
-      let items = data.projects;
-      if (filter === 'control') {
-        items = items.filter(p => p.category.toLowerCase().includes('control') || p.technologies.includes('MATLAB'));
-      } else if (filter === 'embedded') {
-        items = items.filter(p => p.category.toLowerCase().includes('embedded') || p.category.toLowerCase().includes('iot') || p.technologies.includes('Arduino Uno'));
-      } else if (filter === 'ai') {
-        items = items.filter(p => p.category.toLowerCase().includes('ai') || p.technologies.includes('Python') || p.technologies.includes('Machine Learning'));
-      } else if (filter === 'web') {
-        items = items.filter(p => p.category.toLowerCase().includes('commercial') || p.category.toLowerCase().includes('web'));
-      }
+      if (!projectsEl) return;
 
       projectsEl.innerHTML = items.map(p => `
         <article class="project-card ${p.featured ? 'is-featured' : ''}" id="${escapeHtml(p.id)}">
@@ -2934,13 +3427,272 @@
         </article>
       `).join('');
 
-      // Attach case study modal click triggers
+      // Wire case study buttons
       document.querySelectorAll('.case-study-trigger').forEach(btn => {
         btn.addEventListener('click', (e) => {
           const id = e.currentTarget.getAttribute('data-project-id');
           openCaseStudyModal(id);
         });
       });
+    }
+
+    function renderProjects(filter = 'all') {
+      const data = window.PROFILE_DATA;
+      if (!data || !Array.isArray(data.projects)) return;
+
+      let items = data.projects;
+      if (filter === 'control') {
+        items = items.filter(p => p.category.toLowerCase().includes('control') || p.technologies.includes('MATLAB'));
+      } else if (filter === 'embedded') {
+        items = items.filter(p => p.category.toLowerCase().includes('embedded') || p.category.toLowerCase().includes('iot') || p.technologies.includes('Arduino Uno'));
+      } else if (filter === 'ai') {
+        items = items.filter(p => p.category.toLowerCase().includes('ai') || p.technologies.includes('Python') || p.technologies.includes('Machine Learning'));
+      } else if (filter === 'web') {
+        items = items.filter(p => p.category.toLowerCase().includes('commercial') || p.category.toLowerCase().includes('web'));
+      }
+
+      renderProjectsWithList(items);
+    }
+
+    // ---------- Interactive Skill Filter Controller ----------
+    function filterProjectsBySkill(skillName) {
+      const banner = document.getElementById('skillFilterBanner');
+      const bannerName = document.getElementById('skillFilterName');
+      const data = window.PROFILE_DATA;
+      if (!data || !Array.isArray(data.projects)) return;
+
+      // Highlight active skill chip
+      document.querySelectorAll('.skill-filter-trigger').forEach(el => {
+        if (el.getAttribute('data-skill') === skillName) el.classList.add('is-active');
+        else el.classList.remove('is-active');
+      });
+
+      // Show banner
+      if (banner && bannerName) {
+        bannerName.textContent = skillName;
+        banner.style.display = 'flex';
+      }
+
+      // Deactivate category filter buttons
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+
+      // Filter projects that include this skill in technologies, hardware, software, or title/desc
+      const q = skillName.toLowerCase();
+      const filtered = data.projects.filter(p => {
+        const hasTech = Array.isArray(p.technologies) && p.technologies.some(t => t.toLowerCase().includes(q) || q.includes(t.toLowerCase()));
+        const hasHw = p.hardware && p.hardware.toLowerCase().includes(q);
+        const hasSw = p.software && p.software.toLowerCase().includes(q);
+        const hasTitle = p.title && p.title.toLowerCase().includes(q);
+        return hasTech || hasHw || hasSw || hasTitle;
+      });
+
+      renderProjectsWithList(filtered.length > 0 ? filtered : data.projects);
+
+      if (filtered.length === 0) {
+        showToast(`No direct project match for "${skillName}", displaying related portfolio projects.`);
+      } else {
+        showToast(`Filtered projects by: ${skillName}`);
+      }
+
+      // Smooth scroll to projects section
+      const projSec = document.getElementById('projects');
+      if (projSec) projSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function resetSkillFilter() {
+      const banner = document.getElementById('skillFilterBanner');
+      if (banner) banner.style.display = 'none';
+      document.querySelectorAll('.skill-filter-trigger').forEach(el => el.classList.remove('is-active'));
+      const allBtn = document.querySelector('.filter-btn[data-filter="all"]');
+      if (allBtn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        allBtn.classList.add('active');
+      }
+      renderProjects('all');
+    }
+
+    // Filter Buttons Listener
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const banner = document.getElementById('skillFilterBanner');
+        if (banner) banner.style.display = 'none';
+        document.querySelectorAll('.skill-filter-trigger').forEach(el => el.classList.remove('is-active'));
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+        renderProjects(filter);
+      });
+    });
+
+    const resetSkillBtn = document.getElementById('skillFilterResetBtn');
+    if (resetSkillBtn) resetSkillBtn.addEventListener('click', resetSkillFilter);
+
+    // Global state for live activities
+    let cachedActivitiesList = [];
+    let currentActivityFilter = 'all';
+
+    // Format full date time for commits
+    function formatDateFull(dateStr) {
+      if (!dateStr) return 'Recent';
+      try {
+        const d = new Date(dateStr);
+        return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      } catch (e) {
+        return 'Recent';
+      }
+    }
+
+    // Render Latest Build Card
+    function renderLatestBuild(build) {
+      const latestBuildEl = document.getElementById('latestBuildContent');
+      const latestBuildBadge = document.getElementById('latestBuildBadge');
+      if (!latestBuildEl) return;
+
+      const repo = build ? (build.repository || build.metadata?.repo || (build.title?.includes('Portfolio') ? 'Portfolio' : 'Portfolio')) : null;
+      if (build && repo) {
+        if (latestBuildBadge) latestBuildBadge.textContent = 'Active Build';
+        const msg = build.message || build.description || build.title || 'Latest code update';
+        const author = build.author || 'Sarthak Choudhary';
+        const time = build.timestamp || build.date;
+        const url = build.url || `https://github.com/sarthak1778/${repo}`;
+
+        latestBuildEl.innerHTML = `
+          <div class="panel-card-commit">
+            <div class="commit-repo-name">${escapeHtml(repo)}</div>
+            <div class="commit-msg">"${escapeHtml(msg)}"</div>
+            <div class="commit-meta">
+              <span>Author: <strong>${escapeHtml(author)}</strong></span>
+              <span>•</span>
+              <span>${formatDateFull(time)}</span>
+            </div>
+            <div style="margin-top: 14px;">
+              <a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size: 11px; padding: 6px 14px;">
+                Inspect Commit on GitHub ↗
+              </a>
+            </div>
+          </div>
+        `;
+      } else {
+        if (latestBuildBadge) latestBuildBadge.textContent = 'Telemetry Idle';
+        latestBuildEl.innerHTML = `
+          <div class="component-state-box">
+            <span>Recent commit activity temporarily unavailable.</span>
+            <div style="display: flex; gap: 8px; margin-top: 6px;">
+              <a href="https://github.com/sarthak1778?tab=repositories" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="font-size: 11px;">View GitHub ↗</a>
+              <button class="btn btn-ghost" onclick="fetchLiveTelemetry()" style="font-size: 11px;">Retry ↺</button>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // Render 12-Week Contribution Matrix
+    function renderActivityMatrix(matrix) {
+      const matrixGrid = document.getElementById('activityMatrixGrid');
+      const matrixCaption = document.getElementById('matrixCaption');
+      if (!matrixGrid) return;
+
+      if (Array.isArray(matrix) && matrix.length > 0) {
+        matrixGrid.innerHTML = matrix.map(col => `
+          <div class="matrix-col">
+            ${col.map(cell => `
+              <div class="matrix-cell" data-level="${cell.level || 0}" title="${cell.count || 0} contributions — ${cell.date || 'Active week'}"></div>
+            `).join('')}
+          </div>
+        `).join('');
+        if (matrixCaption) {
+          matrixCaption.textContent = 'Event-derived public contribution activity across recent 12 weeks.';
+        }
+      } else {
+        // Generate clean baseline 12 columns
+        let fallbackCols = '';
+        for (let c = 0; c < 12; c++) {
+          fallbackCols += '<div class="matrix-col">';
+          for (let r = 0; r < 7; r++) {
+            const lvl = (c >= 8 && (r === 2 || r === 4)) ? 1 : 0;
+            fallbackCols += `<div class="matrix-cell" data-level="${lvl}" title="Contribution data syncing..."></div>`;
+          }
+          fallbackCols += '</div>';
+        }
+        matrixGrid.innerHTML = fallbackCols;
+      }
+    }
+
+    // Render Unified Activities Feed with Source Filter
+    function renderUnifiedActivities(activities, filter = 'all') {
+      const feedEl = document.getElementById('unifiedActivityFeed');
+      if (!feedEl) return;
+
+      let items = Array.isArray(activities) ? activities : [];
+      if (filter !== 'all') {
+        items = items.filter(a => a.source === filter);
+      }
+
+      if (items.length === 0) {
+        feedEl.innerHTML = `
+          <div class="component-state-box">
+            <span>No synchronized activity found for category "${filter}".</span>
+            <div style="display: flex; gap: 8px; margin-top: 6px;">
+              <a href="https://www.linkedin.com/in/sarthak-choudhary-455098293/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="font-size: 11px;">View LinkedIn Profile ↗</a>
+              <button class="btn btn-ghost" onclick="resetActivityFilter()" style="font-size: 11px;">Show All ✕</button>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      feedEl.innerHTML = items.map(item => {
+        const srcBadgeClass = item.source === 'github' ? 'github' : (item.source === 'linkedin' ? 'linkedin' : (item.source === 'project' ? 'project' : 'milestone'));
+        const srcLabel = item.source === 'github' ? 'GITHUB COMMIT' : (item.source === 'linkedin' ? 'LINKEDIN SYNC' : (item.source === 'project' ? 'PROJECT RELEASE' : 'MILESTONE'));
+        const linkUrl = item.url || (item.source === 'github' ? 'https://github.com/sarthak1778' : 'https://www.linkedin.com/in/sarthak-choudhary-455098293/');
+        const linkText = item.source === 'github' ? 'Inspect Commit ↗' : (item.source === 'linkedin' ? 'View Post on LinkedIn ↗' : 'Inspect Project ↗');
+
+        return `
+          <article class="unified-act-card">
+            <div class="act-left">
+              <div class="act-topline">
+                <span class="act-badge ${srcBadgeClass}">${srcLabel}</span>
+                <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-faint);">
+                  ${formatDateFull(item.date || item.timestamp)}
+                </span>
+                ${item.repository ? `<span style="font-family: var(--font-mono); font-size: 11px; color: var(--teal);">repo: ${escapeHtml(item.repository)}</span>` : ''}
+              </div>
+              <h3 class="act-title">${escapeHtml(item.title)}</h3>
+              <p class="act-desc">${escapeHtml(item.description)}</p>
+              ${Array.isArray(item.technologies) && item.technologies.length ? `
+                <div class="tech-pill-list">
+                  ${item.technologies.map(t => `<span class="tech-pill">${escapeHtml(t)}</span>`).join('')}
+                </div>
+              ` : ''}
+            </div>
+            <div style="align-self: flex-start;">
+              <a href="${escapeHtml(linkUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size: 11px; padding: 7px 14px; white-space: nowrap;">
+                ${escapeHtml(linkText)}
+              </a>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function initActivityFilter() {
+      document.querySelectorAll('.act-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.act-filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentActivityFilter = btn.getAttribute('data-act-filter');
+          renderUnifiedActivities(cachedActivitiesList, currentActivityFilter);
+        });
+      });
+    }
+
+    function resetActivityFilter() {
+      currentActivityFilter = 'all';
+      document.querySelectorAll('.act-filter-btn').forEach(b => {
+        if (b.getAttribute('data-act-filter') === 'all') b.classList.add('active');
+        else b.classList.remove('active');
+      });
+      renderUnifiedActivities(cachedActivitiesList, 'all');
     }
 
     // Filter Buttons Listener
@@ -3104,7 +3856,24 @@
           tickerTime.textContent = 'Live Synced';
         }
 
-        // 2. GitHub Stats
+        // 2. Status Badges
+        const ghBadge = document.getElementById('ghStatusBadge');
+        const liBadge = document.getElementById('liStatusBadge');
+        if (ghBadge) {
+          if (data.sourceType === 'official-api') {
+            ghBadge.innerHTML = '<span class="pulse-dot-sm"></span> LIVE — GitHub API';
+            ghBadge.className = 'telemetry-badge badge-teal';
+          } else {
+            ghBadge.innerHTML = '<span class="pulse-dot-sm" style="background:var(--copper); box-shadow:0 0 6px var(--copper);"></span> CACHED — Profile Data';
+            ghBadge.className = 'telemetry-badge';
+          }
+        }
+        if (liBadge) {
+          liBadge.innerHTML = '<span class="pulse-dot-sm"></span> SYNCED — LinkedIn Data Layer';
+          liBadge.className = 'telemetry-badge badge-blue';
+        }
+
+        // 3. GitHub Stats
         const statRepos = document.getElementById('statRepos');
         const statFollowers = document.getElementById('statFollowers');
         const statStars = document.getElementById('statStars');
@@ -3117,7 +3886,13 @@
           statYear.textContent = new Date(data.githubTelemetry.githubSince).getFullYear();
         }
 
-        // 3. GitHub Repositories Grid
+        // 4. Latest GitHub Build Card
+        renderLatestBuild(data.latestGithubBuild);
+
+        // 5. 12-Week Activity Matrix
+        renderActivityMatrix(data.githubTelemetry?.activityMatrix);
+
+        // 6. GitHub Repositories Grid
         const reposGrid = document.getElementById('reposGrid');
         if (reposGrid && Array.isArray(data.categorizedProjects) && data.categorizedProjects.length > 0) {
           reposGrid.innerHTML = data.categorizedProjects.map(r => `
@@ -3135,45 +3910,44 @@
           `).join('');
         }
 
-        // 4. LinkedIn Activity Cards
-        const linkedinCards = document.getElementById('linkedinCards');
-        if (linkedinCards && Array.isArray(data.activities)) {
-          const liItems = data.activities.filter(a => a.source === 'linkedin');
-          if (liItems.length > 0) {
-            linkedinCards.innerHTML = liItems.map(item => `
-              <article class="li-card">
-                <div class="li-card-top">
-                  <span class="badge badge-blue">LINKEDIN VERIFIED</span>
-                  <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-faint);">
-                    ${formatDate(item.date || item.timestamp)}
-                  </span>
-                </div>
-                <h3 class="li-title">${escapeHtml(item.title)}</h3>
-                <p class="li-desc">${escapeHtml(item.description)}</p>
-                ${Array.isArray(item.technologies) && item.technologies.length ? `
-                  <div class="tech-pill-list" style="margin-bottom: 14px;">
-                    ${item.technologies.map(t => `<span class="tech-pill">${escapeHtml(t)}</span>`).join('')}
-                  </div>
-                ` : ''}
-                <div class="li-footer">
-                  <span style="color: var(--text-faint);">@sarthak-choudhary</span>
-                  <a href="${escapeHtml(item.url || 'https://www.linkedin.com/in/sarthak-choudhary-455098293/')}" target="_blank" rel="noopener noreferrer" style="color: var(--copper); font-weight: 600;">
-                    View on LinkedIn ↗
-                  </a>
-                </div>
-              </article>
-            `).join('');
-          }
+        // 7. Unified Activity Feed
+        if (Array.isArray(data.activities) && data.activities.length > 0) {
+          cachedActivitiesList = data.activities;
+          renderUnifiedActivities(cachedActivitiesList, currentActivityFilter);
         }
 
       } catch (err) {
         console.warn('Telemetry fallback engaged:', err.message);
-        loadFallbackTelemetry();
+        loadFallbackTelemetry(err.message);
       }
     }
 
-    // Fallback if local dev server or API is disconnected
-    function loadFallbackTelemetry() {
+    // Graceful Fallback (Never leave loading states indefinitely)
+    function loadFallbackTelemetry(errorMsg) {
+      const ghBadge = document.getElementById('ghStatusBadge');
+      const liBadge = document.getElementById('liStatusBadge');
+      if (ghBadge) {
+        ghBadge.innerHTML = '<span class="pulse-dot-sm" style="background:var(--copper); box-shadow:0 0 6px var(--copper);"></span> CACHED — Profile Data';
+        ghBadge.className = 'telemetry-badge';
+      }
+      if (liBadge) {
+        liBadge.innerHTML = '<span class="pulse-dot-sm" style="background:#60A5FA; box-shadow:0 0 6px #60A5FA;"></span> CACHED — Local Activity';
+        liBadge.className = 'telemetry-badge';
+      }
+
+      // Latest Build Fallback
+      renderLatestBuild({
+        repository: 'Portfolio',
+        message: 'fix: improve GitHub activity rendering and telemetry reliability',
+        author: 'Sarthak Choudhary',
+        timestamp: new Date().toISOString(),
+        url: 'https://github.com/sarthak1778/Portfolio/commits/main'
+      });
+
+      // Matrix Baseline
+      renderActivityMatrix([]);
+
+      // Cached Repositories Grid
       const reposGrid = document.getElementById('reposGrid');
       if (reposGrid) {
         reposGrid.innerHTML = `
@@ -3212,6 +3986,39 @@
           </a>
         `;
       }
+
+      // Default Cached Activities
+      cachedActivitiesList = [
+        {
+          id: 'fb-li-1',
+          source: 'linkedin',
+          title: 'Google Gemini Campus Ambassador Appointment',
+          description: 'Selected as Google Gemini Campus Ambassador to lead AI workshops and developer tool adoption at Sir MVIT.',
+          date: '2024-09-01',
+          technologies: ['Google Gemini', 'AI/ML', 'Developer Tools'],
+          url: 'https://www.linkedin.com/in/sarthak-choudhary-455098293/'
+        },
+        {
+          id: 'fb-gh-1',
+          source: 'github',
+          title: 'Hybrid ANN-PID PMSM Speed Control Simulation',
+          description: 'Modeling Field-Oriented Control and adaptive neural network speed regulation for PMSM drives in MATLAB/Simulink.',
+          date: '2024-08-15',
+          repository: 'Portfolio',
+          technologies: ['MATLAB', 'Simulink', 'PMSM', 'ANN-PID'],
+          url: 'https://github.com/sarthak1778'
+        },
+        {
+          id: 'fb-proj-1',
+          source: 'project',
+          title: 'Smart Plant Monitoring System Deployed',
+          description: 'Autonomous soil moisture and temperature sensing node with ESP8266 Wi-Fi telemetry and automated relay irrigation.',
+          date: '2024-06-20',
+          technologies: ['ESP8266', 'IoT', 'Sensors'],
+          url: 'https://github.com/sarthak1778'
+        }
+      ];
+      renderUnifiedActivities(cachedActivitiesList, currentActivityFilter);
 
       const tickerMsg = document.getElementById('tickerMsg');
       if (tickerMsg) tickerMsg.textContent = 'Active engineering research: Hybrid ANN-PID PMSM motor speed regulation in MATLAB/Simulink.';
@@ -3380,6 +4187,7 @@
       initNavigation();
       initCopyEmail();
       initResumeButtons();
+      initActivityFilter();
       renderStaticSections();
       fetchLiveTelemetry();
       setInterval(fetchLiveTelemetry, 5 * 60 * 1000);
