@@ -18,6 +18,8 @@ const PROFILE_DATA = {
     githubUrl: "https://github.com/sarthak1778",
     linkedinUrl: "https://www.linkedin.com/in/sarthak-choudhary-455098293/",
     linkedinHandle: "@sarthak-choudhary",
+    instagramUrl: "https://www.instagram.com/sarthakchoudhary_21?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==",
+    instagramHandle: "@sarthakchoudhary_21",
     livePortfolioUrl: "https://sarthak-choudhary.vercel.app/",
     avatarUrl: "https://avatars.githubusercontent.com/u/87663705?v=4",
     resumeObjective: "Electrical & Electronics Engineering undergraduate at Sir M Visvesvaraya Institute of Technology (8.39 CGPA) specializing in embedded firmware, IoT architectures, motor control simulations, and technical software. Demonstrated experience building working physical prototypes (ESP8266/Arduino), neural network adaptive motor simulations (MATLAB/Simulink), and production web applications. Active Google Gemini Campus Ambassador experienced in AI-accelerated engineering workflows."
@@ -659,6 +661,7 @@ const PROFILE_DATA = {
     email: "sarthakchoudhary1778@gmail.com",
     linkedinUrl: "https://www.linkedin.com/in/sarthak-choudhary-455098293/",
     githubUrl: "https://github.com/sarthak1778",
+    instagramUrl: "https://www.instagram.com/sarthakchoudhary_21?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==",
     openTo: [
       "Engineering Internships",
       "Embedded Systems",
