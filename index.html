@@ -2665,7 +2665,8 @@
   </footer>
 
   <!-- Reusable Case Study Modal Dialog -->
-  <div class="modal-overlay" id="caseStudyModal" aria-hidden="true" role="dialog">
+  <div class="modal-overlay" id="caseStudyModal" aria-hidden="true" inert role="dialog" aria-modal="true"
+    aria-labelledby="modalTitle">
     <div class="modal-dialog">
       <div class="modal-header">
         <div>
@@ -3104,6 +3105,8 @@
     });
 
     // ---------- Case Study Modal Dialog Controller ----------
+    let lastFocusedElement = null;
+
     function openCaseStudyModal(projectId) {
       const data = window.PROFILE_DATA;
       if (!data || !Array.isArray(data.projects)) return;
@@ -3119,6 +3122,8 @@
       const footerEl = document.getElementById('modalFooter');
 
       if (!modal || !titleEl || !bodyEl) return;
+
+      lastFocusedElement = document.activeElement;
 
       titleEl.textContent = project.title;
       if (subtitleEl) subtitleEl.textContent = project.subtitle || project.scope;
@@ -3209,17 +3214,30 @@
         `;
       }
 
+      modal.removeAttribute('inert');
       modal.classList.add('open');
       modal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+
+      const closeBtn = document.getElementById('modalCloseBtn');
+      if (closeBtn) closeBtn.focus();
     }
 
     function closeCaseStudyModal() {
       const modal = document.getElementById('caseStudyModal');
       if (modal) {
+        // Shift or remove focus inside the modal before setting aria-hidden="true" to prevent browser warnings
+        if (document.activeElement && modal.contains(document.activeElement)) {
+          document.activeElement.blur();
+        }
         modal.classList.remove('open');
         modal.setAttribute('aria-hidden', 'true');
+        modal.setAttribute('inert', '');
         document.body.style.overflow = '';
+
+        if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+          lastFocusedElement.focus();
+        }
       }
     }
 
