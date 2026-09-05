@@ -132,7 +132,8 @@
     `;
 
     // 6. Leadership & Extracurricular Highlights
-    const achievementItems = (achievements || []).map(a => `
+    const achievementList = data.achievementsSummary || (Array.isArray(achievements) ? achievements.map(a => typeof a === 'string' ? a : `${a.metric} ${a.label} — ${a.detail}`) : []);
+    const achievementItems = achievementList.map(a => `
       <li style="margin-bottom: 3px;">${a}</li>
     `).join('');
 

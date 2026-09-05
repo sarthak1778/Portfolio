@@ -17,7 +17,9 @@ const MIME_TYPES = {
   '.jpg': 'image/jpeg',
   '.svg': 'image/svg+xml',
   '.ico': 'image/x-icon',
-  '.pdf': 'application/pdf'
+  '.pdf': 'application/pdf',
+  '.xml': 'application/xml',
+  '.txt': 'text/plain; charset=utf-8'
 };
 
 // Route mapping for /api
