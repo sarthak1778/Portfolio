@@ -59,13 +59,17 @@ function normalizeActivities(githubResult, linkedinResult, options = {}) {
   let tickerText = 'Synchronized with public activity';
   let tickerTimestamp = null;
   let tickerSource = 'github';
+  let tickerTitle = 'Activity Update';
+  let tickerDescription = 'Synchronized with public activity';
 
   if (combined.length > 0) {
     const top = combined[0];
     tickerTimestamp = top.date || top.timestamp;
     tickerSource = top.source;
     const platform = top.source === 'linkedin' ? 'LinkedIn' : 'GitHub';
-    tickerText = `${platform}: ${top.title}`;
+    tickerTitle = top.title || `${platform} Update`;
+    tickerDescription = top.description || top.title || 'Recent update synchronized.';
+    tickerText = `${platform}: ${tickerTitle}`;
   }
 
   return {
@@ -75,6 +79,8 @@ function normalizeActivities(githubResult, linkedinResult, options = {}) {
     latestGithubBuild,
     ticker: {
       text: tickerText,
+      title: tickerTitle,
+      description: tickerDescription,
       timestamp: tickerTimestamp,
       source: tickerSource
     }

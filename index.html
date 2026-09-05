@@ -38,8 +38,19 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script src="js/resume-generator.js"></script>
 
-  <!-- Vercel Web Analytics -->
-  <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+  <!-- Vercel Web Analytics (First-party with graceful ad-blocker tolerance) -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    (function() {
+      if (window.location.hostname.endsWith('vercel.app')) {
+        var s = document.createElement('script');
+        s.defer = true;
+        s.src = '/_vercel/insights/script.js';
+        s.onerror = function() { /* Silently catch if client ad-blocker prevents loading */ };
+        document.head.appendChild(s);
+      }
+    })();
+  </script>
 
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
@@ -1838,6 +1849,10 @@
     }
 
     /* Responsive Design Breakpoints */
+    .nav-mobile-socials {
+      display: none;
+    }
+
     @media (max-width: 1040px) {
       .menu-toggle {
         display: inline-flex;
@@ -1885,6 +1900,13 @@
         border-bottom: none;
       }
 
+      .nav-mobile-socials {
+        display: flex;
+        gap: 8px;
+        padding-top: 14px;
+        margin-top: 4px;
+      }
+
       .hero-grid {
         grid-template-columns: 1fr;
         gap: 32px;
@@ -1900,30 +1922,85 @@
         padding: clamp(1.75rem, 5vw, 3rem) 0;
       }
 
-      .ticker-left {
-        white-space: normal;
-        line-height: 1.35;
+      /* Single-line sleek Live Ticker on mobile */
+      .live-ticker {
+        padding: 5px 0;
       }
 
-      /* Touch Target Sizing (minimum 44x44px for touch accessibility) */
+      .ticker-content {
+        flex-wrap: nowrap;
+        gap: 8px;
+      }
+
+      .ticker-left {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-width: 0;
+        flex: 1;
+        font-size: 11px;
+      }
+
+      .ticker-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .ticker-right {
+        display: none;
+      }
+
+      /* Single-row sticky topbar alignment (prevents 2-row wrapping on 360-480px viewports) */
+      .topbar-inner {
+        flex-wrap: nowrap;
+        min-height: 56px;
+        padding: 6px 0;
+        gap: 8px;
+      }
+
+      .brand {
+        font-size: 12.5px;
+        letter-spacing: 0.04em;
+        white-space: nowrap;
+      }
+
+      .topbar-actions {
+        gap: 6px;
+      }
+
+      /* On mobile, social icons are available in mobile nav drawer & hero section */
+      .topbar-actions .icon-btn[href*="github.com"],
+      .topbar-actions .icon-btn[href*="linkedin.com"] {
+        display: none;
+      }
+
+      #topbarResumeBtn {
+        padding: 6px 11px;
+        font-size: 11px;
+        white-space: nowrap;
+        letter-spacing: 0.02em;
+      }
+
+      /* Touch Target Sizing (minimum 40-44px for touch accessibility) */
       .icon-btn,
       .menu-toggle,
       .modal-close-btn {
-        min-width: 44px;
-        min-height: 44px;
+        min-width: 40px;
+        min-height: 40px;
       }
 
       .btn {
-        min-height: 44px;
+        min-height: 42px;
       }
 
       .filter-btn {
-        min-height: 44px;
+        min-height: 42px;
         padding: 8px 16px;
       }
 
       .copy-btn {
-        min-height: 44px;
+        min-height: 42px;
         min-width: 60px;
       }
 
@@ -1973,9 +2050,23 @@
     }
 
     @media (max-width: 480px) {
-      .hero-actions .btn {
-        flex: 1 1 100%;
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .hero-actions .btn-primary,
+      .hero-actions .resume-export-btn {
+        grid-column: span 2;
         width: 100%;
+      }
+
+      .hero-actions .btn-ghost {
+        grid-column: span 1;
+        width: 100%;
+        text-align: center;
+        justify-content: center;
       }
 
       /* Retain 2 Columns on Small Mobile as Required */
@@ -2135,6 +2226,10 @@
         <a href="#experience" class="nav-link">Experience</a>
         <a href="#activity" class="nav-link">Activity</a>
         <a href="#contact" class="nav-link">Contact</a>
+        <div class="nav-mobile-socials">
+          <a href="https://github.com/sarthak1778" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="flex: 1; font-size: 11px; justify-content: center; min-height: 38px;">GitHub ↗</a>
+          <a href="https://www.linkedin.com/in/sarthak-choudhary-455098293/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="flex: 1; font-size: 11px; justify-content: center; min-height: 38px;">LinkedIn ↗</a>
+        </div>
       </nav>
 
       <div class="topbar-actions">
@@ -3266,7 +3361,18 @@
         const tickerMsg = document.getElementById('tickerMsg');
         const tickerTime = document.getElementById('tickerTime');
         if (tickerMsg && data.latestActivity) {
-          tickerMsg.textContent = `${data.latestActivity.title} — ${data.latestActivity.description}`;
+          const act = data.latestActivity;
+          if (act.title && act.description) {
+            tickerMsg.textContent = `${act.title} — ${act.description}`;
+          } else if (act.text) {
+            tickerMsg.textContent = act.text;
+          } else if (act.title) {
+            tickerMsg.textContent = act.title;
+          } else if (act.description) {
+            tickerMsg.textContent = act.description;
+          } else {
+            tickerMsg.textContent = 'Live GitHub & LinkedIn telemetry active.';
+          }
         }
         if (tickerTime) {
           tickerTime.textContent = 'Live Synced';
