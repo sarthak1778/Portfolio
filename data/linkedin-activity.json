@@ -8,14 +8,9 @@
     "description": "Proud to be representing Google Gemini on campus! Organizing hands-on technical workshops covering modern AI workflows, prompt engineering, and developer tooling for engineering students.",
     "date": "2026-08-20T10:00:00Z",
     "timestamp": "2026-08-20T10:00:00Z",
-    "url": "https://www.linkedin.com/in/sarthak-choudhary-455098293/",
+    "url": "https://www.linkedin.com/in/sarthak-choudhary-455098293/recent-activity/all/",
     "category": "achievements",
-    "technologies": [
-      "Google Gemini",
-      "Generative AI",
-      "Prompt Engineering",
-      "Developer Community"
-    ],
+    "technologies": ["Google Gemini", "Generative AI", "Prompt Engineering", "Developer Community"],
     "metadata": {
       "author": "Sarthak Choudhary",
       "handle": "@sarthak-choudhary",
@@ -29,18 +24,14 @@
     "id": "li-aero-india-2025",
     "source": "linkedin",
     "sourceType": "verified-feed",
-    "type": "post",
+    "type": "milestone",
     "title": "Operations & Logistics Coordination at Aero India 2025",
     "description": "Honored to volunteer at Aero India 2025, managing event logistics, delegate routing, and coordination for over 1,200 attendees at Asia's premier aerospace exposition.",
     "date": "2026-07-15T09:30:00Z",
     "timestamp": "2026-07-15T09:30:00Z",
-    "url": "https://www.linkedin.com/in/sarthak-choudhary-455098293/",
+    "url": "https://www.linkedin.com/in/sarthak-choudhary-455098293/details/volunteering/",
     "category": "achievements",
-    "technologies": [
-      "Event Logistics",
-      "Leadership",
-      "Aero India 2025"
-    ],
+    "technologies": ["Event Logistics", "Leadership", "Aero India 2025"],
     "metadata": {
       "author": "Sarthak Choudhary",
       "handle": "@sarthak-choudhary",
@@ -59,47 +50,35 @@
     "description": "Completed physical prototyping of our automated IoT plant monitoring & irrigation unit using Arduino Uno, ESP8266 Wi-Fi module, and ThingSpeak cloud telemetry.",
     "date": "2026-05-18T14:20:00Z",
     "timestamp": "2026-05-18T14:20:00Z",
-    "url": "https://www.linkedin.com/in/sarthak-choudhary-455098293/",
+    "url": "https://www.linkedin.com/in/sarthak-choudhary-455098293/details/projects/",
     "category": "projects",
-    "technologies": [
-      "IoT",
-      "Arduino Uno",
-      "ESP8266",
-      "ThingSpeak",
-      "Sensors"
-    ],
+    "technologies": ["IoT", "Arduino Uno", "ESP8266", "ThingSpeak", "Sensors"],
     "metadata": {
       "author": "Sarthak Choudhary",
       "handle": "@sarthak-choudhary",
       "engagement": {
         "reactions": 94,
-        "comments": 11
+        "comments": 18
       }
     }
   },
   {
-    "id": "li-prakash-jewellers-launch",
+    "id": "li-hybrid-control-ann",
     "source": "linkedin",
     "sourceType": "verified-feed",
     "type": "project",
-    "title": "Prakash Jewellers Web Platform Live on Vercel",
-    "description": "Shipped a responsive, mobile-first commercial showcase website for Prakash Jewellers, leveraging modern AI-assisted coding to accelerate layout and deployment.",
-    "date": "2026-04-10T11:15:00Z",
-    "timestamp": "2026-04-10T11:15:00Z",
-    "url": "https://prakashjewellers.vercel.app/",
+    "title": "Hybrid ANN-PID PMSM Speed Control Simulation",
+    "description": "Validated non-linear speed regulation for permanent magnet synchronous motor drives using MATLAB/Simulink with adaptive artificial neural networks.",
+    "date": "2026-03-10T11:00:00Z",
+    "timestamp": "2026-03-10T11:00:00Z",
+    "url": "https://www.linkedin.com/in/sarthak-choudhary-455098293/details/projects/",
     "category": "projects",
-    "technologies": [
-      "JavaScript",
-      "HTML5",
-      "CSS3",
-      "Vercel",
-      "Web Development"
-    ],
+    "technologies": ["MATLAB", "Simulink", "Control Systems", "ANN"],
     "metadata": {
       "author": "Sarthak Choudhary",
       "handle": "@sarthak-choudhary",
       "engagement": {
-        "reactions": 78,
+        "reactions": 76,
         "comments": 9
       }
     }

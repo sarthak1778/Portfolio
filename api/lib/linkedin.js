@@ -46,34 +46,77 @@ function loadLocalFallback() {
 }
 
 function loadLocalCertifications() {
+  const result = [];
+  const seenIds = new Set();
+  const CERT_DRAWER_URL = `${LINKEDIN_PROFILE_URL}details/certifications/`;
+
   try {
     const filePath = path.join(__dirname, '..', '..', 'data', 'certifications.json');
     if (fs.existsSync(filePath)) {
       const raw = fs.readFileSync(filePath, 'utf-8');
       const certs = JSON.parse(raw);
-      return certs.map(c => ({
-        source: 'linkedin',
-        sourceType: 'verified-feed',
-        id: c.id || `cert-${Math.random().toString(36).slice(2, 9)}`,
-        title: c.title,
-        issuer: c.issuer,
-        issuerIcon: c.issuerIcon || 'badge',
-        issueDate: c.issueDate,
-        credentialUrl: c.credentialUrl || LINKEDIN_PROFILE_URL,
-        credentialId: c.credentialId,
-        skills: c.skills || [],
-        description: c.description || '',
-        verified: true,
-        metadata: {
-          source: 'LinkedIn Profile Credential',
-          handle: LINKEDIN_HANDLE
-        }
-      }));
+      certs.forEach(c => {
+        const id = c.id || `cert-${Math.random().toString(36).slice(2, 9)}`;
+        seenIds.add(id);
+        result.push({
+          source: 'linkedin',
+          sourceType: 'verified-feed',
+          id,
+          title: c.title,
+          issuer: c.issuer,
+          issuerIcon: c.issuerIcon || 'badge',
+          issueDate: c.issueDate,
+          credentialUrl: c.credentialUrl || CERT_DRAWER_URL,
+          credentialId: c.credentialId,
+          skills: c.skills || [],
+          description: c.description || '',
+          verified: true,
+          metadata: {
+            source: 'LinkedIn Profile Credential',
+            handle: LINKEDIN_HANDLE
+          }
+        });
+      });
     }
   } catch (err) {
     console.error('LinkedInAdapter: Failed to load local certifications:', err.message);
   }
-  return [];
+
+  // Also merge any certifications ingested via live activity sync
+  try {
+    const actPath = path.join(__dirname, '..', '..', 'data', 'linkedin-activity.json');
+    if (fs.existsSync(actPath)) {
+      const raw = fs.readFileSync(actPath, 'utf-8');
+      const activities = JSON.parse(raw);
+      activities.filter(a => a.type === 'certification').forEach(c => {
+        if (!seenIds.has(c.id)) {
+          seenIds.add(c.id);
+          result.unshift({
+            source: 'linkedin',
+            sourceType: 'verified-feed',
+            id: c.id,
+            title: c.title,
+            issuer: c.metadata?.issuer || 'LinkedIn Verified',
+            issuerIcon: 'badge',
+            issueDate: c.date ? new Date(c.date).getFullYear().toString() : '2025',
+            credentialUrl: c.url || CERT_DRAWER_URL,
+            credentialId: c.metadata?.credentialId || 'VERIFIED-IN',
+            skills: c.technologies || [],
+            description: c.description || '',
+            verified: true,
+            metadata: {
+              source: 'LinkedIn Synced Credential',
+              handle: LINKEDIN_HANDLE
+            }
+          });
+        }
+      });
+    }
+  } catch (err) {
+    console.error('LinkedInAdapter: Failed to merge certifications from activity feed:', err.message);
+  }
+
+  return result;
 }
 
 async function fetchLinkedInActivity(forceRefresh = false) {

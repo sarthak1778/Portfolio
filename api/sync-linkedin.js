@@ -131,6 +131,17 @@ module.exports = async function handler(req, res) {
         }
 
         const nowIso = new Date().toISOString();
+        let directUrl = (update.url || '').trim();
+        if (!directUrl) {
+          if (update.type === 'certification') {
+            directUrl = 'https://www.linkedin.com/in/sarthak-choudhary-455098293/details/certifications/';
+          } else if (update.type === 'milestone') {
+            directUrl = 'https://www.linkedin.com/in/sarthak-choudhary-455098293/details/honors/';
+          } else {
+            directUrl = 'https://www.linkedin.com/in/sarthak-choudhary-455098293/recent-activity/all/';
+          }
+        }
+
         const newItem = {
           id: update.id || `li-${Date.now()}`,
           source: 'linkedin',
@@ -138,7 +149,7 @@ module.exports = async function handler(req, res) {
           type: update.type || 'post',
           title: title || description.slice(0, 70) + '...',
           description: description || title,
-          url: update.url || 'https://www.linkedin.com/in/sarthak-choudhary-455098293/',
+          url: directUrl,
           date: update.date || nowIso,
           timestamp: update.date || nowIso,
           category: update.category || 'achievements',
