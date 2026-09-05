@@ -22,20 +22,29 @@
 
     const { personal, education, projects, skillsGrouped, certifications, achievements } = data;
 
-    // Create container for ATS Resume
-    const container = document.createElement('div');
-    container.id = 'ats-resume-export-container';
-    container.style.position = 'fixed';
-    container.style.left = '-9999px';
-    container.style.top = '0';
-    container.style.width = '800px';
-    container.style.padding = '36px 44px';
-    container.style.background = '#FFFFFF';
-    container.style.color = '#111111';
-    container.style.fontFamily = 'Arial, Helvetica, sans-serif';
-    container.style.fontSize = '11pt';
-    container.style.lineHeight = '1.45';
-    container.style.boxSizing = 'border-box';
+    if (typeof window.renderResumeSheet === 'function') {
+      window.renderResumeSheet();
+    }
+
+    // Target existing #resume-sheet if available, or fall back to container
+    const existingSheet = document.getElementById('resume-sheet');
+    const container = existingSheet || document.createElement('div');
+    const isGeneratedContainer = !existingSheet;
+
+    if (isGeneratedContainer) {
+      container.id = 'ats-resume-export-container';
+      container.style.position = 'fixed';
+      container.style.left = '-9999px';
+      container.style.top = '0';
+      container.style.width = '800px';
+      container.style.padding = '36px 44px';
+      container.style.background = '#FFFFFF';
+      container.style.color = '#111111';
+      container.style.fontFamily = 'Arial, Helvetica, sans-serif';
+      container.style.fontSize = '11pt';
+      container.style.lineHeight = '1.45';
+      container.style.boxSizing = 'border-box';
+    }
 
     // Helper: Section title builder
     const makeSectionHeader = (title) => `
@@ -159,18 +168,19 @@
       </div>
     `;
 
-    // Assemble document
-    container.innerHTML = `
-      ${headerHtml}
-      ${summaryHtml}
-      ${educationHtml}
-      ${skillsHtml}
-      ${projectsHtml}
-      ${achievementsHtml}
-      ${certsHtml}
-    `;
-
-    document.body.appendChild(container);
+    // Assemble document if container was newly created
+    if (isGeneratedContainer) {
+      container.innerHTML = `
+        ${headerHtml}
+        ${summaryHtml}
+        ${educationHtml}
+        ${skillsHtml}
+        ${projectsHtml}
+        ${achievementsHtml}
+        ${certsHtml}
+      `;
+      document.body.appendChild(container);
+    }
 
     // PDF options for optimal ATS rendering (clean text vectors, standard A4 letter size)
     const opt = {
@@ -191,7 +201,7 @@
     };
 
     // Show indicator on trigger button if available
-    const downloadBtns = document.querySelectorAll('.resume-btn, .js-download-ats-resume, #download-resume-btn, #hero-resume-btn, #navResumeBtn');
+    const downloadBtns = document.querySelectorAll('.resume-btn, .js-download-ats-resume, #download-resume-btn, #hero-resume-btn, #navResumeBtn, .resume-export-btn, #topbarResumeBtn, #contactResumeBtn');
     downloadBtns.forEach(b => {
       b.dataset.originalText = b.innerText;
       b.innerText = 'Generating ATS PDF...';
@@ -199,36 +209,37 @@
       b.style.opacity = '0.7';
     });
 
+    const cleanup = () => {
+      if (isGeneratedContainer && container.parentNode) {
+        document.body.removeChild(container);
+      }
+      downloadBtns.forEach(b => {
+        b.innerText = b.dataset.originalText || 'Download ATS Resume (PDF)';
+        b.style.pointerEvents = 'auto';
+        b.style.opacity = '1';
+      });
+    };
+
     if (window.html2pdf) {
       window.html2pdf()
         .set(opt)
         .from(container)
         .save()
         .then(() => {
-          document.body.removeChild(container);
-          downloadBtns.forEach(b => {
-            b.innerText = b.dataset.originalText || 'Download ATS Resume (PDF)';
-            b.style.pointerEvents = 'auto';
-            b.style.opacity = '1';
-          });
+          cleanup();
           if (typeof showToast === 'function') {
             showToast('ATS Resume PDF generated successfully!');
           }
         })
         .catch(err => {
           console.error('PDF generation error:', err);
-          document.body.removeChild(container);
+          cleanup();
           alert('Could not compile PDF directly. Opening print dialog as fallback.');
           window.print();
-          downloadBtns.forEach(b => {
-            b.innerText = b.dataset.originalText || 'Download ATS Resume (PDF)';
-            b.style.pointerEvents = 'auto';
-            b.style.opacity = '1';
-          });
         });
     } else {
       window.print();
-      document.body.removeChild(container);
+      cleanup();
     }
   }
 

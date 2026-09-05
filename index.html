@@ -1869,6 +1869,101 @@
         justify-content: space-between;
       }
     }
+
+    /* ---------- Printable ATS Resume Sheet (Rendered dynamically for PDF export) ---------- */
+    #resume-sheet {
+      position: absolute;
+      left: -10000px;
+      top: 0;
+      width: 800px;
+      background: #ffffff;
+      color: #111111;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 40px 48px;
+      line-height: 1.4;
+      box-sizing: border-box;
+    }
+
+    #resume-sheet h1 {
+      font-size: 22px;
+      margin: 0 0 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #111111;
+    }
+
+    #resume-sheet .r-contact {
+      font-size: 11px;
+      color: #444444;
+      margin: 0 0 16px;
+      border-bottom: 1px solid #dddddd;
+      padding-bottom: 8px;
+    }
+
+    #resume-sheet .r-sec {
+      margin-bottom: 14px;
+    }
+
+    #resume-sheet h2 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: #f3f3f3;
+      padding: 4px 8px;
+      margin: 0 0 8px;
+      border-left: 3px solid #c97448;
+      color: #111111;
+    }
+
+    #resume-sheet p,
+    #resume-sheet li {
+      font-size: 11px;
+      line-height: 1.45;
+      color: #222222;
+    }
+
+    #resume-sheet table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+    }
+
+    #resume-sheet th {
+      text-align: left;
+      padding: 5px 6px;
+      background: #f8f8f8;
+      font-size: 10px;
+      text-transform: uppercase;
+      color: #333333;
+    }
+
+    #resume-sheet td {
+      padding: 5px 6px;
+      border-top: 1px solid #e5e5e5;
+      color: #222222;
+    }
+
+    #resume-sheet .r-proj {
+      margin-bottom: 10px;
+    }
+
+    #resume-sheet .r-proj-title {
+      font-weight: 600;
+      font-size: 11.5px;
+      color: #111111;
+    }
+
+    #resume-sheet .r-proj-meta {
+      font-size: 10px;
+      color: #555555;
+      margin-bottom: 3px;
+      font-style: italic;
+    }
+
+    #resume-sheet ul {
+      margin: 0;
+      padding-left: 16px;
+    }
   </style>
 </head>
 
@@ -2451,7 +2546,7 @@
   <div class="toast" id="toast">Feedback message</div>
 
   <!-- Hidden Container for Dynamic ATS Resume Compilation -->
-  <div id="resume-sheet" aria-hidden="true" style="display: none;"></div>
+  <div id="resume-sheet" aria-hidden="true"></div>
 
   <!-- Master Profile Data -->
   <script src="data/profile-data.js"></script>
@@ -2556,16 +2651,75 @@
     }
 
     // ---------- ATS Resume Export Buttons ----------
-    function initResumeButtons() {
-      const resumeButtons = document.querySelectorAll('.resume-export-btn, #topbarResumeBtn');
-      resumeButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          if (window.generateATSResume) {
+    function exportResumePdf() {
+      if (typeof renderResumeSheet === 'function') {
+        renderResumeSheet();
+      }
+      const sheet = document.getElementById('resume-sheet');
+      if (!sheet) return;
+
+      const resumeButtons = document.querySelectorAll('.resume-export-btn, #topbarResumeBtn, #heroResumeBtn, #contactResumeBtn, .resume-btn');
+      resumeButtons.forEach(b => {
+        b.dataset.originalText = b.textContent;
+        b.textContent = 'Generating PDF...';
+        b.style.pointerEvents = 'none';
+        b.style.opacity = '0.7';
+      });
+
+      showToast('Generating ATS Resume PDF...');
+
+      if (window.html2pdf) {
+        const opt = {
+          margin: [10, 12, 10, 12],
+          filename: 'Sarthak_Choudhary_Resume.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff', letterRendering: true, logging: false },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+
+        window.html2pdf().set(opt).from(sheet).save().then(() => {
+          resumeButtons.forEach(b => {
+            b.textContent = b.dataset.originalText || 'Resume PDF';
+            b.style.pointerEvents = 'auto';
+            b.style.opacity = '1';
+          });
+          showToast('ATS Resume PDF generated successfully!');
+        }).catch(err => {
+          console.error('html2pdf export error:', err);
+          if (typeof window.generateATSResume === 'function') {
             window.generateATSResume();
-            showToast('Generating ATS Resume PDF...');
           } else {
-            window.open('https://github.com/sarthak1778', '_blank');
+            window.print();
           }
+          resumeButtons.forEach(b => {
+            b.textContent = b.dataset.originalText || 'Resume PDF';
+            b.style.pointerEvents = 'auto';
+            b.style.opacity = '1';
+          });
+        });
+      } else if (typeof window.generateATSResume === 'function') {
+        window.generateATSResume();
+        resumeButtons.forEach(b => {
+          b.textContent = b.dataset.originalText || 'Resume PDF';
+          b.style.pointerEvents = 'auto';
+          b.style.opacity = '1';
+        });
+      } else {
+        window.print();
+        resumeButtons.forEach(b => {
+          b.textContent = b.dataset.originalText || 'Resume PDF';
+          b.style.pointerEvents = 'auto';
+          b.style.opacity = '1';
+        });
+      }
+    }
+
+    function initResumeButtons() {
+      const resumeButtons = document.querySelectorAll('.resume-export-btn, #topbarResumeBtn, #heroResumeBtn, #contactResumeBtn, .resume-btn');
+      resumeButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          exportResumePdf();
         });
       });
     }
@@ -3063,6 +3217,146 @@
       if (tickerMsg) tickerMsg.textContent = 'Active engineering research: Hybrid ANN-PID PMSM motor speed regulation in MATLAB/Simulink.';
     }
 
+    // ---------- Dynamic ATS Resume Sheet Generator (Compiled entirely from PROFILE_DATA) ----------
+    function renderResumeSheet() {
+      const sheet = document.getElementById('resume-sheet');
+      const data = window.PROFILE_DATA;
+      if (!sheet || !data) return;
+
+      const { personal, education, projects, skillsGrouped, certifications, achievements } = data;
+      if (!personal) return;
+
+      // Contact items
+      const contactParts = [
+        personal.email,
+        personal.phone,
+        personal.githubUrl ? personal.githubUrl.replace(/^https?:\/\//, '') : '',
+        personal.linkedinUrl ? personal.linkedinUrl.replace(/^https?:\/\//, '') : '',
+        personal.location
+      ].filter(Boolean);
+
+      // Objective fallback chain: resumeObjective -> positioning -> bio
+      const objectiveText = personal.resumeObjective || personal.positioning || personal.bio || '';
+
+      // Education table rows
+      const eduRows = Array.isArray(education)
+        ? education.map(e => `
+          <tr>
+            <td>${escapeHtml(e.level)}</td>
+            <td>${escapeHtml(e.institution)}</td>
+            <td>${escapeHtml(e.score)}</td>
+            <td>${escapeHtml(e.year)}</td>
+          </tr>
+        `).join('')
+        : '';
+
+      // Project blocks from projects.filter(p => p.featured)
+      const featuredProjects = Array.isArray(projects)
+        ? projects.filter(p => p.featured === true)
+        : [];
+
+      const projMarkup = featuredProjects.map(p => {
+        const techStr = Array.isArray(p.technologies) ? p.technologies.join(', ') : '';
+        const linkSnippet = p.liveUrl
+          ? ` (${escapeHtml(p.liveUrl.replace(/^https?:\/\//, ''))})`
+          : (p.githubUrl ? ` (${escapeHtml(p.githubUrl.replace(/^https?:\/\//, ''))})` : '');
+        const detail = p.solution || p.problem || p.keyResult || '';
+        return `
+          <div class="r-proj">
+            <div class="r-proj-title">${escapeHtml(p.title)} — ${escapeHtml(p.category || '')}</div>
+            <div class="r-proj-meta">${escapeHtml(techStr)}${linkSnippet}</div>
+            <p>${escapeHtml(detail)}</p>
+          </div>
+        `;
+      }).join('');
+
+      // Skills list from skillsGrouped (category + joined skill list per group)
+      const skillsMarkup = skillsGrouped ? Object.values(skillsGrouped).map(g => `
+        <li><strong>${escapeHtml(g.category)}:</strong> ${escapeHtml(Array.isArray(g.skills) ? g.skills.join(', ') : '')}</li>
+      `).join('') : '';
+
+      // Certifications list from certifications (title, issuer, credentialId, description)
+      const certsMarkup = Array.isArray(certifications) ? certifications.map(c => `
+        <li><strong>${escapeHtml(c.title)}:</strong> ${escapeHtml(c.issuer || '')}${c.credentialId ? ` (Credential ID: ${escapeHtml(c.credentialId)})` : ''} — ${escapeHtml(c.description || '')}</li>
+      `).join('') : '';
+
+      // Leadership/honors list from achievements
+      const achMarkup = Array.isArray(achievements) ? achievements.map(a => {
+        if (typeof a === 'string') return `<li>${escapeHtml(a)}</li>`;
+        const metric = a.metric ? ` (${escapeHtml(a.metric)})` : '';
+        const label = a.label ? `<strong>${escapeHtml(a.label)}</strong>${metric}: ` : '';
+        return `<li>${label}${escapeHtml(a.detail || '')}</li>`;
+      }).join('') : '';
+
+      sheet.innerHTML = `
+        <h1>${escapeHtml(personal.name)}</h1>
+        <p class="r-contact">
+          ${contactParts.map(escapeHtml).join(' &nbsp;|&nbsp; ')}
+        </p>
+
+        <div class="r-sec">
+          <h2>Professional Objective</h2>
+          <p>${escapeHtml(objectiveText)}</p>
+        </div>
+
+        <div class="r-sec">
+          <h2>Education</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Degree / Qualification</th>
+                <th>Institution</th>
+                <th>Score</th>
+                <th>Period</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${eduRows}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="r-sec">
+          <h2>Key Engineering Projects</h2>
+          ${projMarkup}
+        </div>
+
+        <div class="r-sec">
+          <h2>Technical Skills</h2>
+          <ul>
+            ${skillsMarkup}
+          </ul>
+        </div>
+
+        <div class="r-sec">
+          <h2>Licenses &amp; Certifications</h2>
+          <ul>
+            ${certsMarkup}
+          </ul>
+        </div>
+
+        <div class="r-sec">
+          <h2>Leadership &amp; Key Honors</h2>
+          <ul>
+            ${achMarkup}
+          </ul>
+        </div>
+
+        <p style="font-size: 10px; color: #666; margin-top: 20px; border-top: 1px solid #ddd; padding-top: 8px;">
+          I hereby declare that the particulars provided above are authentic and verified from real academic and project records.
+        </p>
+      `;
+    }
+
+    // ---------- Master Static Sections Renderer ----------
+    function renderStaticSections() {
+      renderProfileContent();
+      renderResumeSheet();
+    }
+
+    window.renderResumeSheet = renderResumeSheet;
+    window.renderStaticSections = renderStaticSections;
+
     // Helper: Escape HTML string
     function escapeHtml(str) {
       if (typeof str !== 'string') return String(str || '');
@@ -3086,7 +3380,7 @@
       initNavigation();
       initCopyEmail();
       initResumeButtons();
-      renderProfileContent();
+      renderStaticSections();
       fetchLiveTelemetry();
       setInterval(fetchLiveTelemetry, 5 * 60 * 1000);
     });

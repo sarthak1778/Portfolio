@@ -13,24 +13,23 @@ High-performance, dynamic portfolio and ATS resume engine for **Sarthak Choudhar
 
 ---
 
-## Deployment & Environment Variables
+## Deployment
 
 ### Setting up `GITHUB_TOKEN` on Vercel
 
-To ensure reliable live GitHub activity feeds without encountering API rate limits, configure a personal access token in Vercel:
+To fix GitHub live sync from falling back to static cache due to 403 rate limits on Vercel:
 
-1. Go to your **GitHub Settings** -> **Developer Settings** -> **Personal access tokens** -> **Tokens (classic)** (or Fine-Grained Tokens).
-2. Generate a token with read-only permissions (`public_repo` scope or fine-grained read-only access to public repositories).
-3. Open your **Vercel Dashboard** -> select your portfolio project.
-4. Navigate to **Settings** -> **Environment Variables**.
-5. Add a new variable:
+1. Create a GitHub fine-grained Personal Access Token with read-only public-repo access (or Classic token with `public_repo` scope):
+   - Go to **GitHub Settings** → **Developer Settings** → **Personal Access Tokens** → **Fine-grained tokens** (or **Tokens (classic)**).
+   - Generate token with read-only public repository permissions.
+2. Add it as `GITHUB_TOKEN` in **Vercel Project Settings** → **Environment Variables**:
    - **Key**: `GITHUB_TOKEN`
-   - **Value**: `ghp_yourGeneratedTokenHere...`
-   - **Environment**: Select *Production*, *Preview*, and *Development*.
-6. Click **Save** and trigger a redeployment.
+   - **Value**: `ghp_yourTokenHere...`
+   - **Environment**: *Production*, *Preview*, and *Development*.
+3. Click **Save** and trigger a **Redeploy** on Vercel.
 
-> **Important Rate Limit Notice:**
-> Without `GITHUB_TOKEN`, GitHub API requests run unauthenticated, which enforces a strict limit of 60 requests/hour per Vercel edge IP shared across serverless invocations. Under traffic, unauthenticated calls quickly exhaust this quota and cause GitHub API 403 errors, falling back to static cache data. Supplying `GITHUB_TOKEN` provides 5,000 requests/hour.
+> **Why this is required:**
+> Without `GITHUB_TOKEN`, requests to `api.github.com` run unauthenticated and are capped at 60 req/hour per IP. Vercel's shared serverless IP pool exhausts that quickly, causing `403` rate limits and forcing fallback to cached data. Setting `GITHUB_TOKEN` grants 5,000 req/hour for uninterrupted live synchronization.
 
 ### Hybrid LinkedIn Synchronization Engine
 
@@ -90,3 +89,24 @@ The portfolio includes a built-in **Hybrid Synchronization Engine** (`/sync` and
 
 All portfolio content, education records, verified certifications, achievements, and project showcases are driven from a single source of truth:
 - `data/profile-data.js`: Updating items here immediately reflects across the website UI, the interactive skills cross-filter, and the ATS resume export sheet (`#resume-sheet`).
+
+---
+
+## Deployment & Live Sync Configuration
+
+To ensure live GitHub telemetry and activity sync without rate-limiting on Vercel's serverless edge:
+
+1. **Create a GitHub Personal Access Token**:
+   - Go to GitHub **Settings** → **Developer settings** → **Personal access tokens** → **Fine-grained tokens** (or Tokens classic).
+   - Generate a token with read-only access to **Public Repositories** (or `public_repo` scope).
+2. **Configure Vercel Environment Variables**:
+   - Go to your portfolio project on the [Vercel Dashboard](https://vercel.com).
+   - Navigate to **Project Settings** → **Environment Variables**.
+   - Add:
+     - **Key**: `GITHUB_TOKEN`
+     - **Value**: `<your-github-personal-access-token>`
+     - **Environments**: Production, Preview, and Development.
+3. **Redeploy**:
+   - Trigger a redeployment in Vercel (or push a commit to `main`).
+   - The `/api/github` and `/api/activity` endpoints will now authenticate directly with GitHub's API (5,000 req/hr rate limit), resolving any 403 fallbacks.
+

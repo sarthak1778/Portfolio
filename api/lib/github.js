@@ -267,6 +267,9 @@ async function fetchGithubActivity(forceRefresh = false) {
     ]);
 
     if (!userRes.ok || !reposRes.ok) {
+      if ((userRes.status === 403 || reposRes.status === 403) && !process.env.GITHUB_TOKEN) {
+        console.warn('[github] 403 — set GITHUB_TOKEN in Vercel env vars to fix live sync (currently unauthenticated, rate-limited by shared IP pool)');
+      }
       throw new Error(`GitHub API returned user=${userRes.status}, repos=${reposRes.status}`);
     }
 
@@ -331,6 +334,9 @@ async function fetchGithubActivity(forceRefresh = false) {
     return result;
 
   } catch (err) {
+    if (err.message && err.message.includes('403') && !process.env.GITHUB_TOKEN) {
+      console.warn('[github] 403 — set GITHUB_TOKEN in Vercel env vars to fix live sync (currently unauthenticated, rate-limited by shared IP pool)');
+    }
     console.error('GitHubAdapter: fetch error:', err.message);
 
     return {
