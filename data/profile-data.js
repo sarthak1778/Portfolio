@@ -14,7 +14,8 @@ const PROFILE_DATA = {
     githubUrl: "https://github.com/sarthak1778",
     linkedinUrl: "https://www.linkedin.com/in/sarthak-choudhary-455098293/",
     linkedinHandle: "@sarthak-choudhary",
-    livePortfolioUrl: "https://sarthak-choudhary.vercel.app/"
+    livePortfolioUrl: "https://sarthak-choudhary.vercel.app/",
+    resumeObjective: "Electrical & Electronics Engineering undergraduate at Sir M Visvesvaraya Institute of Technology (8.39 CGPA) specializing in IoT architectures, embedded systems firmware, control systems modeling, and web applications. Proven background delivering validated hardware prototypes (ESP8266/Arduino), neural network adaptive motor simulations (MATLAB/Simulink), and production web software. Google Gemini Campus Ambassador experienced in AI-assisted development workflows."
   },
 
   pipeline: [
@@ -345,3 +346,7 @@ const PROFILE_DATA = {
 if (typeof module !== "undefined" && module.exports) {
   module.exports = PROFILE_DATA;
 }
+if (typeof window !== "undefined") {
+  window.PROFILE_DATA = PROFILE_DATA;
+}
+

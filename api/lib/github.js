@@ -14,6 +14,8 @@ function getHeaders() {
   };
   if (process.env.GITHUB_TOKEN) {
     headers['Authorization'] = `token ${process.env.GITHUB_TOKEN}`;
+  } else {
+    console.warn('[GitHubAdapter Warning] GITHUB_TOKEN environment variable is not set. Requests to api.github.com will be unauthenticated and subject to GitHub\'s 60 req/hour rate limit. Set GITHUB_TOKEN in Vercel Project Settings -> Environment Variables for reliable live synchronization.');
   }
   return headers;
 }
@@ -209,6 +211,46 @@ function extractCurrentlyBuilding(repos) {
   };
 }
 
+// Automatically categorize public repositories into structured project cards
+function categorizeRepositories(repos) {
+  if (!Array.isArray(repos)) return [];
+  return repos
+    .filter(r => !r.fork)
+    .sort((a, b) => new Date(b.pushed_at || b.updated_at) - new Date(a.pushed_at || a.updated_at))
+    .map(r => {
+      const name = r.name || '';
+      const desc = r.description || '';
+      const lang = r.language || '';
+      const topics = (r.topics || []).join(' ').toLowerCase();
+      const text = `${name} ${desc} ${lang} ${topics}`.toLowerCase();
+
+      let category = 'Web & Software';
+      if (text.includes('arduino') || text.includes('esp8266') || text.includes('esp32') || text.includes('iot') || text.includes('sensor') || text.includes('hardware')) {
+        category = 'IoT & Hardware';
+      } else if (text.includes('ai') || text.includes('llm') || text.includes('docmind') || text.includes('model') || text.includes('nlp')) {
+        category = 'AI & Intelligent Systems';
+      } else if (text.includes('matlab') || text.includes('simulink') || text.includes('pid') || text.includes('pmsm') || text.includes('control') || text.includes('motor')) {
+        category = 'Control & Simulation';
+      } else if (text.includes('jeweller') || text.includes('react') || text.includes('web') || text.includes('html') || text.includes('color') || text.includes('portfolio')) {
+        category = 'Web & Interactive';
+      }
+
+      return {
+        id: `gh-${r.id || r.name}`,
+        name: r.name,
+        title: r.name.replace(/[-_]/g, ' '),
+        description: r.description || 'Public software engineering repository.',
+        category,
+        language: r.language || 'Code',
+        technologies: [r.language].filter(Boolean).concat(r.topics || []),
+        stars: r.stargazers_count || 0,
+        forks: r.forks_count || 0,
+        url: r.html_url,
+        pushedAt: r.pushed_at || r.updated_at
+      };
+    });
+}
+
 async function fetchGithubActivity(forceRefresh = false) {
   if (!forceRefresh) {
     const cached = cache.get('github_activity');
@@ -261,6 +303,7 @@ async function fetchGithubActivity(forceRefresh = false) {
 
     const currentlyBuilding = extractCurrentlyBuilding(repos);
     const activityMatrix = buildActivityMatrix(Array.isArray(rawEvents) ? rawEvents : [], Array.isArray(repos) ? repos : []);
+    const categorizedProjects = categorizeRepositories(repos);
 
     const result = {
       status: 'ok',
@@ -279,6 +322,7 @@ async function fetchGithubActivity(forceRefresh = false) {
       topLanguages,
       activities,
       currentlyBuilding,
+      categorizedProjects,
       activityMatrix,
       fetchedAt: new Date().toISOString()
     };
@@ -351,6 +395,34 @@ async function fetchGithubActivity(forceRefresh = false) {
         status: 'ACTIVE',
         daysAgo: 4
       },
+      categorizedProjects: [
+        {
+          id: 'gh-colourselector',
+          name: 'Colourselector',
+          title: 'Colourselector',
+          description: 'Color selection and reactive visual tool for web palettes.',
+          category: 'Web & Interactive',
+          language: 'TypeScript',
+          technologies: ['TypeScript', 'Web'],
+          stars: 0,
+          forks: 0,
+          url: 'https://github.com/sarthak1778/Colourselector',
+          pushedAt: '2026-08-30T18:29:28Z'
+        },
+        {
+          id: 'gh-docmind',
+          name: 'DocMind-AI',
+          title: 'DocMind AI',
+          description: 'Document intelligence and semantic analysis engine using LLM prompt pipelines.',
+          category: 'AI & Intelligent Systems',
+          language: 'Python',
+          technologies: ['Python', 'LLM', 'AI'],
+          stars: 0,
+          forks: 0,
+          url: 'https://github.com/sarthak1778/DocMind-AI',
+          pushedAt: '2026-08-07T17:45:30Z'
+        }
+      ],
       activityMatrix: [],
       fetchedAt: new Date().toISOString()
     };

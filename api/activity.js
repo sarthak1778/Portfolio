@@ -40,6 +40,7 @@ module.exports = async function handler(req, res) {
       latestLinkedInUpdate: normalized.latestLinkedInUpdate,
       latestGithubBuild: normalized.latestGithubBuild,
       currentlyBuilding: githubResult.currentlyBuilding || null,
+      categorizedProjects: githubResult.categorizedProjects || [],
       certifications: certsResult.certifications || [],
       sources: {
         github: githubResult.status === 'ok' ? 'ok' : 'fallback',

@@ -29,6 +29,7 @@
 
 <!-- html2pdf.js for ATS Resume Export -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="js/resume-generator.js"></script>
 
 <!-- Structured Data (JSON-LD) -->
 <script type="application/ld+json">
@@ -45,6 +46,23 @@
   "alumniOf": "Sir M Visvesvaraya Institute of Technology",
   "knowsAbout": ["Embedded Systems", "Internet of Things", "Control Systems", "MATLAB", "Arduino", "Python", "JavaScript", "C++"]
 }
+</script>
+
+
+<script>
+  (function () {
+    try {
+      const stored = localStorage.getItem('sarthak_portfolio_theme');
+      if (stored === 'light' || stored === 'dark') {
+        document.documentElement.setAttribute('data-theme', stored);
+        document.documentElement.style.colorScheme = stored;
+      } else {
+        const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+      }
+    } catch (e) {}
+  })();
 </script>
 
 <style>
@@ -72,6 +90,85 @@
     --radius-md: 10px;
     --radius-lg: 16px;
     --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  
+  /* System Adaptive Light Theme */
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #F8FAFC;
+      --bg-soft: #F1F5F9;
+      --surface: #FFFFFF;
+      --surface-2: #E2E8F0;
+      --border: #E2E8F0;
+      --border-bright: #CBD5E1;
+      --copper: #C25E26;
+      --copper-glow: rgba(194, 94, 38, 0.15);
+      --copper-soft: rgba(194, 94, 38, 0.08);
+      --copper-line: rgba(194, 94, 38, 0.35);
+      --teal: #0D9488;
+      --teal-soft: rgba(13, 148, 136, 0.1);
+      --blue: #2563EB;
+      --text: #0F172A;
+      --text-dim: #475569;
+      --text-faint: #64748B;
+    }
+  }
+
+  [data-theme="light"] {
+    --bg: #F8FAFC;
+    --bg-soft: #F1F5F9;
+    --surface: #FFFFFF;
+    --surface-2: #E2E8F0;
+    --border: #E2E8F0;
+    --border-bright: #CBD5E1;
+    --copper: #C25E26;
+    --copper-glow: rgba(194, 94, 38, 0.15);
+    --copper-soft: rgba(194, 94, 38, 0.08);
+    --copper-line: rgba(194, 94, 38, 0.35);
+    --teal: #0D9488;
+    --teal-soft: rgba(13, 148, 136, 0.1);
+    --blue: #2563EB;
+    --text: #0F172A;
+    --text-dim: #475569;
+    --text-faint: #64748B;
+  }
+
+  [data-theme="dark"] {
+    --bg: #0A0D12;
+    --bg-soft: #0E131B;
+    --surface: #141923;
+    --surface-2: #1B2230;
+    --border: #242D3C;
+    --border-bright: #374457;
+    --copper: #F0935A;
+    --copper-glow: rgba(240, 147, 90, 0.25);
+    --copper-soft: rgba(240, 147, 90, 0.12);
+    --copper-line: rgba(240, 147, 90, 0.45);
+    --teal: #5EEAD4;
+    --teal-soft: rgba(94, 234, 212, 0.12);
+    --blue: #60A5FA;
+    --text: #EDEAE3;
+    --text-dim: #9AA4B6;
+    --text-faint: #5C677C;
+  }
+
+  .theme-toggle-btn {
+    background: var(--surface);
+    border: 1px solid var(--border-bright);
+    color: var(--text-dim);
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .theme-toggle-btn:hover {
+    color: var(--copper);
+    border-color: var(--copper);
   }
 
   *, *::before, *::after { box-sizing: border-box; }
@@ -1739,7 +1836,7 @@
           <a href="#projects" class="btn">View Projects</a>
           <a href="https://github.com/sarthak1778" target="_blank" rel="noopener noreferrer" class="btn ghost">GitHub</a>
           <a href="https://www.linkedin.com/in/sarthak-choudhary-455098293/" target="_blank" rel="noopener noreferrer" class="btn ghost">LinkedIn @sarthak-choudhary</a>
-          <button class="btn ghost resume-btn">Download Resume (PDF)</button>
+          <button class="btn ghost resume-btn" id="hero-resume-btn">Download Resume (PDF)</button>
         </div>
 
         <!-- Technical Pipeline Interactive Visual -->
@@ -2130,7 +2227,7 @@
           Need a standard document for recruitment tracking systems? Generate an ATS-formatted PDF version compiled from the data on this page.
         </p>
         <div>
-          <button class="btn resume-btn" style="padding: 12px 22px; font-size: 13px;">
+          <button class="btn resume-btn" id="download-resume-btn" style="padding: 12px 22px; font-size: 13px;">
             Download ATS Resume (PDF)
           </button>
         </div>
@@ -2151,109 +2248,7 @@
 <div id="toast" role="status" aria-live="polite">Notification</div>
 
 <!-- Hidden Printable ATS Resume Sheet (used only for html2pdf.js export) -->
-<div id="resume-sheet" aria-hidden="true">
-  <h1>Sarthak Choudhary</h1>
-  <p class="r-contact">
-    sarthakchoudhary1778@gmail.com &nbsp;|&nbsp; +91 93416 64156 &nbsp;|&nbsp;
-    github.com/sarthak1778 &nbsp;|&nbsp; linkedin.com/in/sarthak-choudhary-455098293/ &nbsp;|&nbsp; Bengaluru, India
-  </p>
-
-  <div class="r-sec">
-    <h2>Professional Objective</h2>
-    <p>Electrical and Electronics Engineering undergraduate at Sir M Visvesvaraya Institute of Technology with hands-on proficiency across embedded systems, IoT prototyping, control system modeling, and web applications. Skilled in C++, Python, Java, SQL, Arduino, ESP8266, MATLAB, and Simulink. Proven leadership as Google Gemini Campus Ambassador and Aero India 2025 operations volunteer.</p>
-  </div>
-
-  <div class="r-sec">
-    <h2>Education</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Degree / Qualification</th>
-          <th>Institution</th>
-          <th>Score</th>
-          <th>Period</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Bachelor of Engineering (EEE)</td>
-          <td>Sir M Visvesvaraya Institute of Technology, Bengaluru</td>
-          <td>8.39 CGPA</td>
-          <td>2023 – Pursuing</td>
-        </tr>
-        <tr>
-          <td>Class 12th (Senior Secondary)</td>
-          <td>Delhi Public School, Bokaro</td>
-          <td>85.0%</td>
-          <td>2021 – 2023</td>
-        </tr>
-        <tr>
-          <td>Class 10th (Secondary)</td>
-          <td>DAV Public School, Tenughat</td>
-          <td>89.6%</td>
-          <td>2021</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="r-sec">
-    <h2>Key Engineering Projects</h2>
-    <div class="r-proj">
-      <div class="r-proj-title">Prakash Jewellers Commercial Web Application — Independent Build</div>
-      <div class="r-proj-meta">JavaScript, HTML5, CSS3, Vercel, AI-assisted development (prakashjewellers.vercel.app)</div>
-      <p>Architected and launched a responsive commercial business platform featuring product showcases and direct customer conversion funnels, cutting initial load times and supporting business discovery.</p>
-    </div>
-    <div class="r-proj">
-      <div class="r-proj-title">Smart Plant Monitoring &amp; Autonomous Irrigation — College Hardware Project</div>
-      <div class="r-proj-meta">Arduino Uno, ESP8266 Wi-Fi, DHT11, Soil Moisture Sensors, ThingSpeak Cloud Telemetry</div>
-      <p>Engineered an automated closed-loop irrigation prototype using capacitive soil sensors and microcontroller logic. Transmitted telemetry to ThingSpeak cloud dashboards for remote observation.</p>
-    </div>
-    <div class="r-proj">
-      <div class="r-proj-title">Hybrid ANN-PID PMSM Speed Control — Simulation &amp; Analysis</div>
-      <div class="r-proj-meta">MATLAB, Simulink, Control Systems, Artificial Neural Networks</div>
-      <p>Modeled permanent magnet synchronous motor dynamics with an adaptive artificial neural network tuned alongside PID regulators, improving transient settling times and disturbance rejection under sudden torque variations.</p>
-    </div>
-    <div class="r-proj">
-      <div class="r-proj-title">DocMind-AI — Document Intelligence Engine</div>
-      <div class="r-proj-meta">Python, LLM Embeddings, Prompt Engineering (github.com/sarthak1778/DocMind-AI)</div>
-      <p>Developed an open-source document intelligence application enabling conversational semantic search, query synthesis, and automated summarization over complex unstructured documentation.</p>
-    </div>
-  </div>
-
-  <div class="r-sec">
-    <h2>Technical Skills</h2>
-    <ul>
-      <li><strong>Programming:</strong> C++, Python, Java, SQL, JavaScript, HTML5, CSS3</li>
-      <li><strong>Embedded Systems &amp; IoT:</strong> Arduino Uno, ESP32, ESP8266, Raspberry Pi, Sensor Integration, Relay Actuation</li>
-      <li><strong>Electrical &amp; Control Engineering:</strong> Power Electronics, PMSM Drives, Control Systems, PWM, Power Systems</li>
-      <li><strong>AI &amp; Emerging Tech:</strong> Artificial Neural Networks (ANN), AI-Assisted Workflows, Prompt Engineering, LLM Integration</li>
-      <li><strong>Tools &amp; Platforms:</strong> MATLAB, Simulink, Arduino IDE, Git, GitHub, Vercel, ThingSpeak</li>
-    </ul>
-  </div>
-
-  <div class="r-sec">
-    <h2>Licenses &amp; Certifications</h2>
-    <ul>
-      <li><strong>Data Analytics Foundations:</strong> Coursera (Credential ID: COURSERA-DAF-2024) — Exploratory data analysis, SQL querying, data cleaning, and business intelligence.</li>
-      <li><strong>Google Gemini Ambassador &amp; AI Enablement:</strong> Google (Credential ID: GOOGLE-GEMINI-AMB-2024) — Campus developer lead for modern AI workflows, prompt engineering, and LLMs.</li>
-      <li><strong>Control Systems Modeling:</strong> MathWorks (Credential ID: MATHWORKS-CTRL-2024) — MATLAB &amp; Simulink transfer function simulation, PID tuning, and motor control.</li>
-      <li><strong>IoT Systems &amp; Microcontroller Sensing:</strong> Sir MVIT (Credential ID: SMVIT-IOT-2024) — Embedded C/C++, Arduino Uno, ESP8266 Wi-Fi telemetry, and ThingSpeak integration.</li>
-    </ul>
-  </div>
-
-  <div class="r-sec">
-    <h2>Leadership &amp; Key Honors</h2>
-    <ul>
-      <li><strong>Aero India 2025 Logistics Operations:</strong> Volunteer coordinator managing event flow and attendee routing for 1,200+ international participants.</li>
-      <li><strong>Kreo Gaming Campus Ambassador:</strong> Youth community engagement and technical event coordination.</li>
-    </ul>
-  </div>
-
-  <p style="font-size: 10px; color: #666; margin-top: 20px; border-top: 1px solid #ddd; padding-top: 8px;">
-    I hereby declare that the particulars provided above are authentic and verified from real academic and project records.
-  </p>
-</div>
+<div id="resume-sheet" aria-hidden="true"></div>
 
 <!-- Load Static Master Profile Data -->
 <script src="data/profile-data.js"></script>
@@ -2491,7 +2486,130 @@
     if (Array.isArray(PROFILE_DATA.certifications)) {
       renderCertifications(PROFILE_DATA.certifications);
     }
+
+    // 9. Printable ATS Resume Sheet (Compiled dynamically from PROFILE_DATA)
+    renderResumeSheet();
   }
+
+  // Compile Dynamic Printable ATS Resume Sheet entirely from PROFILE_DATA
+  function renderResumeSheet() {
+    const sheet = document.getElementById('resume-sheet');
+    if (!sheet || typeof PROFILE_DATA === 'undefined') return;
+
+    const { personal, education, projects, skillsGrouped, certifications, achievements } = PROFILE_DATA;
+    if (!personal) return;
+
+    // Contact info items
+    const contactParts = [
+      personal.email,
+      personal.phone,
+      personal.githubUrl ? personal.githubUrl.replace(/^https?:\/\//, '') : '',
+      personal.linkedinUrl ? personal.linkedinUrl.replace(/^https?:\/\//, '') : '',
+      personal.location
+    ].filter(Boolean);
+
+    // Filter featured projects
+    const featuredProjects = Array.isArray(projects)
+      ? projects.filter(p => p.featured === true)
+      : [];
+
+    const eduRows = Array.isArray(education)
+      ? education.map(e => `
+        <tr>
+          <td>${escapeHtml(e.level)}</td>
+          <td>${escapeHtml(e.institution)}</td>
+          <td>${escapeHtml(e.score)}</td>
+          <td>${escapeHtml(e.year)}</td>
+        </tr>
+      `).join('')
+      : '';
+
+    const projMarkup = featuredProjects.map(p => {
+      const techStr = Array.isArray(p.technologies) ? p.technologies.join(', ') : '';
+      const linkSnippet = p.liveUrl
+        ? ` (${escapeHtml(p.liveUrl.replace(/^https?:\/\//, ''))})`
+        : (p.githubUrl ? ` (${escapeHtml(p.githubUrl.replace(/^https?:\/\//, ''))})` : '');
+      return `
+        <div class="r-proj">
+          <div class="r-proj-title">${escapeHtml(p.title)} — ${escapeHtml(p.category || p.scope || '')}</div>
+          <div class="r-proj-meta">${escapeHtml(techStr)}${linkSnippet}</div>
+          <p>${escapeHtml(p.solution || p.problem || p.keyResult || '')}</p>
+        </div>
+      `;
+    }).join('');
+
+    const skillsMarkup = skillsGrouped ? Object.values(skillsGrouped).map(g => `
+      <li><strong>${escapeHtml(g.category)}:</strong> ${escapeHtml(Array.isArray(g.skills) ? g.skills.join(', ') : '')}</li>
+    `).join('') : '';
+
+    const certsMarkup = Array.isArray(certifications) ? certifications.map(c => `
+      <li><strong>${escapeHtml(c.title)}:</strong> ${escapeHtml(c.issuer || '')} (Credential ID: ${escapeHtml(c.credentialId || 'Verified')}) — ${escapeHtml(c.description || '')}</li>
+    `).join('') : '';
+
+    const achMarkup = Array.isArray(achievements) ? achievements.map(a => `
+      <li>${escapeHtml(a)}</li>
+    `).join('') : '';
+
+    sheet.innerHTML = `
+      <h1>${escapeHtml(personal.name)}</h1>
+      <p class="r-contact">
+        ${contactParts.map(escapeHtml).join(' &nbsp;|&nbsp; ')}
+      </p>
+
+      <div class="r-sec">
+        <h2>Professional Objective</h2>
+        <p>${escapeHtml(personal.resumeObjective || personal.bio || '')}</p>
+      </div>
+
+      <div class="r-sec">
+        <h2>Education</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Degree / Qualification</th>
+              <th>Institution</th>
+              <th>Score</th>
+              <th>Period</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${eduRows}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="r-sec">
+        <h2>Key Engineering Projects</h2>
+        ${projMarkup}
+      </div>
+
+      <div class="r-sec">
+        <h2>Technical Skills</h2>
+        <ul>
+          ${skillsMarkup}
+        </ul>
+      </div>
+
+      <div class="r-sec">
+        <h2>Licenses &amp; Certifications</h2>
+        <ul>
+          ${certsMarkup}
+        </ul>
+      </div>
+
+      <div class="r-sec">
+        <h2>Leadership &amp; Key Honors</h2>
+        <ul>
+          ${achMarkup}
+        </ul>
+      </div>
+
+      <p style="font-size: 10px; color: #666; margin-top: 20px; border-top: 1px solid #ddd; padding-top: 8px;">
+        I hereby declare that the particulars provided above are authentic and verified from real academic and project records.
+      </p>
+    `;
+  }
+  window.renderResumeSheet = renderResumeSheet;
 
   // Render Licenses & Certifications
   function renderCertifications(certs) {
@@ -2871,6 +2989,15 @@
   // PDF Resume Export with html2pdf.js
   const resumeButtons = document.querySelectorAll('.resume-btn');
   resumeButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      if (window.generateATSResume) {
+        e.stopImmediatePropagation();
+        window.generateATSResume();
+        return;
+      }
+    });
+  });
+  resumeButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const originalText = btn.textContent;
       resumeButtons.forEach(b => {
@@ -2903,6 +3030,38 @@
       });
     });
   });
+
+  
+  // System Theme Synchronizer & Toggle
+  function initSystemThemeSync() {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function apply(isDark) {
+      document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+      document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+      const icon = document.querySelector('.theme-icon');
+      if (icon) icon.textContent = isDark ? '☀' : '☾';
+    }
+
+    mediaQuery.addEventListener('change', e => {
+      const saved = localStorage.getItem('sarthak_portfolio_theme');
+      if (!saved || saved === 'system') apply(e.matches);
+    });
+
+    const saved = localStorage.getItem('sarthak_portfolio_theme');
+    if (saved === 'dark') apply(true);
+    else if (saved === 'light') apply(false);
+    else apply(mediaQuery.matches);
+
+    window.toggleTheme = function () {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const next = !isDark;
+      localStorage.setItem('sarthak_portfolio_theme', next ? 'dark' : 'light');
+      apply(next);
+    };
+  }
+
+  initSystemThemeSync();
 
   // Initialization
   document.addEventListener('DOMContentLoaded', () => {

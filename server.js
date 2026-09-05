@@ -24,7 +24,8 @@ const MIME_TYPES = {
 const API_ROUTES = {
   '/api/activity': require('./api/activity'),
   '/api/github': require('./api/github'),
-  '/api/certifications': require('./api/certifications')
+  '/api/certifications': require('./api/certifications'),
+  '/api/sync-linkedin': require('./api/sync-linkedin')
 };
 
 const server = http.createServer(async (req, res) => {
