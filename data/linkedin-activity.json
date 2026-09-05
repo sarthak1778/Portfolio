@@ -10,7 +10,12 @@
     "timestamp": "2026-08-20T10:00:00Z",
     "url": "https://www.linkedin.com/in/sarthak-choudhary-455098293/",
     "category": "achievements",
-    "technologies": ["Google Gemini", "Generative AI", "Prompt Engineering", "Developer Community"],
+    "technologies": [
+      "Google Gemini",
+      "Generative AI",
+      "Prompt Engineering",
+      "Developer Community"
+    ],
     "metadata": {
       "author": "Sarthak Choudhary",
       "handle": "@sarthak-choudhary",
@@ -31,7 +36,11 @@
     "timestamp": "2026-07-15T09:30:00Z",
     "url": "https://www.linkedin.com/in/sarthak-choudhary-455098293/",
     "category": "achievements",
-    "technologies": ["Event Logistics", "Leadership", "Aero India 2025"],
+    "technologies": [
+      "Event Logistics",
+      "Leadership",
+      "Aero India 2025"
+    ],
     "metadata": {
       "author": "Sarthak Choudhary",
       "handle": "@sarthak-choudhary",
@@ -52,7 +61,13 @@
     "timestamp": "2026-05-18T14:20:00Z",
     "url": "https://www.linkedin.com/in/sarthak-choudhary-455098293/",
     "category": "projects",
-    "technologies": ["IoT", "Arduino Uno", "ESP8266", "ThingSpeak", "Sensors"],
+    "technologies": [
+      "IoT",
+      "Arduino Uno",
+      "ESP8266",
+      "ThingSpeak",
+      "Sensors"
+    ],
     "metadata": {
       "author": "Sarthak Choudhary",
       "handle": "@sarthak-choudhary",
@@ -73,7 +88,13 @@
     "timestamp": "2026-04-10T11:15:00Z",
     "url": "https://prakashjewellers.vercel.app/",
     "category": "projects",
-    "technologies": ["JavaScript", "HTML5", "CSS3", "Vercel", "Web Development"],
+    "technologies": [
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Vercel",
+      "Web Development"
+    ],
     "metadata": {
       "author": "Sarthak Choudhary",
       "handle": "@sarthak-choudhary",

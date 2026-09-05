@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedIn Activity Synchronizer | Sarthak Choudhary Portfolio</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0A0D12;
+      --bg-soft: #0E131B;
+      --surface: #141923;
+      --surface-2: #1B2230;
+      --border: #242D3C;
+      --border-bright: #374457;
+      --copper: #F0935A;
+      --copper-soft: rgba(240, 147, 90, 0.12);
+      --copper-line: rgba(240, 147, 90, 0.45);
+      --teal: #5EEAD4;
+      --teal-soft: rgba(94, 234, 212, 0.12);
+      --blue: #60A5FA;
+      --text: #EDEAE3;
+      --text-dim: #9AA4B6;
+      --text-faint: #5C677C;
+      --font-display: 'Space Grotesk', -apple-system, sans-serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+    }
+
+    [data-theme="light"] {
+      --bg: #F8FAFC;
+      --bg-soft: #F1F5F9;
+      --surface: #FFFFFF;
+      --surface-2: #E2E8F0;
+      --border: #E2E8F0;
+      --border-bright: #CBD5E1;
+      --copper: #C25E26;
+      --copper-soft: rgba(194, 94, 38, 0.08);
+      --copper-line: rgba(194, 94, 38, 0.35);
+      --teal: #0D9488;
+      --teal-soft: rgba(13, 148, 136, 0.1);
+      --blue: #2563EB;
+      --text: #0F172A;
+      --text-dim: #475569;
+      --text-faint: #64748B;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 14.5px;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+      width: 100%;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .logo-sq {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--copper);
+      background: var(--copper-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--copper);
+      border-radius: var(--radius-sm);
+    }
+    .logo-text h1 {
+      font-family: var(--font-display);
+      font-size: 18px;
+      margin: 0;
+      font-weight: 700;
+    }
+    .logo-text span {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--copper);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-bright);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .btn:hover {
+      border-color: var(--copper);
+      color: var(--copper);
+    }
+    .btn-primary {
+      background: var(--copper);
+      border-color: var(--copper);
+      color: #160D07;
+      font-weight: 600;
+    }
+    .btn-primary:hover {
+      background: #FFA676;
+      border-color: #FFA676;
+      color: #160D07;
+    }
+
+    /* Secret Config Banner */
+    .config-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .config-inputs {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-grow: 1;
+      max-width: 600px;
+    }
+    .config-inputs label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      white-space: nowrap;
+    }
+    input, textarea, select {
+      width: 100%;
+      background: var(--bg-soft);
+      border: 1px solid var(--border-bright);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 13.5px;
+      padding: 9px 12px;
+      transition: border-color 0.2s ease;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--copper);
+    }
+    .status-indicator {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--teal);
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 8px var(--teal);
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+    .tab-btn {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--text-dim);
+      padding: 10px 16px;
+      cursor: pointer;
+    }
+    .tab-btn.active {
+      color: var(--copper);
+      border-bottom-color: var(--copper);
+      font-weight: 600;
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Form Layout */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+    }
+    @media (max-width: 820px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-faint);
+      margin-bottom: 6px;
+    }
+
+    /* Live Card Preview */
+    .preview-box {
+      background: var(--bg-soft);
+      border: 1px solid var(--border-bright);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      position: relative;
+    }
+    .preview-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--teal);
+      background: var(--teal-soft);
+      padding: 2px 7px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .preview-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 600;
+      margin: 0 0 6px;
+    }
+    .preview-desc {
+      font-size: 13px;
+      color: var(--text-dim);
+      margin: 0 0 12px;
+      line-height: 1.5;
+    }
+    .preview-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .preview-meta span {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--text-faint);
+    }
+
+    /* Bookmarklet Section */
+    .bookmarklet-banner {
+      background: linear-gradient(135deg, rgba(240, 147, 90, 0.08), rgba(94, 234, 212, 0.05));
+      border: 1px dashed var(--copper-line);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      margin-top: 20px;
+    }
+    .bookmarklet-btn {
+      display: inline-block;
+      background: var(--copper);
+      color: #160D07;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      cursor: grab;
+      margin-top: 8px;
+    }
+
+    /* Output Alert */
+    .alert {
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      margin-bottom: 16px;
+      display: none;
+    }
+    .alert-success {
+      background: rgba(94, 234, 212, 0.12);
+      border: 1px solid var(--teal);
+      color: var(--teal);
+    }
+    .alert-error {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid #EF4444;
+      color: #F87171;
+    }
+
+    pre code {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      display: block;
+      overflow-x: auto;
+      color: var(--text-dim);
+    }
+
+    /* Feed Table */
+    .feed-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 16px;
+    }
+    .feed-table th {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      text-align: left;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .feed-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+    .feed-table tr:hover td {
+      background: var(--bg-soft);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <a href="/" class="logo-badge">
+      <div class="logo-sq">SC</div>
+      <div class="logo-text">
+        <h1>Portfolio Synchronizer</h1>
+        <span>HYBRID LINKEDIN TO GITHUB SYNC ENGINE</span>
+      </div>
+    </a>
+    <div class="nav-actions">
+      <a href="/" class="btn">← Return to Portfolio</a>
+      <button class="btn" id="themeToggleBtn">Theme ◐</button>
+    </div>
+  </header>
+
+  <!-- Auth Key Config -->
+  <div class="config-card">
+    <div class="config-inputs">
+      <label for="syncSecretInput">Sync Secret Key:</label>
+      <input type="password" id="syncSecretInput" placeholder="Enter SYNC_SECRET..." value="sarthak-portfolio-sync-key">
+    </div>
+    <div class="status-indicator">
+      <span class="status-dot"></span>
+      <span id="engineStatus">Ready</span>
+    </div>
+  </div>
+
+  <div id="alertBox" class="alert"></div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('quick')">1-Click Quick Sync</button>
+    <button class="tab-btn" onclick="switchTab('webhook')">Automated Webhook (Zapier / Make)</button>
+    <button class="tab-btn" onclick="switchTab('history')">Synced Feed History (<span id="feedCount">...</span>)</button>
+  </div>
+
+  <!-- TAB 1: Quick Sync -->
+  <div id="tab-quick" class="tab-panel active">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">
+          <span>Publish New LinkedIn Update</span>
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--copper);">Step 1 of 1</span>
+        </div>
+
+        <form id="quickSyncForm">
+          <div class="form-group">
+            <label for="updateType">Update Category</label>
+            <select id="updateType">
+              <option value="post">Post / Update / Article</option>
+              <option value="milestone">Milestone / Leadership Honor</option>
+              <option value="certification">Verified Certification / License</option>
+              <option value="project">Project / Hardware Prototype Launch</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="updateTitle">Headline / Title *</label>
+            <input type="text" id="updateTitle" placeholder="e.g. Completed Aero India 2025 Coordination" required>
+          </div>
+
+          <div class="form-group">
+            <label for="updateDesc">Description / Post Content *</label>
+            <textarea id="updateDesc" rows="4" placeholder="Paste your LinkedIn post copy, reflection, or achievement summary..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="updateUrl">LinkedIn Post or Credential URL</label>
+            <input type="url" id="updateUrl" placeholder="https://www.linkedin.com/posts/...">
+          </div>
+
+          <div class="form-group">
+            <label for="updateTags">Skills &amp; Technologies (comma separated)</label>
+            <input type="text" id="updateTags" placeholder="e.g. IoT, Embedded Systems, Arduino Uno, C++">
+          </div>
+
+          <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div>
+              <label for="updateReactions">Reactions (optional)</label>
+              <input type="number" id="updateReactions" placeholder="e.g. 85">
+            </div>
+            <div>
+              <label for="updateComments">Comments (optional)</label>
+              <input type="number" id="updateComments" placeholder="e.g. 14">
+            </div>
+          </div>
+
+          <button type="submit" id="submitSyncBtn" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 12px; font-size: 13px;">
+            Sync to Live Portfolio &amp; GitHub 🚀
+          </button>
+        </form>
+
+        <!-- Bookmarklet -->
+        <div class="bookmarklet-banner">
+          <div style="font-family: var(--font-display); font-weight: 700; font-size: 13.5px; margin-bottom: 4px;">
+            ⚡ 1-Click LinkedIn Bookmarklet
+          </div>
+          <p style="font-size: 12.5px; color: var(--text-dim); margin: 0 0 8px;">
+            Drag this button to your browser bookmarks bar. When viewing any LinkedIn post or certificate, click it to pre-fill this form instantly:
+          </p>
+          <a id="bookmarkletLink" href="#" class="bookmarklet-btn" onclick="alert('Drag this button to your bookmarks bar!'); return false;">
+            ⚡ Sync to Portfolio
+          </a>
+        </div>
+      </div>
+
+      <!-- Live Preview -->
+      <div>
+        <div class="card" style="margin-bottom: 20px;">
+          <div class="card-title">Live Feed Card Preview</div>
+          <p style="font-size: 12.5px; color: var(--text-faint); margin: 0 0 14px;">
+            This is exactly how your card will appear in the Live Activity Feed on your portfolio:
+          </p>
+          <div class="preview-box">
+            <span class="preview-tag" id="prevBadge">LinkedIn Verified Feed</span>
+            <h4 class="preview-title" id="prevTitle">Headline will appear here</h4>
+            <p class="preview-desc" id="prevDesc">Description and post summary will be displayed here in full.</p>
+            <div class="preview-meta" id="prevTags">
+              <span>LinkedIn</span>
+              <span>Engineering</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">How It Syncs to Vercel</div>
+          <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: var(--text-dim); line-height: 1.6;">
+            <li>When you click sync, the endpoint uses your <strong><code>GITHUB_TOKEN</code></strong>.</li>
+            <li>It commits the update directly into <code>data/linkedin-activity.json</code> in your repository.</li>
+            <li>Vercel detects the commit and redeploys your portfolio in ~30s.</li>
+            <li>No database or third-party server needed.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: Automated Webhook -->
+  <div id="tab-webhook" class="tab-panel">
+    <div class="card">
+      <div class="card-title">Hands-Off Automation via Zapier or Make.com</div>
+      <p style="font-size: 13.5px; color: var(--text-dim);">
+        Set up a free scenario on <strong>Make.com</strong> or <strong>Zapier</strong> with the trigger: <em>"LinkedIn: New Post by Me"</em> and the action: <em>"HTTP POST"</em>.
+      </p>
+
+      <h4 style="font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; color: var(--copper); margin: 18px 0 8px;">
+        1. Webhook Endpoint
+      </h4>
+      <pre><code>POST https://sarthak-choudhary.vercel.app/api/sync-linkedin</code></pre>
+
+      <h4 style="font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; color: var(--copper); margin: 18px 0 8px;">
+        2. HTTP Headers
+      </h4>
+      <pre><code>Content-Type: application/json
+x-sync-secret: <span class="secret-display">sarthak-portfolio-sync-key</span></code></pre>
+
+      <h4 style="font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; color: var(--copper); margin: 18px 0 8px;">
+        3. Sample JSON Body
+      </h4>
+      <pre><code>{
+  "title": "{{Post Title or First Line}}",
+  "description": "{{Post Content}}",
+  "url": "{{Post URL}}",
+  "type": "post",
+  "technologies": ["Engineering", "Leadership"],
+  "engagement": {
+    "reactions": {{Reactions Count}},
+    "comments": {{Comments Count}}
+  }
+}</code></pre>
+
+      <h4 style="font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; color: var(--copper); margin: 18px 0 8px;">
+        4. Test with cURL in Terminal
+      </h4>
+      <pre><code id="curlExample">curl -X POST "http://localhost:3000/api/sync-linkedin" \
+  -H "Content-Type: application/json" \
+  -H "x-sync-secret: sarthak-portfolio-sync-key" \
+  -d '{"title":"Test Sync via Webhook","description":"Verifying live sync automation","url":"https://linkedin.com"}'</code></pre>
+    </div>
+  </div>
+
+  <!-- TAB 3: History -->
+  <div id="tab-history" class="tab-panel">
+    <div class="card">
+      <div class="card-title">
+        <span>Current Synced LinkedIn Activity</span>
+        <button class="btn btn-sm" onclick="fetchFeedHistory()">Refresh Feed ↻</button>
+      </div>
+      <div style="overflow-x: auto;">
+        <table class="feed-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Category</th>
+              <th>Headline</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody id="historyTableBody">
+            <tr><td colspan="4" style="text-align: center; padding: 20px;">Loading synced records...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Auth secret handling
+  const secretInput = document.getElementById('syncSecretInput');
+  const savedSecret = localStorage.getItem('sarthak_sync_secret');
+  if (savedSecret) secretInput.value = savedSecret;
+  secretInput.addEventListener('change', () => {
+    localStorage.setItem('sarthak_sync_secret', secretInput.value.trim());
+    updateCurlCode();
+  });
+
+  // Theme Sync
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  const savedTheme = localStorage.getItem('sarthak_portfolio_theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  themeToggleBtn.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const next = isDark ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('sarthak_portfolio_theme', next);
+  });
+
+  // Tab switcher
+  function switchTab(name) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelector(`[onclick="switchTab('${name}')"]`).classList.add('active');
+    document.getElementById(`tab-${name}`).classList.add('active');
+    if (name === 'history') fetchFeedHistory();
+  }
+
+  // Live preview updates
+  const uTitle = document.getElementById('updateTitle');
+  const uDesc = document.getElementById('updateDesc');
+  const uType = document.getElementById('updateType');
+  const uTags = document.getElementById('updateTags');
+
+  function updatePreview() {
+    document.getElementById('prevTitle').textContent = uTitle.value.trim() || 'Headline will appear here';
+    document.getElementById('prevDesc').textContent = uDesc.value.trim() || 'Description and post summary will be displayed here in full.';
+    document.getElementById('prevBadge').textContent = `LinkedIn ${uType.value.toUpperCase()}`;
+
+    const tags = uTags.value.split(',').map(s => s.trim()).filter(Boolean);
+    const container = document.getElementById('prevTags');
+    if (tags.length) {
+      container.innerHTML = tags.map(t => `<span>${escapeHtml(t)}</span>`).join('');
+    } else {
+      container.innerHTML = '<span>LinkedIn</span><span>Engineering</span>';
+    }
+  }
+
+  [uTitle, uDesc, uType, uTags].forEach(el => el.addEventListener('input', updatePreview));
+
+  // Form submit
+  const form = document.getElementById('quickSyncForm');
+  const alertBox = document.getElementById('alertBox');
+  const submitBtn = document.getElementById('submitSyncBtn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Committing to GitHub & Deploying...';
+    alertBox.style.display = 'none';
+
+    const secret = secretInput.value.trim();
+    const payload = {
+      type: uType.value,
+      title: uTitle.value.trim(),
+      description: uDesc.value.trim(),
+      url: document.getElementById('updateUrl').value.trim() || undefined,
+      technologies: uTags.value.trim() || undefined,
+      reactions: document.getElementById('updateReactions').value || undefined,
+      comments: document.getElementById('updateComments').value || undefined
+    };
+
+    try {
+      const res = await fetch('/api/sync-linkedin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-sync-secret': secret
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json();
+      if (!res.ok || data.status === 'error') {
+        throw new Error(data.message || `HTTP ${res.status}`);
+      }
+
+      alertBox.className = 'alert alert-success';
+      alertBox.style.display = 'block';
+      alertBox.innerHTML = `<strong>Success!</strong> ${escapeHtml(data.message)} ${data.commitSha ? `(Commit: <code>${data.commitSha.slice(0, 7)}</code>)` : ''} — <a href="/" target="_blank" style="color: var(--teal); font-weight: bold;">View live portfolio ↗</a>`;
+      form.reset();
+      updatePreview();
+      fetchFeedHistory();
+    } catch (err) {
+      alertBox.className = 'alert alert-error';
+      alertBox.style.display = 'block';
+      alertBox.innerHTML = `<strong>Sync Failed:</strong> ${escapeHtml(err.message)}. Check your Sync Secret or GITHUB_TOKEN on Vercel.`;
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Sync to Live Portfolio & GitHub 🚀';
+    }
+  });
+
+  // Fetch Feed History
+  async function fetchFeedHistory() {
+    const tbody = document.getElementById('historyTableBody');
+    const feedCount = document.getElementById('feedCount');
+    try {
+      const res = await fetch('/api/sync-linkedin');
+      const data = await res.json();
+      const items = data.items || [];
+      feedCount.textContent = items.length;
+
+      if (!items.length) {
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; padding: 20px;">No records found.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = items.map(item => `
+        <tr>
+          <td>${new Date(item.date).toLocaleDateString()}</td>
+          <td><span style="color: var(--copper); font-family: var(--font-mono); font-size: 11px;">${escapeHtml(item.type || item.category || 'post')}</span></td>
+          <td style="color: var(--text); font-weight: 500;">${escapeHtml(item.title)}</td>
+          <td><a href="${escapeHtml(item.url)}" target="_blank" style="color: var(--teal); text-decoration: none;">View ↗</a></td>
+        </tr>
+      `).join('');
+    } catch (err) {
+      tbody.innerHTML = `<tr><td colspan="4" style="color: #F87171;">Failed to load history: ${err.message}</td></tr>`;
+    }
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+  }
+
+  // Build Bookmarklet URL
+  function setupBookmarklet() {
+    const code = `javascript:(function(){
+      const title = document.title.replace(' | LinkedIn', '');
+      const url = window.location.href;
+      const text = window.getSelection().toString() || '';
+      const syncUrl = '${window.location.origin}/sync?title=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(text);
+      window.open(syncUrl, '_blank');
+    })();`;
+    document.getElementById('bookmarkletLink').setAttribute('href', code);
+
+    // Check query params if pre-filled by bookmarklet
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('title')) uTitle.value = params.get('title');
+    if (params.get('text')) uDesc.value = params.get('text');
+    if (params.get('url')) document.getElementById('updateUrl').value = params.get('url');
+    updatePreview();
+  }
+
+  function updateCurlCode() {
+    const s = secretInput.value.trim() || 'sarthak-portfolio-sync-key';
+    const host = window.location.origin;
+    document.querySelectorAll('.secret-display').forEach(el => el.textContent = s);
+    document.getElementById('curlExample').textContent = `curl -X POST "${host}/api/sync-linkedin" \\
+  -H "Content-Type: application/json" \\
+  -H "x-sync-secret: ${s}" \\
+  -d '{"title":"Test Sync via Webhook","description":"Verifying live sync automation","url":"https://linkedin.com"}'`;
+  }
+
+  setupBookmarklet();
+  fetchFeedHistory();
+  updateCurlCode();
+</script>
+
+</body>
+</html>

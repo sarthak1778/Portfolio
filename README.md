@@ -32,11 +32,38 @@ To ensure reliable live GitHub activity feeds without encountering API rate limi
 > **Important Rate Limit Notice:**
 > Without `GITHUB_TOKEN`, GitHub API requests run unauthenticated, which enforces a strict limit of 60 requests/hour per Vercel edge IP shared across serverless invocations. Under traffic, unauthenticated calls quickly exhaust this quota and cause GitHub API 403 errors, falling back to static cache data. Supplying `GITHUB_TOKEN` provides 5,000 requests/hour.
 
-### LinkedIn Activity Feed Management
+### Hybrid LinkedIn Synchronization Engine
 
-- The LinkedIn activity feed adapter (`api/lib/linkedin.js`) is backed by `data/linkedin-activity.json` as a verified, curated record of posts, certifications, and milestones.
-- Due to LinkedIn's official OAuth restrictions and anti-scraping policies, live public scraping is avoided to protect service stability.
-- To publish new LinkedIn milestones or posts to the feed, add entries to `data/linkedin-activity.json` and push to your repository (or trigger a redeploy on Vercel).
+The portfolio includes a built-in **Hybrid Synchronization Engine** (`/sync` and `/api/sync-linkedin`) that automatically persists updates to your GitHub repository and triggers Vercel deployments:
+
+1. **1-Click Quick Sync & Bookmarklet (`/sync`)**:
+   - Access `https://your-portfolio.vercel.app/sync` (protected by `SYNC_SECRET`).
+   - Drag the `⚡ Sync to Portfolio` bookmarklet to your bookmarks bar.
+   - When on any LinkedIn post or credential, click the bookmarklet to pre-fill the form, then click **"Sync to Live Portfolio & GitHub"**.
+   - The endpoint uses `GITHUB_TOKEN` to commit the new update directly to `data/linkedin-activity.json` in your repository via the GitHub Contents API.
+   - Vercel automatically detects the commit and redeploys your updated portfolio in ~30 seconds!
+
+2. **Automated Webhook (Zapier / Make.com / n8n)**:
+   - Configure a webhook trigger whenever you post on LinkedIn:
+     - **Endpoint**: `https://your-portfolio.vercel.app/api/sync-linkedin`
+     - **Method**: `POST`
+     - **Headers**:
+       - `Content-Type: application/json`
+       - `x-sync-secret: <SYNC_SECRET>`
+     - **Body**:
+       ```json
+       {
+         "title": "Post Title or Headline",
+         "description": "Post description or reflection",
+         "url": "https://www.linkedin.com/posts/...",
+         "type": "post",
+         "technologies": ["IoT", "Embedded Systems"]
+       }
+       ```
+
+3. **Environment Variables for Sync**:
+   - `GITHUB_TOKEN`: Personal Access Token with repo write access to commit new items.
+   - `SYNC_SECRET`: Secret passphrase for authenticating webhooks and quick-sync requests (defaults to `sarthak-portfolio-sync-key`).
 
 ---
 
