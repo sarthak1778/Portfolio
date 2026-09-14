@@ -25,6 +25,24 @@ const PROFILE_DATA = {
     resumeObjective: "Electrical & Electronics Engineering undergraduate at Sir M Visvesvaraya Institute of Technology (8.39 CGPA) specializing in embedded firmware, IoT architectures, motor control simulations, and technical software. Demonstrated experience building working physical prototypes (ESP8266/Arduino), neural network adaptive motor simulations (MATLAB/Simulink), and production web applications. Active Google Gemini Campus Ambassador experienced in AI-accelerated engineering workflows."
   },
 
+  photography: {
+    displayName: "Nature Photography",
+    username: "_nature_156",
+    instagramUrl: "https://www.instagram.com/_nature_156/",
+    label: "Photography Portfolio",
+    subheading: "Nature & Photography • Visual Storytelling",
+    description: "Photography and visual storytelling portfolio focused on capturing nature and visual moments.",
+    categories: [
+      "Nature Photography",
+      "Visual Storytelling",
+      "Photography Portfolio",
+      "Creative Content",
+      "Digital Content Creation",
+      "AI-Assisted Content Creation",
+      "AI Video Editing"
+    ]
+  },
+
   credibilityIndicators: [
     { label: "Academic Record", value: "8.39 CGPA", detail: "Sir MVIT, Bengaluru" },
     { label: "Core Discipline", value: "EEE", detail: "Electrical & Electronics" },
@@ -132,6 +150,16 @@ const PROFILE_DATA = {
         { name: "JavaScript (Vanilla)", project: "Interactive Portfolios", link: "#prakash-jewellers" },
         { name: "Vercel", project: "Edge Serverless Deployment", link: "#prakash-jewellers" }
       ]
+    },
+    creative: {
+      category: "Creative & Visual Media",
+      skills: [
+        { name: "Nature Photography", project: "_nature_156 Portfolio", link: "https://www.instagram.com/_nature_156/" },
+        { name: "Visual Storytelling", project: "Creative Media", link: "#creative-photography" },
+        { name: "Digital Content Creation", project: "AI Enablement", link: "#creative-photography" },
+        { name: "AI Video Editing", project: "Multimedia Workflows", link: "#creative-photography" },
+        { name: "AI-Assisted Content Creation", project: "Google Gemini Ambassador", link: "#experience" }
+      ]
     }
   },
 
@@ -155,7 +183,222 @@ const PROFILE_DATA = {
     ai: {
       category: "AI & Machine Learning",
       skills: ["Artificial Neural Networks (ANN)", "Machine Learning", "Audio Processing / MFCC", "LLM Integration", "Prompt Engineering"]
+    },
+    creative: {
+      category: "Creative & Digital Media",
+      skills: ["Nature Photography (_nature_156)", "Visual Storytelling", "Digital Content Creation", "AI Video Editing", "AI-Assisted Content Creation"]
     }
+  },
+
+  interdisciplinaryDimensions: {
+    engineering: {
+      category: "Engineering",
+      headline: "Electrical, Control Systems & Motor Drives",
+      description: "Mathematical modeling, closed-loop control simulation, power electronics inverter stages, and permanent magnet synchronous motor dynamics.",
+      skills: ["Electrical & Electronics Engineering", "Control Systems", "MATLAB & Simulink", "Power Electronics", "Motor Drives", "PID Tuning", "ANN Control"]
+    },
+    embedded: {
+      category: "Embedded & IoT",
+      headline: "Microcontrollers, Sensors & Firmware",
+      description: "Hardware circuit design, peripheral sensor interfacing, physical prototyping, and cloud-connected telemetry via Wi-Fi transceivers.",
+      skills: ["Embedded Systems", "IoT", "Arduino Uno", "ESP32", "ESP8266", "Raspberry Pi", "Sensors & Actuators", "ThingSpeak"]
+    },
+    softwareAi: {
+      category: "Software & AI",
+      headline: "AI/ML Prototypes & Web Engineering",
+      description: "Speech emotion classification pipelines, neural network adaptive logic, modern generative AI tool integration, and high-performance zero-overhead web deployment.",
+      skills: ["Python", "AI & Machine Learning Prototypes", "Artificial Neural Networks (ANN)", "LLM Integration", "Prompt Engineering", "AI-Assisted Development", "Web Development (HTML/CSS/JS)"]
+    },
+    creativeDigital: {
+      category: "Creative & Digital",
+      headline: "Visual Storytelling & Digital Media",
+      description: "Nature and moment-focused photography via dedicated portfolio @_nature_156, alongside AI-assisted video editing and creative digital workflows.",
+      skills: ["Photography & Visual Storytelling (_nature_156)", "Nature Photography", "Digital Content Creation", "AI Video Editing", "AI-Assisted Content Creation"]
+    }
+  },
+
+  services: [
+    {
+      id: "embedded-iot",
+      categoryKey: "embedded",
+      title: "Embedded Systems & IoT Prototyping",
+      scope: "Hardware Prototyping & Connected Sensors",
+      skills: ["Arduino Uno", "ESP32", "ESP8266", "Raspberry Pi", "Sensors", "PIR Sensor", "DHT11", "LDR", "Capacitive Soil Moisture Sensor", "Relay Modules", "IoT Architecture", "ThingSpeak"],
+      description: "Development and prototyping of Arduino and IoT-based systems including sensor integration, monitoring systems, automation and cloud-connected prototypes.",
+      disclaimer: "Focused on functional benchtop and field-testing prototypes (non-industrial deployment).",
+      actionText: "Discuss an IoT Prototype",
+      actionLink: "mailto:sarthakchoudhary1778@gmail.com?subject=Inquiry:%20Embedded%20Systems%20%26%20IoT%20Prototyping",
+      evidenceProject: "smart-plant-monitoring",
+      evidenceLabel: "Smart Plant Monitoring System"
+    },
+    {
+      id: "matlab-simulink",
+      categoryKey: "engineering",
+      title: "MATLAB & Simulink",
+      scope: "Simulation, Modeling & Motor Control",
+      skills: ["MATLAB", "Simulink", "Control Systems", "PID Control", "ANN-PID", "Motor Control", "PMSM", "PWM", "Power Electronics"],
+      description: "MATLAB and Simulink support for engineering simulation, control-system modelling, motor-drive studies and academic technical projects.",
+      disclaimer: "Based on validated mathematical modeling and ongoing simulation research.",
+      actionText: "Discuss Simulation Project",
+      actionLink: "mailto:sarthakchoudhary1778@gmail.com?subject=Inquiry:%20MATLAB%20%26%20Simulink%20Project",
+      evidenceProject: "hybrid-ann-pid-pmsm",
+      evidenceLabel: "PMSM ANN-PID Speed Control Project"
+    },
+    {
+      id: "engineering-development",
+      categoryKey: "engineering",
+      title: "Engineering Project Development",
+      scope: "End-to-End System Development & Design",
+      skills: ["Circuit Design", "Embedded Systems", "Sensors", "Microcontrollers", "Control Systems", "Power Electronics", "Motor Drives", "Simulation", "IoT Architecture"],
+      description: "Support for academic and prototype-level engineering projects involving embedded systems, IoT, sensors, automation, simulation and electrical/electronics applications.",
+      disclaimer: "Ethical engineering and technical advisory support exclusively (no examination or impersonation assistance).",
+      actionText: "Discuss Engineering Project",
+      actionLink: "mailto:sarthakchoudhary1778@gmail.com?subject=Inquiry:%20Engineering%20Project%20Development",
+      evidenceProject: "ultrasonic-radar",
+      evidenceLabel: "Ultrasonic Radar & Embedded Builds"
+    },
+    {
+      id: "python-ai",
+      categoryKey: "softwareAi",
+      title: "Python & AI Project Development",
+      scope: "ML Prototypes & Signal Analysis",
+      skills: ["Python", "AI", "ANN", "Machine Learning", "LLM Integration", "Prompt Engineering", "Voice Emotion Recognition", "Signal Processing"],
+      description: "Development support for Python-based AI and machine-learning prototypes, data-driven experiments, signal-processing applications and AI-integrated projects.",
+      disclaimer: "Focused on research prototypes and experimental evaluation pipelines.",
+      actionText: "Discuss Python / AI Project",
+      actionLink: "mailto:sarthakchoudhary1778@gmail.com?subject=Inquiry:%20Python%20%26%20AI%20Project%20Development",
+      evidenceProject: "voice-emotion-recognition",
+      evidenceLabel: "Voice Emotion Recognition System"
+    },
+    {
+      id: "web-portfolio",
+      categoryKey: "softwareAi",
+      title: "Web Development & Portfolio Development",
+      scope: "Performant Showcase Websites",
+      skills: ["HTML", "CSS", "JavaScript", "Git", "GitHub", "Vercel"],
+      description: "Development and deployment support for personal portfolios, project websites and web-based technical presentations.",
+      disclaimer: "Lightweight, zero-bloat vanilla web architecture for maximum speed and zero hosting overhead.",
+      actionText: "Discuss Web Project",
+      actionLink: "mailto:sarthakchoudhary1778@gmail.com?subject=Inquiry:%20Portfolio%20%26%20Web%20Development",
+      evidenceProject: "prakash-jewellers",
+      evidenceLabel: "Prakash Jewellers & Personal Portfolio"
+    },
+    {
+      id: "ai-assisted-dev",
+      categoryKey: "softwareAi",
+      title: "AI-Assisted Development",
+      scope: "Workflow Acceleration & Prototyping",
+      skills: ["AI-Assisted Development", "Prompt Engineering", "LLM Integration"],
+      description: "AI-assisted development workflows for prototyping, ideation, documentation, development acceleration and technical experimentation.",
+      disclaimer: "Human-in-the-loop engineered workflows; all code and designs undergo rigorous technical verification.",
+      actionText: "Discuss AI Workflows",
+      actionLink: "mailto:sarthakchoudhary1778@gmail.com?subject=Inquiry:%20AI-Assisted%20Development%20Workflows",
+      evidenceProject: "prakash-jewellers",
+      evidenceLabel: "Google Gemini Ambassador Initiatives"
+    },
+    {
+      id: "digital-content-video",
+      categoryKey: "creativeDigital",
+      title: "Digital Content & AI Video Editing",
+      scope: "Technical & Creative Multimedia Workflows",
+      skills: ["Digital Content Creation", "AI Video Editing", "Prompt Engineering", "AI Tools"],
+      description: "Digital content creation and AI-assisted video workflows for technical, educational and creative content.",
+      disclaimer: "Applied across technical workshop demonstrations and creative media presentations.",
+      actionText: "Discuss Content Project",
+      actionLink: "mailto:sarthakchoudhary1778@gmail.com?subject=Inquiry:%20Digital%20Content%20%26%20Video%20Editing",
+      evidenceProject: "exp-gemini",
+      evidenceLabel: "Campus Technical Workshops & Video Content"
+    },
+    {
+      id: "photography-visual",
+      categoryKey: "creativeDigital",
+      title: "Photography & Visual Content",
+      scope: "Nature & Visual Storytelling",
+      skills: ["Nature Photography", "Visual Storytelling", "Creative Content", "_nature_156"],
+      description: "Nature-focused photography and visual storytelling for creative and portfolio-oriented content.",
+      disclaimer: "Curated nature photography and visual moments captured across field travels, available to view on the dedicated Instagram portfolio.",
+      actionText: "View Photography Portfolio",
+      actionLink: "https://www.instagram.com/_nature_156/",
+      isExternal: true,
+      evidenceProject: "_nature_156",
+      evidenceLabel: "Instagram: @_nature_156"
+    }
+  ],
+
+  skillsToServices: [
+    {
+      skill: "Arduino + Sensors",
+      application: "Smart monitoring and automation prototypes",
+      evidence: "Smart Plant Monitoring System",
+      evidenceLink: "#smart-plant-monitoring",
+      category: "Embedded & IoT"
+    },
+    {
+      skill: "MATLAB + Simulink + Control Systems",
+      application: "Engineering modelling and motor-control simulation",
+      evidence: "PMSM ANN-PID Speed Control Project",
+      evidenceLink: "#pmsm-major",
+      category: "Engineering"
+    },
+    {
+      skill: "Python + Signal Processing + Machine Learning",
+      application: "AI-based audio and emotion analysis",
+      evidence: "Voice Emotion Recognition System",
+      evidenceLink: "#voice-emotion-recognition",
+      category: "Software & AI"
+    },
+    {
+      skill: "HTML + CSS + JavaScript + GitHub + Vercel",
+      application: "Portfolio and web deployment",
+      evidence: "Prakash Jewellers & Personal Portfolio",
+      evidenceLink: "#prakash-jewellers",
+      category: "Software & AI"
+    },
+    {
+      skill: "Photography + Visual Storytelling",
+      application: "Creative and visual content",
+      evidence: "Nature Photography Portfolio (_nature_156)",
+      evidenceLink: "https://www.instagram.com/_nature_156/",
+      isExternal: true,
+      category: "Creative & Digital"
+    }
+  ],
+
+  workWithMe: {
+    title: "Work With Me",
+    subtitle: "Skills and technical capabilities available for project-based work, prototyping, and collaboration.",
+    opportunities: [
+      "Engineering Prototype Collaboration",
+      "IoT Projects",
+      "Embedded Systems Projects",
+      "MATLAB & Simulink Projects",
+      "Control System Modelling",
+      "Python & AI Prototypes",
+      "Portfolio and Technical Web Development",
+      "Digital Content Projects",
+      "Photography and Visual Content Collaboration"
+    ],
+    actionPaths: [
+      {
+        label: "For Engineering Services",
+        buttonText: "Discuss a Technical Project",
+        link: "mailto:sarthakchoudhary1778@gmail.com?subject=Project%20Discussion:%20Engineering%20Services",
+        type: "primary"
+      },
+      {
+        label: "For Web & Portfolio Work",
+        buttonText: "View My Development Work",
+        link: "#projects",
+        type: "secondary"
+      },
+      {
+        label: "For Photography & Visuals",
+        buttonText: "View Photography Portfolio",
+        link: "https://www.instagram.com/_nature_156/",
+        type: "secondary",
+        isExternal: true
+      }
+    ]
   },
 
   achievementsSummary: [
@@ -662,6 +905,9 @@ const PROFILE_DATA = {
     linkedinUrl: "https://www.linkedin.com/in/sarthak-choudhary-455098293/",
     githubUrl: "https://github.com/sarthak1778",
     instagramUrl: "https://www.instagram.com/sarthakchoudhary_21?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==",
+    instagramHandle: "@sarthakchoudhary_21",
+    photographyInstagramUrl: "https://www.instagram.com/_nature_156/",
+    photographyInstagramHandle: "@_nature_156",
     openTo: [
       "Engineering Internships",
       "Embedded Systems",

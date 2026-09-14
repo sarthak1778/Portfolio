@@ -62,7 +62,8 @@
     "sameAs": [
       "https://github.com/sarthak1778",
       "https://www.linkedin.com/in/sarthak-choudhary-455098293/",
-      "https://www.instagram.com/sarthakchoudhary_21"
+      "https://www.instagram.com/sarthakchoudhary_21",
+      "https://www.instagram.com/_nature_156/"
     ],
     "jobTitle": "Electrical & Electronics Engineering Student",
     "alumniOf": "Sir M Visvesvaraya Institute of Technology",
@@ -77,7 +78,10 @@
       "Power Electronics",
       "Artificial Neural Networks",
       "Python",
-      "C++"
+      "C++",
+      "Nature Photography",
+      "Visual Storytelling",
+      "Digital Content Creation"
     ]
   }
   </script>
@@ -1730,6 +1734,473 @@
       text-transform: uppercase;
     }
 
+    /* Interdisciplinary Professional Profile Matrix */
+    .interdisciplinary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .dimension-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dimension-card:hover {
+      border-color: var(--copper-line);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .dimension-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .dimension-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .dimension-headline {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--copper);
+      margin-bottom: 8px;
+    }
+
+    .dimension-desc {
+      font-size: 12.5px;
+      color: var(--text-dim);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .dimension-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: auto;
+    }
+
+    /* Services & Collaboration Section */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .service-card:hover {
+      border-color: var(--copper-line);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .service-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .service-title {
+      font-family: var(--font-display);
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 4px;
+      line-height: 1.3;
+    }
+
+    .service-scope {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+
+    .service-desc {
+      font-size: 13.5px;
+      color: var(--text-dim);
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+
+    .service-disclaimer {
+      background: var(--surface-2);
+      border-left: 2px solid var(--copper);
+      padding: 8px 12px;
+      border-radius: 0 4px 4px 0;
+      font-size: 11.5px;
+      color: var(--text-dim);
+      margin-bottom: 16px;
+      font-family: var(--font-mono);
+      line-height: 1.45;
+    }
+
+    .service-tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: auto;
+      margin-bottom: 18px;
+    }
+
+    .service-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .service-evidence-link {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-faint);
+      text-decoration: none;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .service-evidence-link:hover {
+      color: var(--teal);
+    }
+
+    /* Skills-to-Services Pipeline Matrix */
+    .s2s-section-box {
+      background: var(--surface);
+      border: 1px solid var(--border-bright);
+      border-radius: var(--radius-lg);
+      padding: clamp(18px, 3vw, 28px);
+      margin-top: 36px;
+    }
+
+    .s2s-head {
+      margin-bottom: 20px;
+    }
+
+    .s2s-head h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 6px;
+    }
+
+    .s2s-head p {
+      font-size: 13.5px;
+      color: var(--text-dim);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .s2s-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .s2s-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 12.5px;
+      min-width: 680px;
+    }
+
+    .s2s-table th {
+      background: var(--surface-2);
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-bright);
+    }
+
+    .s2s-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: middle;
+    }
+
+    .s2s-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .s2s-table tr:hover td {
+      background: var(--surface-2);
+    }
+
+    .s2s-skill-cell {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--copper);
+    }
+
+    .s2s-app-cell {
+      color: var(--text-dim);
+    }
+
+    .s2s-evidence-cell a {
+      color: var(--teal);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .s2s-evidence-cell a:hover {
+      text-decoration: underline;
+    }
+
+    /* Creative Work & Photography Section */
+    .creative-photo-card {
+      background: var(--surface);
+      border: 1px solid var(--border-bright);
+      border-radius: var(--radius-lg);
+      padding: clamp(20px, 4vw, 32px);
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+
+    .creative-photo-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .photo-account-distinction {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .account-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      transition: var(--transition);
+    }
+
+    .account-card.is-active-creative {
+      border-color: var(--copper-line);
+      background: linear-gradient(135deg, var(--surface-2) 0%, rgba(240, 147, 90, 0.06) 100%);
+    }
+
+    .account-type-lbl {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-faint);
+      margin-bottom: 4px;
+    }
+
+    .account-handle-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .account-desc-text {
+      font-size: 12.5px;
+      color: var(--text-dim);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .photo-architecture-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .photo-frame-card {
+      background: var(--surface-2);
+      border: 1px dashed var(--border-bright);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .photo-frame-card:hover {
+      border-color: var(--copper);
+      transform: translateY(-2px);
+    }
+
+    .photo-frame-aspect {
+      height: 130px;
+      border-radius: var(--radius-sm);
+      background: var(--surface-3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      border: 1px solid var(--border);
+      color: var(--text-faint);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .photo-frame-aspect svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--copper);
+      opacity: 0.75;
+      margin-bottom: 6px;
+    }
+
+    .photo-frame-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .photo-frame-tagline {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+
+    .photo-frame-detail {
+      font-size: 12px;
+      color: var(--text-dim);
+      line-height: 1.45;
+    }
+
+    .photo-cta-banner {
+      background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface-3) 100%);
+      border: 1px solid var(--border-bright);
+      border-radius: var(--radius-md);
+      padding: 22px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* Work With Me Section */
+    .work-with-me-card {
+      background: var(--surface);
+      border: 1px solid var(--border-bright);
+      border-radius: var(--radius-lg);
+      padding: clamp(24px, 4vw, 36px);
+      box-shadow: var(--shadow-md);
+      margin-bottom: 32px;
+    }
+
+    .work-with-me-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+      gap: 12px;
+      margin: 24px 0 28px;
+    }
+
+    .collab-pill-item {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text);
+      transition: var(--transition);
+    }
+
+    .collab-pill-item:hover {
+      border-color: var(--copper-line);
+      background: var(--surface-3);
+    }
+
+    .collab-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--copper);
+      flex-shrink: 0;
+    }
+
+    .work-action-paths {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+      gap: 16px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .action-path-box {
+      background: var(--surface-2);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .action-path-lbl {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+    }
+
     /* 15. Footer */
     .footer {
       border-top: 1px solid var(--border);
@@ -2297,11 +2768,14 @@
         <a href="#hero" class="nav-link">Home</a>
         <a href="#about" class="nav-link">About</a>
         <a href="#skills" class="nav-link">Skills</a>
+        <a href="#services" class="nav-link">Services</a>
         <a href="#projects" class="nav-link">Projects</a>
         <a href="#pmsm-major" class="nav-link">Major Project</a>
+        <a href="#creative-photography" class="nav-link">Creative</a>
         <a href="#approach" class="nav-link">Approach</a>
         <a href="#experience" class="nav-link">Experience</a>
         <a href="#activity" class="nav-link">Activity</a>
+        <a href="#work-with-me" class="nav-link">Work With Me</a>
         <a href="#contact" class="nav-link">Contact</a>
         <div class="nav-mobile-socials">
           <a href="https://github.com/sarthak1778" target="_blank" rel="noopener noreferrer" class="btn btn-ghost"
@@ -2311,8 +2785,10 @@
             ↗</a>
           <a href="https://www.instagram.com/sarthakchoudhary_21?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw=="
             target="_blank" rel="noopener noreferrer" class="btn btn-ghost"
-            style="flex: 1; font-size: 11px; justify-content: center; min-height: 38px;">Instagram
-            ↗</a>
+            style="flex: 1; font-size: 11px; justify-content: center; min-height: 38px;">Instagram (Personal) ↗</a>
+          <a href="https://www.instagram.com/_nature_156/"
+            target="_blank" rel="noopener noreferrer" class="btn btn-ghost"
+            style="flex: 1; font-size: 11px; justify-content: center; min-height: 38px;">Photography (_nature_156) ↗</a>
         </div>
       </nav>
 
@@ -2333,8 +2809,16 @@
         </a>
         <a class="icon-btn"
           href="https://www.instagram.com/sarthakchoudhary_21?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw=="
-          target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile"
-          title="Instagram: @sarthakchoudhary_21">
+          target="_blank" rel="noopener noreferrer" aria-label="Personal Instagram Profile"
+          title="Personal Instagram: @sarthakchoudhary_21">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069Zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073Zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162Zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4Zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44Z" />
+          </svg>
+        </a>
+        <a class="icon-btn" href="https://www.instagram.com/_nature_156/" target="_blank"
+          rel="noopener noreferrer" aria-label="Photography Instagram Profile"
+          title="Photography Instagram: @_nature_156" style="border-color: var(--copper-line); color: var(--copper);">
           <svg viewBox="0 0 24 24">
             <path
               d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069Zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073Zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162Zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4Zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44Z" />
@@ -2368,11 +2852,11 @@
           </div>
           <h1 class="hero-name">Sarthak Choudhary</h1>
           <div class="hero-headline">Electrical &amp; Electronics Engineering Student</div>
-          <div class="hero-subheadline">Embedded Systems • IoT • Control Systems • AI</div>
+          <div class="hero-subheadline">Embedded Systems • IoT • Control Systems • AI • Photography</div>
           <p class="hero-statement">
             Building intelligent hardware-software systems that connect sensing, control, automation, and AI.
             Undergraduate engineer at Sir M Visvesvaraya Institute of Technology, taking concepts from mathematical
-            simulation in MATLAB/Simulink to working physical prototypes.
+            simulation in MATLAB/Simulink to working physical prototypes, with visual storytelling and nature photography.
           </p>
 
           <div class="hero-actions">
@@ -2383,7 +2867,9 @@
             <a href="https://www.linkedin.com/in/sarthak-choudhary-455098293/" target="_blank" rel="noopener noreferrer"
               class="btn btn-ghost">LinkedIn ↗</a>
             <a href="https://www.instagram.com/sarthakchoudhary_21?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw=="
-              target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Instagram ↗</a>
+              target="_blank" rel="noopener noreferrer" class="btn btn-ghost" title="Personal Instagram: @sarthakchoudhary_21">Personal Instagram ↗</a>
+            <a href="https://www.instagram.com/_nature_156/" target="_blank" rel="noopener noreferrer"
+              class="btn btn-ghost" title="Photography Instagram: @_nature_156" style="border-color: var(--copper-line); color: var(--copper);">Photography Instagram (_nature_156) ↗</a>
           </div>
 
           <!-- Credibility Strip -->
@@ -2422,6 +2908,10 @@
               <span class="meta-row-lbl">Technical Advocacy</span>
               <span class="meta-row-val">Google Gemini Ambassador</span>
             </div>
+            <div class="meta-row">
+              <span class="meta-row-lbl">Photography</span>
+              <span class="meta-row-val"><a href="https://www.instagram.com/_nature_156/" target="_blank" rel="noopener noreferrer" style="color: var(--copper); font-weight: 600; text-decoration: none;">@_nature_156 ↗</a></span>
+            </div>
           </div>
         </aside>
       </div>
@@ -2448,6 +2938,20 @@
       <div class="about-grid" id="aboutGrid">
         <!-- Rendered from PROFILE_DATA.aboutAreas -->
       </div>
+
+      <!-- Interdisciplinary Professional Dimensions -->
+      <div style="margin-top: 36px;">
+        <div class="section-eyebrow" style="margin-bottom: 6px;">Multi-Dimensional Profile</div>
+        <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--text); margin: 0 0 6px;">
+          Interdisciplinary Engineering &amp; Creative Dimensions
+        </h3>
+        <p style="font-size: 13.5px; color: var(--text-dim); margin: 0 0 16px; line-height: 1.5;">
+          A coherent interdisciplinary profile bridging electrical engineering, embedded silicon, intelligent software algorithms, and creative visual media.
+        </p>
+        <div class="interdisciplinary-grid" id="interdisciplinaryGrid">
+          <!-- Rendered from PROFILE_DATA.interdisciplinaryDimensions -->
+        </div>
+      </div>
     </section>
 
     <!-- 03. Technical Focus Section -->
@@ -2463,6 +2967,46 @@
 
       <div class="skills-categories-grid" id="skillsGrid">
         <!-- Rendered from PROFILE_DATA.technicalSkills -->
+      </div>
+    </section>
+
+    <!-- Services & Collaboration Section -->
+    <section class="section-pad wrap" id="services">
+      <div class="section-head">
+        <div class="section-eyebrow">Engagement // Project-Based Work</div>
+        <h2 class="section-title">Services &amp; Collaboration</h2>
+        <p class="section-desc">
+          Skills and technical capabilities available for project-based work and collaboration.
+        </p>
+      </div>
+
+      <div class="services-grid" id="servicesGrid">
+        <!-- Rendered from PROFILE_DATA.services -->
+      </div>
+
+      <!-- Skills-to-Services Pipeline: SKILL → APPLICATION → PROJECT / EVIDENCE -->
+      <div class="s2s-section-box">
+        <div class="s2s-head">
+          <div class="section-eyebrow" style="margin-bottom: 4px;">Competency Validation Architecture</div>
+          <h3>Skill → Application → Project / Evidence</h3>
+          <p>
+            Transparent traceability connecting core technical proficiencies to real-world engineering applications and verifiable project artifacts.
+          </p>
+        </div>
+        <div class="s2s-table-wrap">
+          <table class="s2s-table" id="s2sTable">
+            <thead>
+              <tr>
+                <th>Core Skill Competency</th>
+                <th>Engineering Application</th>
+                <th>Verifiable Project / Evidence</th>
+              </tr>
+            </thead>
+            <tbody id="s2sTableBody">
+              <!-- Rendered from PROFILE_DATA.skillsToServices -->
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
@@ -2780,6 +3324,152 @@
       </div>
     </section>
 
+    <!-- Creative Work & Photography Section -->
+    <section class="section-pad wrap" id="creative-photography">
+      <div class="section-head">
+        <div class="section-eyebrow">Visual Storytelling // Creative Dimension</div>
+        <h2 class="section-title">Creative Work &amp; Photography</h2>
+        <p class="section-desc">
+          Photography and visual storytelling alongside engineering and technology.
+        </p>
+      </div>
+
+      <div class="creative-photo-card">
+        <div class="creative-photo-head">
+          <div>
+            <span class="badge badge-copper" style="margin-bottom: 8px;">CREATIVE PORTFOLIO &amp; PHOTOGRAPHY</span>
+            <h3 style="font-family: var(--font-display); font-size: 1.4rem; margin: 4px 0 8px; color: var(--text);">
+              Nature Photography &amp; Visual Storytelling
+            </h3>
+            <p style="font-size: 14.5px; color: var(--text-dim); max-width: 760px; margin: 0; line-height: 1.6;">
+              Photography and visual storytelling portfolio focused on capturing nature and visual moments. Exploring the intersection of natural compositions, macro light studies, and digital storytelling workflows.
+            </p>
+          </div>
+          <a href="https://www.instagram.com/_nature_156/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            View Photography Portfolio ↗
+          </a>
+        </div>
+
+        <!-- Verified Creative Capabilities Pill List -->
+        <div style="margin-bottom: 24px;">
+          <div style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--text-faint); margin-bottom: 8px; letter-spacing: 0.05em;">
+            Verified Creative Focus Areas
+          </div>
+          <div class="tech-pill-list">
+            <span class="tech-pill">Nature Photography</span>
+            <span class="tech-pill">Visual Storytelling</span>
+            <span class="tech-pill">Photography Portfolio</span>
+            <span class="tech-pill">Creative Content</span>
+            <span class="tech-pill">Digital Content Creation</span>
+            <span class="tech-pill">AI-Assisted Content Creation</span>
+            <span class="tech-pill">AI Video Editing</span>
+          </div>
+        </div>
+
+        <!-- Account Distinction Box (CRITICAL: Differentiating Personal vs Photography Instagram) -->
+        <div class="photo-account-distinction">
+          <div class="account-card">
+            <div class="account-type-lbl">Personal Account</div>
+            <div class="account-handle-title">@sarthakchoudhary_21</div>
+            <p class="account-desc-text">
+              Personal social account representing student engineering life, campus updates, and individual milestones.
+            </p>
+            <a href="https://www.instagram.com/sarthakchoudhary_21?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw=="
+              target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="padding: 6px 12px; font-size: 11px;">
+              Personal Instagram ↗
+            </a>
+          </div>
+
+          <div class="account-card is-active-creative">
+            <div class="account-type-lbl" style="color: var(--copper);">Photography &amp; Creative Portfolio</div>
+            <div class="account-handle-title" style="color: var(--copper);">@_nature_156</div>
+            <p class="account-desc-text">
+              Dedicated photography and visual storytelling portfolio focused on capturing nature, botany, atmospheric landscapes, and visual moments.
+            </p>
+            <a href="https://www.instagram.com/_nature_156/"
+              target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 6px 12px; font-size: 11px;">
+              Open Photography Profile ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Clean Visual Placeholder Architecture for Future Photographic Assets -->
+        <div style="margin-bottom: 24px;">
+          <div style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--text-faint); margin-bottom: 12px; letter-spacing: 0.05em;">
+            Visual Portfolio Architecture // Curated Gallery Focus
+          </div>
+          <div class="photo-architecture-grid">
+            <div class="photo-frame-card">
+              <div class="photo-frame-aspect">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
+                  <path d="M12 6a6 6 0 0 0-6 6c0 3 2 5 6 9 4-4 6-6 6-9a6 6 0 0 0-6-6z"/>
+                </svg>
+                <span>Macro &amp; Flora</span>
+              </div>
+              <div class="photo-frame-title">Botanical &amp; Macro Nature</div>
+              <div class="photo-frame-tagline">Texture, Geometry &amp; Petals</div>
+              <p class="photo-frame-detail">Close-focus captures documenting intricate leaf vein structures, morning condensation, and organic symmetry.</p>
+            </div>
+
+            <div class="photo-frame-card">
+              <div class="photo-frame-aspect">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                  <polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+                <span>Atmospheric Vistas</span>
+              </div>
+              <div class="photo-frame-title">Natural Horizons &amp; Sky</div>
+              <div class="photo-frame-tagline">Ambient Light &amp; Golden Hour</div>
+              <p class="photo-frame-detail">Dusk transitions, cloud formations, and natural elevation perspectives captured during travel.</p>
+            </div>
+
+            <div class="photo-frame-card">
+              <div class="photo-frame-aspect">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83M16.62 12l-5.74 9.94"/>
+                </svg>
+                <span>Visual Moments</span>
+              </div>
+              <div class="photo-frame-title">Moments &amp; Ephemeral Light</div>
+              <div class="photo-frame-tagline">Contrast, Shadow &amp; Depth</div>
+              <p class="photo-frame-detail">Capturing subtle interactions between natural daylight, foliage shadows, and environmental tranquility.</p>
+            </div>
+
+            <div class="photo-frame-card">
+              <div class="photo-frame-aspect">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <polygon points="23 7 16 12 23 17 23 7"/>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                </svg>
+                <span>Digital Media</span>
+              </div>
+              <div class="photo-frame-title">AI Video &amp; Digital Media</div>
+              <div class="photo-frame-tagline">Motion &amp; Visual Sequences</div>
+              <p class="photo-frame-detail">Integrating modern AI-assisted editing workflows to sequence visual frames into engaging technical and creative narratives.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banner CTA to visit @_nature_156 -->
+        <div class="photo-cta-banner">
+          <div>
+            <div style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 4px;">
+              Explore the Full Nature Photography Collection
+            </div>
+            <div style="font-size: 13px; color: var(--text-dim);">
+              Direct stream of visual moments, nature explorations, and photographic studies on Instagram.
+            </div>
+          </div>
+          <a href="https://www.instagram.com/_nature_156/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            <span>View @_nature_156 on Instagram</span> ↗
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- 13. Currently Building Section -->
     <section class="section-pad wrap" id="currently-building">
       <div class="section-head">
@@ -2793,6 +3483,74 @@
 
       <div class="cb-card" id="currentlyBuildingCard">
         <!-- Rendered dynamically from PROFILE_DATA.currentlyBuilding -->
+      </div>
+    </section>
+
+    <!-- Work With Me Section -->
+    <section class="section-pad wrap" id="work-with-me">
+      <div class="section-head">
+        <div class="section-eyebrow">Partnership // Value Creation</div>
+        <h2 class="section-title">Work With Me</h2>
+        <p class="section-desc">
+          Skills and technical capabilities available for project-based work, prototyping, and collaboration.
+        </p>
+      </div>
+
+      <div class="work-with-me-card">
+        <div style="max-width: 720px; margin-bottom: 24px;">
+          <h3 style="font-family: var(--font-display); font-size: 1.35rem; color: var(--text); margin: 0 0 8px;">
+            Positioned for Technical &amp; Creative Collaboration
+          </h3>
+          <p style="font-size: 14.5px; color: var(--text-dim); line-height: 1.6; margin: 0;">
+            Bringing disciplined engineering execution, hands-on hardware laboratory experience, simulation modeling, and digital creative capabilities to purposeful initiatives.
+          </p>
+        </div>
+
+        <!-- Areas of Collaboration -->
+        <div class="work-with-me-grid">
+          <div class="collab-pill-item"><span class="collab-dot"></span><span>Engineering Prototype Collaboration</span></div>
+          <div class="collab-pill-item"><span class="collab-dot"></span><span>IoT Projects</span></div>
+          <div class="collab-pill-item"><span class="collab-dot"></span><span>Embedded Systems Projects</span></div>
+          <div class="collab-pill-item"><span class="collab-dot"></span><span>MATLAB &amp; Simulink Projects</span></div>
+          <div class="collab-pill-item"><span class="collab-dot"></span><span>Control System Modelling</span></div>
+          <div class="collab-pill-item"><span class="collab-dot"></span><span>Python &amp; AI Prototypes</span></div>
+          <div class="collab-pill-item"><span class="collab-dot"></span><span>Portfolio and Technical Web Development</span></div>
+          <div class="collab-pill-item"><span class="collab-dot"></span><span>Digital Content Projects</span></div>
+          <div class="collab-pill-item"><span class="collab-dot"></span><span>Photography and Visual Content Collaboration</span></div>
+        </div>
+
+        <!-- Clear Action Paths -->
+        <div class="work-action-paths">
+          <div class="action-path-box">
+            <div class="action-path-lbl">Engineering &amp; IoT Prototyping</div>
+            <p style="font-size: 12.5px; color: var(--text-dim); margin: 0; line-height: 1.5;">
+              Hardware prototypes, sensor integration, MATLAB simulations, and firmware development.
+            </p>
+            <a href="mailto:sarthakchoudhary1778@gmail.com?subject=Project%20Discussion:%20Engineering%20Services" class="btn btn-primary" style="font-size: 11px; justify-content: center;">
+              Discuss a Technical Project ↗
+            </a>
+          </div>
+
+          <div class="action-path-box">
+            <div class="action-path-lbl">Web &amp; Technical Showcases</div>
+            <p style="font-size: 12.5px; color: var(--text-dim); margin: 0; line-height: 1.5;">
+              Clean, ultra-fast personal portfolios, project documentation sites, and web applications.
+            </p>
+            <a href="#projects" class="btn btn-secondary" style="font-size: 11px; justify-content: center;">
+              View My Development Work ↓
+            </a>
+          </div>
+
+          <div class="action-path-box">
+            <div class="action-path-lbl">Photography &amp; Visual Media</div>
+            <p style="font-size: 12.5px; color: var(--text-dim); margin: 0; line-height: 1.5;">
+              Nature visual storytelling, digital content creation, and AI-assisted multimedia workflows.
+            </p>
+            <a href="https://www.instagram.com/_nature_156/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size: 11px; justify-content: center;">
+              View Photography Portfolio ↗
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -2828,7 +3586,9 @@
           <a href="https://www.linkedin.com/in/sarthak-choudhary-455098293/" target="_blank" rel="noopener noreferrer"
             class="btn btn-secondary">LinkedIn ↗</a>
           <a href="https://www.instagram.com/sarthakchoudhary_21?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw=="
-            target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Instagram ↗</a>
+            target="_blank" rel="noopener noreferrer" class="btn btn-secondary" title="Personal Instagram: @sarthakchoudhary_21">Personal Instagram ↗</a>
+          <a href="https://www.instagram.com/_nature_156/"
+            target="_blank" rel="noopener noreferrer" class="btn btn-secondary" title="Photography Instagram: @_nature_156" style="border-color: var(--copper-line); color: var(--copper);">Photography Instagram (_nature_156) ↗</a>
           <button class="btn btn-ghost resume-export-btn" id="contactResumeBtn">Resume PDF</button>
         </div>
       </div>
@@ -2852,7 +3612,9 @@
         <a href="https://www.linkedin.com/in/sarthak-choudhary-455098293/" target="_blank" rel="noopener noreferrer"
           style="color: var(--copper);">LinkedIn</a>
         <a href="https://www.instagram.com/sarthakchoudhary_21?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw=="
-          target="_blank" rel="noopener noreferrer" style="color: var(--copper);">Instagram</a>
+          target="_blank" rel="noopener noreferrer" style="color: var(--copper);">Personal Instagram</a>
+        <a href="https://www.instagram.com/_nature_156/"
+          target="_blank" rel="noopener noreferrer" style="color: var(--copper); font-weight: 600;">Photography Instagram (_nature_156)</a>
         <a href="mailto:sarthakchoudhary1778@gmail.com" style="color: var(--copper);">Email</a>
         <a href="/sync" style="color: var(--text-faint);" title="LinkedIn Sync Console">Sync Engine</a>
       </div>
@@ -2985,8 +3747,10 @@
         'hero': '#hero',
         'about': '#about',
         'skills': '#skills',
-        'pmsm-major': '#pmsm-major',
+        'services': '#services',
         'projects': '#projects',
+        'pmsm-major': '#pmsm-major',
+        'creative-photography': '#creative-photography',
         'approach': '#approach',
         'github': '#activity',
         'activity': '#activity',
@@ -2995,6 +3759,7 @@
         'certifications': '#experience',
         'achievements': '#experience',
         'currently-building': '#activity',
+        'work-with-me': '#work-with-me',
         'contact': '#contact'
       };
 
@@ -3236,6 +4001,24 @@
         `).join('');
       }
 
+      // 2b. Interdisciplinary Professional Dimensions
+      const interEl = document.getElementById('interdisciplinaryGrid');
+      if (interEl && data.interdisciplinaryDimensions) {
+        interEl.innerHTML = Object.values(data.interdisciplinaryDimensions).map(dim => `
+          <div class="dimension-card">
+            <div class="dimension-head">
+              <div class="dimension-title">${escapeHtml(dim.category)}</div>
+              <span class="badge badge-neutral">DIMENSION</span>
+            </div>
+            <div class="dimension-headline">${escapeHtml(dim.headline)}</div>
+            <div class="dimension-desc">${escapeHtml(dim.description)}</div>
+            <div class="dimension-skills">
+              ${dim.skills.map(s => `<span class="tech-pill">${escapeHtml(s)}</span>`).join('')}
+            </div>
+          </div>
+        `).join('');
+      }
+
       // 3. Technical Focus Categories
       const skillsEl = document.getElementById('skillsGrid');
       if (skillsEl && data.technicalSkills) {
@@ -3254,6 +4037,54 @@
               `).join('')}
             </div>
           </div>
+        `).join('');
+      }
+
+      // 3b. Services & Collaboration
+      const servEl = document.getElementById('servicesGrid');
+      if (servEl && Array.isArray(data.services)) {
+        servEl.innerHTML = data.services.map(s => `
+          <article class="service-card" id="service-${escapeHtml(s.id)}">
+            <div class="service-card-top">
+              <span class="badge badge-neutral">${escapeHtml(s.scope)}</span>
+              <span class="badge badge-copper">AVAILABLE</span>
+            </div>
+            <h3 class="service-title">${escapeHtml(s.title)}</h3>
+            <div class="service-scope">Focus: ${escapeHtml(s.scope)}</div>
+            <p class="service-desc">${escapeHtml(s.description)}</p>
+            <div class="service-disclaimer">
+              ℹ ${escapeHtml(s.disclaimer)}
+            </div>
+            <div class="service-tech-tags">
+              ${s.skills.map(sk => `<span class="tech-pill">${escapeHtml(sk)}</span>`).join('')}
+            </div>
+            <div class="service-actions">
+              <a href="${escapeHtml(s.actionLink)}" ${s.isExternal ? 'target="_blank" rel="noopener noreferrer"' : ''} class="btn btn-primary" style="padding: 7px 13px; font-size: 11px;">
+                ${escapeHtml(s.actionText)} ↗
+              </a>
+              ${s.evidenceProject ? `
+                <a href="${s.evidenceProject.startsWith('_') ? 'https://www.instagram.com/' + s.evidenceProject + '/' : '#' + s.evidenceProject}" ${s.evidenceProject.startsWith('_') ? 'target="_blank" rel="noopener noreferrer"' : ''} class="service-evidence-link">
+                  Evidence: ${escapeHtml(s.evidenceLabel)} ↗
+                </a>
+              ` : ''}
+            </div>
+          </article>
+        `).join('');
+      }
+
+      // 3c. Skills-to-Services Pipeline Table
+      const s2sEl = document.getElementById('s2sTableBody');
+      if (s2sEl && Array.isArray(data.skillsToServices)) {
+        s2sEl.innerHTML = data.skillsToServices.map(item => `
+          <tr>
+            <td class="s2s-skill-cell">${escapeHtml(item.skill)}</td>
+            <td class="s2s-app-cell">${escapeHtml(item.application)}</td>
+            <td class="s2s-evidence-cell">
+              <a href="${escapeHtml(item.evidenceLink)}" ${item.isExternal ? 'target="_blank" rel="noopener noreferrer"' : ''}>
+                <span>${escapeHtml(item.evidence)}</span> ↗
+              </a>
+            </td>
+          </tr>
         `).join('');
       }
 
