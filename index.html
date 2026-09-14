@@ -11,6 +11,7 @@
     content="Sarthak Choudhary, Electrical Engineering, Embedded Systems, IoT, Control Systems, PMSM, MATLAB, Simulink, Arduino, ESP8266, AI, Machine Learning, Sir MVIT">
   <meta name="author" content="Sarthak Choudhary">
   <link rel="canonical" href="https://sarthak-choudhary.vercel.app/">
+  <meta name="theme-color" content="#0B132B">
 
   <!-- Open Graph / Facebook / LinkedIn -->
   <meta property="og:type" content="website">
@@ -105,34 +106,34 @@
 
   <style>
     :root {
-      /* Dark Theme (Default) - Engineering Console */
-      --bg: #0A0D12;
-      --bg-soft: #0E131B;
-      --surface: #141923;
-      --surface-2: #1B2230;
-      --surface-3: #222B3D;
-      --border: #232C3B;
-      --border-bright: #354255;
-      --copper: #F0935A;
-      --copper-glow: rgba(240, 147, 90, 0.22);
-      --copper-soft: rgba(240, 147, 90, 0.12);
-      --copper-line: rgba(240, 147, 90, 0.45);
+      /* Dark Theme (Default) - Deep Refined Navy & Warm Golden Glow */
+      --bg: #0B132B;
+      --bg-soft: #0F1A3A;
+      --surface: #162044;
+      --surface-2: #1C2A56;
+      --surface-3: #24356B;
+      --border: #1E2D5A;
+      --border-bright: #2C407C;
+      --copper: #E5A93C;
+      --copper-glow: rgba(229, 169, 60, 0.25);
+      --copper-soft: rgba(229, 169, 60, 0.12);
+      --copper-line: rgba(229, 169, 60, 0.42);
       --teal: #5EEAD4;
       --teal-soft: rgba(94, 234, 212, 0.12);
       --blue: #60A5FA;
       --blue-soft: rgba(96, 165, 250, 0.12);
-      --text: #EDEAE3;
-      --text-dim: #9AA4B6;
-      --text-faint: #5C677C;
+      --text: #F1F5F9;
+      --text-dim: #94A3B8;
+      --text-faint: #64748B;
       --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
       --radius-sm: 6px;
       --radius-md: 10px;
       --radius-lg: 16px;
-      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.25);
-      --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.35);
-      --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.5);
+      --shadow-sm: 0 4px 12px rgba(3, 7, 18, 0.35);
+      --shadow-md: 0 10px 30px rgba(3, 7, 18, 0.45);
+      --shadow-lg: 0 20px 48px rgba(3, 7, 18, 0.60);
       --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -144,10 +145,10 @@
       --surface-3: #CBD5E1;
       --border: #E2E8F0;
       --border-bright: #CBD5E1;
-      --copper: #C25E26;
-      --copper-glow: rgba(194, 94, 38, 0.15);
-      --copper-soft: rgba(194, 94, 38, 0.08);
-      --copper-line: rgba(194, 94, 38, 0.35);
+      --copper: #B87B08;
+      --copper-glow: rgba(184, 123, 8, 0.16);
+      --copper-soft: rgba(184, 123, 8, 0.10);
+      --copper-line: rgba(184, 123, 8, 0.35);
       --teal: #0D9488;
       --teal-soft: rgba(13, 148, 136, 0.1);
       --blue: #2563EB;
@@ -199,9 +200,9 @@
       margin: 0;
       background-color: var(--bg);
       background-image:
-        radial-gradient(rgba(240, 147, 90, 0.035) 1px, transparent 1px),
-        linear-gradient(to right, rgba(35, 44, 59, 0.12) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(35, 44, 59, 0.12) 1px, transparent 1px);
+        radial-gradient(rgba(229, 169, 60, 0.04) 1px, transparent 1px),
+        linear-gradient(to right, rgba(30, 45, 90, 0.18) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(30, 45, 90, 0.18) 1px, transparent 1px);
       background-size: 32px 32px;
       color: var(--text);
       font-family: var(--font-body);
@@ -212,14 +213,14 @@
 
     [data-theme="light"] body {
       background-image:
-        radial-gradient(rgba(194, 94, 38, 0.04) 1px, transparent 1px),
+        radial-gradient(rgba(184, 123, 8, 0.04) 1px, transparent 1px),
         linear-gradient(to right, rgba(226, 232, 240, 0.6) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(226, 232, 240, 0.6) 1px, transparent 1px);
     }
 
     ::selection {
       background: var(--copper);
-      color: #140D07;
+      color: #0B132B;
     }
 
     a {
@@ -401,12 +402,14 @@
 
     .btn-primary {
       background: var(--copper);
-      color: #140D07;
+      color: #0B132B;
       border-color: var(--copper);
+      font-weight: 600;
     }
 
     .btn-primary:hover {
-      background: #E08246;
+      background: #F0B849;
+      color: #0B132B;
       box-shadow: 0 4px 16px var(--copper-glow);
       transform: translateY(-1px);
     }
@@ -1032,7 +1035,7 @@
     .filter-btn:hover,
     .filter-btn.active {
       background: var(--copper);
-      color: #140D07;
+      color: #0B132B;
       border-color: var(--copper);
       font-weight: 600;
     }
@@ -1728,7 +1731,7 @@
       padding: 6px 12px;
       border-radius: 4px;
       background: var(--copper);
-      color: #140D07;
+      color: #0B132B;
       font-size: 11px;
       font-weight: 600;
       text-transform: uppercase;
@@ -2022,7 +2025,7 @@
 
     .account-card.is-active-creative {
       border-color: var(--copper-line);
-      background: linear-gradient(135deg, var(--surface-2) 0%, rgba(240, 147, 90, 0.06) 100%);
+      background: linear-gradient(135deg, var(--surface-2) 0%, rgba(229, 169, 60, 0.08) 100%);
     }
 
     .account-type-lbl {
@@ -2683,7 +2686,7 @@
       background: #f3f3f3;
       padding: 4px 8px;
       margin: 0 0 8px;
-      border-left: 3px solid #c97448;
+      border-left: 3px solid #D4AF37;
       color: #111111;
     }
 
