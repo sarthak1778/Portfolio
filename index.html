@@ -3655,7 +3655,41 @@
               </tr>
             </thead>
             <tbody id="s2sTableBody">
-              <!-- Rendered from PROFILE_DATA.skillsToServices -->
+              <tr>
+                <td class="s2s-skill-cell">Arduino + ESP8266 &amp; Sensors</td>
+                <td class="s2s-app-cell">Smart telemetry acquisition &amp; autonomous closed-loop irrigation</td>
+                <td class="s2s-evidence-cell">
+                  <a href="#projects"><span>Smart Plant Monitoring System</span> ↗</a>
+                </td>
+              </tr>
+              <tr>
+                <td class="s2s-skill-cell">MATLAB + Simulink &amp; Control Systems</td>
+                <td class="s2s-app-cell">Dynamic PMSM motor modeling, vector control &amp; ANN-PID speed regulation</td>
+                <td class="s2s-evidence-cell">
+                  <a href="#pmsm-major"><span>PMSM ANN-PID Speed Control</span> ↗</a>
+                </td>
+              </tr>
+              <tr>
+                <td class="s2s-skill-cell">Python + Signal Processing &amp; ML</td>
+                <td class="s2s-app-cell">Acoustic feature extraction (MFCCs) &amp; voice emotion classification</td>
+                <td class="s2s-evidence-cell">
+                  <a href="#projects"><span>Voice Emotion Recognition</span> ↗</a>
+                </td>
+              </tr>
+              <tr>
+                <td class="s2s-skill-cell">HTML5 + Modern CSS + JavaScript</td>
+                <td class="s2s-app-cell">High-performance responsive web applications &amp; commercial portals</td>
+                <td class="s2s-evidence-cell">
+                  <a href="https://prakash-jewellers.vercel.app/" target="_blank" rel="noopener noreferrer"><span>Prakash Jewellers Portal</span> ↗</a>
+                </td>
+              </tr>
+              <tr>
+                <td class="s2s-skill-cell">Visual Framing &amp; Optical Documentation</td>
+                <td class="s2s-app-cell">Technical macro imagery &amp; visual storytelling</td>
+                <td class="s2s-evidence-cell">
+                  <a href="https://www.instagram.com/_nature_156/" target="_blank" rel="noopener noreferrer"><span>Nature Photography Portfolio</span> ↗</a>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -3869,14 +3903,6 @@
         <div class="gh-stat-card">
           <div class="gh-stat-num" id="statRepos">9+</div>
           <div class="gh-stat-lbl">Public Repositories</div>
-        </div>
-        <div class="gh-stat-card">
-          <div class="gh-stat-num" id="statFollowers">0</div>
-          <div class="gh-stat-lbl">Followers</div>
-        </div>
-        <div class="gh-stat-card">
-          <div class="gh-stat-num" id="statStars">0</div>
-          <div class="gh-stat-lbl">Repository Stars</div>
         </div>
         <div class="gh-stat-card">
           <div class="gh-stat-num" id="statYear">2021</div>
@@ -4268,7 +4294,6 @@
         <a href="https://www.instagram.com/_nature_156/"
           target="_blank" rel="noopener noreferrer" style="color: var(--copper); font-weight: 600;">Photography Instagram (_nature_156)</a>
         <a href="mailto:sarthakchoudhary1778@gmail.com" style="color: var(--copper);">Email</a>
-        <a href="/sync" style="color: var(--text-faint);" title="LinkedIn Sync Console">Sync Engine</a>
       </div>
     </div>
   </footer>
@@ -4287,31 +4312,27 @@
     <div class="modal-dialog">
       <div class="modal-header">
         <div>
-          <span class="badge badge-copper" id="modalBadge">CASE STUDY</span>
+          <span class="badge badge-copper" id="modalBadge">TECHNICAL SPECIFICATION</span>
           <div
             style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--text); margin-top: 4px;"
-            id="modalTitle">
-            Project Title
-          </div>
-          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--copper);" id="modalSubtitle">
-            Subtitle
-          </div>
+            id="modalTitle"></div>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--copper);" id="modalSubtitle"></div>
         </div>
         <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close case study">✕</button>
       </div>
 
       <div class="modal-body" id="modalBody">
-        <!-- Injected via JavaScript -->
+        <!-- Injected dynamically on project selection -->
       </div>
 
       <div class="modal-footer" id="modalFooter">
-        <!-- Links & buttons injected via JavaScript -->
+        <!-- Links & buttons injected dynamically -->
       </div>
     </div>
   </div>
 
   <!-- Toast Element -->
-  <div class="toast" id="toast">Feedback message</div>
+  <div class="toast" id="toast" aria-live="polite"></div>
 
   <!-- Hidden Container for Dynamic ATS Resume Compilation -->
   <div id="resume-sheet" aria-hidden="true"></div>
