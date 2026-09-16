@@ -251,8 +251,23 @@
     }
 
     .section-pad {
-      padding-top: clamp(2.5rem, 6vw, 4.5rem);
-      padding-bottom: clamp(2.5rem, 6vw, 4.5rem);
+      padding-top: clamp(3rem, 7vw, 5rem);
+      padding-bottom: clamp(3rem, 7vw, 5rem);
+      border-top: 1px solid var(--border);
+      position: relative;
+    }
+
+    /* Distinct glowing amber telemetry divider in the center of every section break */
+    .section-pad::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(100px, 25vw);
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--copper), transparent);
+      box-shadow: 0 0 12px var(--copper-glow);
     }
 
     .section-pad.wrap,
@@ -2404,6 +2419,7 @@
     }
 
     /* Responsive Design Breakpoints */
+    .nav-group-header,
     .nav-mobile-section-header,
     .nav-mobile-socials {
       display: none;
@@ -2451,6 +2467,42 @@
         pointer-events: auto;
       }
 
+      /* Categorized section break headers inside mobile drawer */
+      .nav-group-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 18px;
+        padding-top: 14px;
+        margin-bottom: 6px;
+        border-top: 1.5px solid var(--border-bright);
+        position: relative;
+        box-sizing: border-box;
+      }
+
+      .nav-group-header:first-of-type {
+        margin-top: 4px;
+        padding-top: 0;
+        border-top: none;
+      }
+
+      .nav-group-tag {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: var(--copper);
+      }
+
+      .nav-group-title {
+        font-family: var(--font-mono);
+        font-size: 10.5px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+      }
+
       /* Scoped styling for the primary navigation links only */
       nav.nav-links > a.nav-link {
         padding: 12px 14px;
@@ -2484,8 +2536,9 @@
         padding-left: 15px;
       }
 
+      nav.nav-links .nav-link.active::after,
       nav.nav-links > a.nav-link.active::after {
-        display: none;
+        display: none !important;
       }
 
       /* Clear divider below last nav link before the section break */
@@ -2964,23 +3017,47 @@
       </a>
 
       <nav class="nav-links" id="primaryNav">
+        <!-- Group 01: Core Profile -->
+        <div class="nav-group-header">
+          <span class="nav-group-tag">// 01</span>
+          <span class="nav-group-title">CORE PROFILE</span>
+        </div>
         <a href="#hero" class="nav-link">Home</a>
         <a href="#about" class="nav-link">About</a>
         <a href="#skills" class="nav-link">Skills</a>
         <a href="#services" class="nav-link">Services</a>
+
+        <!-- Group 02: Work & Engineering -->
+        <div class="nav-group-header">
+          <span class="nav-group-tag">// 02</span>
+          <span class="nav-group-title">WORK &amp; ENGINEERING</span>
+        </div>
         <a href="#projects" class="nav-link">Projects</a>
         <a href="#pmsm-major" class="nav-link">Major Project</a>
         <a href="#creative-photography" class="nav-link">Creative</a>
         <a href="#approach" class="nav-link">Approach</a>
+
+        <!-- Group 03: Career & Updates -->
+        <div class="nav-group-header">
+          <span class="nav-group-tag">// 03</span>
+          <span class="nav-group-title">CAREER &amp; TIMELINE</span>
+        </div>
         <a href="#experience" class="nav-link">Experience</a>
         <a href="#activity" class="nav-link">Activity</a>
+
+        <!-- Group 04: Collaboration & Contact -->
+        <div class="nav-group-header">
+          <span class="nav-group-tag">// 04</span>
+          <span class="nav-group-title">COLLABORATION</span>
+        </div>
         <a href="#work-with-me" class="nav-link">Work With Me</a>
         <a href="#contact" class="nav-link">Contact</a>
-        <!-- Distinct Mobile Section Break: Telemetry & Social Signals -->
+
+        <!-- Group 05: External Signals & Channels -->
         <div class="nav-mobile-section-header">
           <div class="nav-section-title">
             <span class="nav-pulse-dot" aria-hidden="true"></span>
-            <span class="nav-section-tag">// SIGNALS</span>
+            <span class="nav-section-tag">// 05</span>
             <span class="nav-section-name">EXTERNAL CHANNELS</span>
           </div>
           <span class="nav-section-meta">4 FEEDS</span>
