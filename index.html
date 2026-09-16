@@ -2373,6 +2373,81 @@
       gap: 16px;
     }
 
+    .creative-photo-compact {
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+    }
+
+    .compact-photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .compact-photo-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .compact-photo-card:hover {
+      border-color: var(--copper);
+      transform: translateY(-2px);
+    }
+
+    .compact-photo-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      background: var(--surface-3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--copper);
+      margin-bottom: 10px;
+    }
+
+    .compact-photo-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .compact-photo-label {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 13.5px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .compact-photo-sub {
+      font-size: 11.5px;
+      color: var(--text-dim);
+      line-height: 1.4;
+    }
+
+    .compact-photo-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 12.5px;
+      color: var(--text-dim);
+    }
+
     /* Work With Me Section */
     .work-with-me-card {
       background: var(--surface);
@@ -3985,138 +4060,58 @@
         </p>
       </div>
 
-      <div class="creative-photo-card">
-        <div class="creative-photo-head">
-          <div>
-            <span class="badge badge-copper" style="margin-bottom: 8px;">PERSONAL CREATIVE WORK</span>
-            <h3 style="font-family: var(--font-display); font-size: 1.4rem; margin: 4px 0 8px; color: var(--text);">
-              Nature Photography &amp; Visual Storytelling
-            </h3>
-            <p style="font-size: 14.5px; color: var(--text-dim); max-width: 760px; margin: 0; line-height: 1.6;">
-              Photography and visual storytelling focused on capturing natural patterns and macro details. Exploring the intersection of natural compositions and deliberate visual framing.
-            </p>
-          </div>
-          <a href="https://www.instagram.com/_nature_156/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-            View Photography Portfolio ↗
+      <div class="creative-photo-compact">
+        <div class="compact-photo-grid">
+          <a href="https://www.instagram.com/_nature_156/" target="_blank" rel="noopener noreferrer" class="compact-photo-card" title="View Macro &amp; Flora on Instagram">
+            <div class="compact-photo-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
+                <path d="M12 6a6 6 0 0 0-6 6c0 3 2 5 6 9 4-4 6-6 6-9a6 6 0 0 0-6-6z"/>
+              </svg>
+            </div>
+            <span class="compact-photo-label">Botanical &amp; Flora</span>
+            <span class="compact-photo-sub">Macro leaf structures &amp; organic symmetry</span>
+          </a>
+
+          <a href="https://www.instagram.com/_nature_156/" target="_blank" rel="noopener noreferrer" class="compact-photo-card" title="View Atmospheric Vistas on Instagram">
+            <div class="compact-photo-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+            </div>
+            <span class="compact-photo-label">Atmospheric Vistas</span>
+            <span class="compact-photo-sub">Horizons &amp; natural golden-hour illumination</span>
+          </a>
+
+          <a href="https://www.instagram.com/_nature_156/" target="_blank" rel="noopener noreferrer" class="compact-photo-card" title="View Light Studies on Instagram">
+            <div class="compact-photo-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83M16.62 12l-5.74 9.94"/>
+              </svg>
+            </div>
+            <span class="compact-photo-label">Light &amp; Shadow</span>
+            <span class="compact-photo-sub">Daylight contrast &amp; foliage studies</span>
+          </a>
+
+          <a href="https://www.instagram.com/_nature_156/" target="_blank" rel="noopener noreferrer" class="compact-photo-card" title="Open @_nature_156 on Instagram">
+            <div class="compact-photo-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </div>
+            <span class="compact-photo-label">@_nature_156</span>
+            <span class="compact-photo-sub">View photo collection on Instagram ↗</span>
           </a>
         </div>
 
-        <!-- Creative Capabilities Pill List -->
-        <div style="margin-bottom: 24px;">
-          <div style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--text-faint); margin-bottom: 8px; letter-spacing: 0.05em;">
-            Creative Focus Areas
-          </div>
-          <div class="tech-pill-list">
-            <span class="tech-pill">Nature Photography</span>
-            <span class="tech-pill">Visual Storytelling</span>
-            <span class="tech-pill">Photography Portfolio</span>
-            <span class="tech-pill">Creative Content</span>
-            <span class="tech-pill">Digital Content Creation</span>
-            <span class="tech-pill">AI-Assisted Content Creation</span>
-            <span class="tech-pill">AI Video Editing</span>
-          </div>
-        </div>
-
-        <!-- Account Distinction Box (CRITICAL: Differentiating Personal vs Photography Instagram) -->
-        <div class="photo-account-distinction">
-          <div class="account-card">
-            <div class="account-type-lbl">Personal Account</div>
-            <div class="account-handle-title">@sarthakchoudhary_21</div>
-            <p class="account-desc-text">
-              Personal social account representing student engineering life, campus updates, and individual milestones.
-            </p>
-            <a href="https://www.instagram.com/sarthakchoudhary_21?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw=="
-              target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="padding: 6px 12px; font-size: 11px;">
-              Personal Instagram ↗
-            </a>
-          </div>
-
-          <div class="account-card is-active-creative">
-            <div class="account-type-lbl" style="color: var(--copper);">Photography &amp; Creative Portfolio</div>
-            <div class="account-handle-title" style="color: var(--copper);">@_nature_156</div>
-            <p class="account-desc-text">
-              Dedicated photography and visual storytelling portfolio focused on capturing nature, botany, atmospheric landscapes, and visual moments.
-            </p>
-            <a href="https://www.instagram.com/_nature_156/"
-              target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 6px 12px; font-size: 11px;">
-              Open Photography Profile ↗
-            </a>
-          </div>
-        </div>
-
-        <!-- Clean Visual Placeholder Architecture for Future Photographic Assets -->
-        <div style="margin-bottom: 24px;">
-          <div style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--text-faint); margin-bottom: 12px; letter-spacing: 0.05em;">
-            Visual Portfolio Architecture // Curated Gallery Focus
-          </div>
-          <div class="photo-architecture-grid">
-            <div class="photo-frame-card">
-              <div class="photo-frame-aspect">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
-                  <path d="M12 6a6 6 0 0 0-6 6c0 3 2 5 6 9 4-4 6-6 6-9a6 6 0 0 0-6-6z"/>
-                </svg>
-                <span>Macro &amp; Flora</span>
-              </div>
-              <div class="photo-frame-title">Botanical &amp; Macro Nature</div>
-              <div class="photo-frame-tagline">Texture, Geometry &amp; Petals</div>
-              <p class="photo-frame-detail">Close-focus captures documenting intricate leaf vein structures, morning condensation, and organic symmetry.</p>
-            </div>
-
-            <div class="photo-frame-card">
-              <div class="photo-frame-aspect">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                  <polyline points="9 22 9 12 15 12 15 22"/>
-                </svg>
-                <span>Atmospheric Vistas</span>
-              </div>
-              <div class="photo-frame-title">Natural Horizons &amp; Sky</div>
-              <div class="photo-frame-tagline">Ambient Light &amp; Golden Hour</div>
-              <p class="photo-frame-detail">Dusk transitions, cloud formations, and natural elevation perspectives captured during travel.</p>
-            </div>
-
-            <div class="photo-frame-card">
-              <div class="photo-frame-aspect">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83M16.62 12l-5.74 9.94"/>
-                </svg>
-                <span>Visual Moments</span>
-              </div>
-              <div class="photo-frame-title">Moments &amp; Ephemeral Light</div>
-              <div class="photo-frame-tagline">Contrast, Shadow &amp; Depth</div>
-              <p class="photo-frame-detail">Capturing subtle interactions between natural daylight, foliage shadows, and environmental tranquility.</p>
-            </div>
-
-            <div class="photo-frame-card">
-              <div class="photo-frame-aspect">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <polygon points="23 7 16 12 23 17 23 7"/>
-                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
-                </svg>
-                <span>Digital Media</span>
-              </div>
-              <div class="photo-frame-title">AI Video &amp; Digital Media</div>
-              <div class="photo-frame-tagline">Motion &amp; Visual Sequences</div>
-              <p class="photo-frame-detail">Integrating modern AI-assisted editing workflows to sequence visual frames into engaging technical and creative narratives.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Banner CTA to visit @_nature_156 -->
-        <div class="photo-cta-banner">
-          <div>
-            <div style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 4px;">
-              Explore the Full Nature Photography Collection
-            </div>
-            <div style="font-size: 13px; color: var(--text-dim);">
-              Direct stream of visual moments, nature explorations, and photographic studies on Instagram.
-            </div>
-          </div>
-          <a href="https://www.instagram.com/_nature_156/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-            <span>View @_nature_156 on Instagram</span> ↗
-          </a>
+        <div class="compact-photo-footer">
+          <span>Dedicated photography portfolio at <a href="https://www.instagram.com/_nature_156/" target="_blank" rel="noopener noreferrer" style="color: var(--copper); font-weight: 600;">@_nature_156</a></span>
+          <span style="color: var(--text-faint);">•</span>
+          <span>Campus &amp; student updates at <a href="https://www.instagram.com/sarthakchoudhary_21?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" style="color: var(--text-dim);">@sarthakchoudhary_21</a></span>
         </div>
       </div>
     </section>
