@@ -2393,6 +2393,7 @@
     }
 
     /* Responsive Design Breakpoints */
+    .nav-mobile-section-header,
     .nav-mobile-socials {
       display: none;
     }
@@ -2407,13 +2408,16 @@
         top: 100%;
         left: 0;
         right: 0;
-        background: var(--bg);
+        background: rgba(11, 19, 43, 0.98);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
         border-bottom: 1px solid var(--border);
         box-shadow: var(--shadow-lg);
         flex-direction: column;
         align-items: stretch;
         gap: 0;
-        padding: 12px 20px 20px;
+        /* Mobile Nav Horizontal Padding Fix (~24px / px-6) */
+        padding: 16px 24px 28px;
         transform: translateY(-8px);
         opacity: 0;
         visibility: hidden;
@@ -2421,6 +2425,12 @@
         transition: var(--transition);
         max-height: calc(100vh - 65px);
         overflow-y: auto;
+        overflow-x: hidden;
+        box-sizing: border-box;
+      }
+
+      [data-theme="light"] nav.nav-links {
+        background: rgba(248, 250, 252, 0.98);
       }
 
       nav.nav-links.open {
@@ -2430,25 +2440,185 @@
         pointer-events: auto;
       }
 
-      nav.nav-links a {
+      /* Scoped styling for the primary navigation links only */
+      nav.nav-links > a.nav-link {
         padding: 12px 14px;
-        font-size: 13px;
+        font-size: 12.5px;
+        font-family: var(--font-mono);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--text-dim);
         border-bottom: 1px solid var(--border);
         width: 100%;
         min-height: 44px;
         display: flex;
         align-items: center;
+        border-radius: var(--radius-sm);
+        transition: var(--transition);
+        text-decoration: none;
+        box-sizing: border-box;
       }
 
-      nav.nav-links a:last-child {
+      nav.nav-links > a.nav-link:hover {
+        color: var(--copper);
+        background: var(--copper-soft);
+        padding-left: 18px;
+      }
+
+      nav.nav-links > a.nav-link.active {
+        color: var(--copper);
+        background: var(--copper-soft);
+        font-weight: 600;
+        border-left: 3px solid var(--copper);
+        padding-left: 15px;
+      }
+
+      nav.nav-links > a.nav-link.active::after {
+        display: none;
+      }
+
+      /* Clear divider below last nav link before the section break */
+      nav.nav-links > a.nav-link:last-of-type {
         border-bottom: none;
       }
 
-      .nav-mobile-socials {
+      /* Clearer Visual Break: Distinct Section Divider & Signal Header */
+      .nav-mobile-section-header {
         display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 22px;
+        padding-top: 18px;
+        margin-bottom: 12px;
+        border-top: 1.5px solid var(--border-bright);
+        position: relative;
+        box-sizing: border-box;
+      }
+
+      /* Telemetry accent amber highlight along the top divider line */
+      .nav-mobile-section-header::before {
+        content: "";
+        position: absolute;
+        top: -1.5px;
+        left: 0;
+        width: 52px;
+        height: 1.5px;
+        background: var(--copper);
+        box-shadow: 0 0 10px var(--copper-glow);
+      }
+
+      .nav-section-title {
+        display: inline-flex;
+        align-items: center;
         gap: 8px;
-        padding-top: 14px;
-        margin-top: 4px;
+      }
+
+      .nav-pulse-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--copper);
+        box-shadow: 0 0 8px var(--copper);
+        display: inline-block;
+        animation: pulseAnim 2s infinite;
+        flex-shrink: 0;
+      }
+
+      .nav-section-tag {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: var(--copper);
+        text-transform: uppercase;
+      }
+
+      .nav-section-name {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        color: var(--text-dim);
+        text-transform: uppercase;
+      }
+
+      .nav-section-meta {
+        font-family: var(--font-mono);
+        font-size: 9.5px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-faint);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        padding: 3px 8px;
+        border-radius: var(--radius-sm);
+      }
+
+      /* Mobile Social Links 2x2 Grid (prevents clipping & cramped layout) */
+      .nav-mobile-socials {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .nav-social-btn {
+        display: inline-flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 10px 10px;
+        min-height: 44px;
+        font-size: 11px;
+        font-family: var(--font-mono);
+        letter-spacing: 0.03em;
+        text-align: center;
+        line-height: 1.25;
+        border-radius: var(--radius-sm);
+        background: var(--surface);
+        border: 1px solid var(--border-bright);
+        color: var(--text);
+        text-decoration: none;
+        transition: var(--transition);
+        box-sizing: border-box;
+        cursor: pointer;
+      }
+
+      .nav-social-btn .social-btn-text {
+        font-weight: 600;
+      }
+
+      .nav-social-btn .social-btn-sub {
+        font-size: 9.5px;
+        color: var(--text-dim);
+        font-weight: 400;
+      }
+
+      .nav-social-btn .social-btn-arrow {
+        color: var(--copper);
+        font-weight: 700;
+      }
+
+      .nav-social-btn:hover {
+        background: var(--surface-2);
+        border-color: var(--copper);
+        color: var(--copper);
+        box-shadow: 0 2px 10px var(--copper-glow);
+        transform: translateY(-1px);
+      }
+
+      .nav-social-nature {
+        border-color: var(--copper-line);
+        color: var(--copper);
+        background: var(--copper-soft);
+      }
+
+      .nav-social-nature:hover {
+        background: rgba(229, 169, 60, 0.22);
+        border-color: var(--copper);
       }
 
       .hero-grid {
@@ -2780,18 +2950,34 @@
         <a href="#activity" class="nav-link">Activity</a>
         <a href="#work-with-me" class="nav-link">Work With Me</a>
         <a href="#contact" class="nav-link">Contact</a>
+        <!-- Distinct Mobile Section Break: Telemetry & Social Signals -->
+        <div class="nav-mobile-section-header">
+          <div class="nav-section-title">
+            <span class="nav-pulse-dot" aria-hidden="true"></span>
+            <span class="nav-section-tag">// SIGNALS</span>
+            <span class="nav-section-name">EXTERNAL CHANNELS</span>
+          </div>
+          <span class="nav-section-meta">4 FEEDS</span>
+        </div>
+
         <div class="nav-mobile-socials">
-          <a href="https://github.com/sarthak1778" target="_blank" rel="noopener noreferrer" class="btn btn-ghost"
-            style="flex: 1; font-size: 11px; justify-content: center; min-height: 38px;">GitHub ↗</a>
+          <a href="https://github.com/sarthak1778" target="_blank" rel="noopener noreferrer"
+            class="btn btn-ghost nav-social-btn" title="GitHub: sarthak1778">
+            <span class="social-btn-text">GitHub</span> <span class="social-btn-arrow">↗</span>
+          </a>
           <a href="https://www.linkedin.com/in/sarthak-choudhary-455098293/" target="_blank" rel="noopener noreferrer"
-            class="btn btn-ghost" style="flex: 1; font-size: 11px; justify-content: center; min-height: 38px;">LinkedIn
-            ↗</a>
+            class="btn btn-ghost nav-social-btn" title="LinkedIn: Sarthak Choudhary">
+            <span class="social-btn-text">LinkedIn</span> <span class="social-btn-arrow">↗</span>
+          </a>
           <a href="https://www.instagram.com/sarthakchoudhary_21?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw=="
-            target="_blank" rel="noopener noreferrer" class="btn btn-ghost"
-            style="flex: 1; font-size: 11px; justify-content: center; min-height: 38px;">Instagram (Personal) ↗</a>
-          <a href="https://www.instagram.com/_nature_156/"
-            target="_blank" rel="noopener noreferrer" class="btn btn-ghost"
-            style="flex: 1; font-size: 11px; justify-content: center; min-height: 38px;">Photography (_nature_156) ↗</a>
+            target="_blank" rel="noopener noreferrer" class="btn btn-ghost nav-social-btn"
+            title="Personal Instagram: @sarthakchoudhary_21">
+            <span class="social-btn-text">Instagram</span> <span class="social-btn-sub">(Personal)</span> <span class="social-btn-arrow">↗</span>
+          </a>
+          <a href="https://www.instagram.com/_nature_156/" target="_blank" rel="noopener noreferrer"
+            class="btn btn-ghost nav-social-btn nav-social-nature" title="Photography Instagram: @_nature_156">
+            <span class="social-btn-text">Photography</span> <span class="social-btn-sub">(_nature_156)</span> <span class="social-btn-arrow">↗</span>
+          </a>
         </div>
       </nav>
 
@@ -3713,6 +3899,14 @@
 
         navLinks.forEach(link => {
           link.addEventListener('click', () => {
+            primaryNav.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+
+        const mobileSocialBtns = Array.from(document.querySelectorAll('.nav-social-btn'));
+        mobileSocialBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
             primaryNav.classList.remove('open');
             menuToggle.setAttribute('aria-expanded', 'false');
           });
