@@ -245,11 +245,21 @@
       width: 100%;
       max-width: 1240px;
       margin: 0 auto;
-      padding: 0 clamp(16px, 4vw, 32px);
+      padding-left: clamp(20px, 5vw, 36px);
+      padding-right: clamp(20px, 5vw, 36px);
+      box-sizing: border-box;
     }
 
     .section-pad {
-      padding: clamp(1.75rem, 5vw, 4rem) 0;
+      padding-top: clamp(2.5rem, 6vw, 4.5rem);
+      padding-bottom: clamp(2.5rem, 6vw, 4.5rem);
+    }
+
+    .section-pad.wrap,
+    .hero-section.wrap {
+      padding-left: clamp(20px, 5vw, 36px);
+      padding-right: clamp(20px, 5vw, 36px);
+      box-sizing: border-box;
     }
 
     /* Fluid Typography Base */
@@ -689,7 +699,8 @@
 
     /* 01. Hero Section */
     .hero-section {
-      padding: 48px 0 56px;
+      padding-top: 48px;
+      padding-bottom: 56px;
       position: relative;
     }
 
@@ -2629,11 +2640,19 @@
 
     @media (max-width: 768px) {
       .wrap {
-        padding: 0 clamp(14px, 4vw, 20px);
+        padding-left: clamp(18px, 5vw, 24px);
+        padding-right: clamp(18px, 5vw, 24px);
       }
 
       .section-pad {
-        padding: clamp(1.75rem, 5vw, 3rem) 0;
+        padding-top: clamp(2rem, 5vw, 3rem);
+        padding-bottom: clamp(2rem, 5vw, 3rem);
+      }
+
+      .section-pad.wrap,
+      .hero-section.wrap {
+        padding-left: clamp(18px, 5vw, 24px);
+        padding-right: clamp(18px, 5vw, 24px);
       }
 
       /* Single-line sleek Live Ticker on mobile */
@@ -2771,6 +2790,13 @@
     }
 
     @media (max-width: 480px) {
+      .wrap,
+      .section-pad.wrap,
+      .hero-section.wrap {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
       .hero-actions {
         display: grid;
         grid-template-columns: 1fr 1fr;
