@@ -251,23 +251,38 @@
     }
 
     .section-pad {
-      padding-top: clamp(3rem, 7vw, 5rem);
-      padding-bottom: clamp(3rem, 7vw, 5rem);
+      padding-top: clamp(4.5rem, 9vw, 7rem);
+      padding-bottom: clamp(4.5rem, 9vw, 7rem);
       border-top: 1px solid var(--border);
       position: relative;
     }
 
-    /* Distinct glowing amber telemetry divider in the center of every section break */
+    /* Telemetry glowing horizontal gradient beam at the top of each section */
     .section-pad::before {
       content: "";
       position: absolute;
       top: -1px;
       left: 50%;
       transform: translateX(-50%);
-      width: min(100px, 25vw);
+      width: min(220px, 55vw);
       height: 2px;
       background: linear-gradient(90deg, transparent, var(--copper), transparent);
-      box-shadow: 0 0 12px var(--copper-glow);
+      box-shadow: 0 0 16px var(--copper-glow);
+    }
+
+    /* Oscilloscope center calibration pip sitting directly on the divider */
+    .section-pad::after {
+      content: "";
+      position: absolute;
+      top: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--copper);
+      box-shadow: 0 0 10px var(--copper);
+      animation: pulseAnim 2.5s infinite ease-in-out;
     }
 
     .section-pad.wrap,
@@ -275,6 +290,40 @@
       padding-left: clamp(20px, 5vw, 36px);
       padding-right: clamp(20px, 5vw, 36px);
       box-sizing: border-box;
+    }
+
+    /* Alternating subtle background tone for sections so transitions are instantly recognizable */
+    .section-pad:nth-of-type(even) {
+      background: linear-gradient(180deg, rgba(22, 32, 68, 0.40) 0%, rgba(15, 26, 58, 0.15) 100%);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(44, 64, 124, 0.38);
+      border-top: 1px solid var(--border-bright);
+      margin-top: clamp(16px, 3.5vw, 32px);
+      margin-bottom: clamp(16px, 3.5vw, 32px);
+    }
+
+    [data-theme="light"] .section-pad:nth-of-type(even) {
+      background: linear-gradient(180deg, rgba(241, 245, 249, 0.88) 0%, rgba(248, 250, 252, 0.4) 100%);
+      border-color: var(--border);
+    }
+
+    /* Featured Section Custom Telemetry Auras */
+    #pmsm-major {
+      background: radial-gradient(ellipse at 50% 0%, rgba(229, 169, 60, 0.08) 0%, rgba(22, 32, 68, 0.45) 55%, transparent 100%) !important;
+      border: 1px solid var(--copper-line) !important;
+      border-radius: var(--radius-lg);
+    }
+
+    #creative-photography {
+      background: radial-gradient(ellipse at 50% 0%, rgba(229, 169, 60, 0.07) 0%, rgba(22, 32, 68, 0.40) 60%, transparent 100%) !important;
+      border: 1px solid var(--copper-line) !important;
+      border-radius: var(--radius-lg);
+    }
+
+    #contact {
+      background: linear-gradient(180deg, rgba(22, 32, 68, 0.55) 0%, rgba(15, 26, 58, 0.75) 100%) !important;
+      border: 1px solid var(--border-bright) !important;
+      border-radius: var(--radius-lg);
     }
 
     /* Fluid Typography Base */
@@ -332,13 +381,19 @@
     .section-eyebrow {
       font-family: var(--font-mono);
       font-size: 11px;
+      font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--copper);
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
+      background: var(--copper-soft);
+      border: 1px solid var(--copper-line);
+      padding: 4px 12px;
+      border-radius: 999px;
+      box-shadow: 0 0 12px var(--copper-glow);
     }
 
     .section-eyebrow::before {
@@ -347,6 +402,9 @@
       height: 6px;
       border-radius: 50%;
       background: var(--copper);
+      box-shadow: 0 0 6px var(--copper);
+      animation: pulseAnim 2s infinite ease-in-out;
+      flex-shrink: 0;
     }
 
     .section-title {
@@ -2698,8 +2756,8 @@
       }
 
       .section-pad {
-        padding-top: clamp(2rem, 5vw, 3rem);
-        padding-bottom: clamp(2rem, 5vw, 3rem);
+        padding-top: clamp(3.75rem, 8vw, 5.5rem);
+        padding-bottom: clamp(3.75rem, 8vw, 5.5rem);
       }
 
       .section-pad.wrap,
@@ -2848,6 +2906,11 @@
       .hero-section.wrap {
         padding-left: 20px;
         padding-right: 20px;
+      }
+
+      .section-pad {
+        padding-top: 3.75rem;
+        padding-bottom: 3.75rem;
       }
 
       .hero-actions {
