@@ -3244,25 +3244,23 @@
         <a href="#overview" class="nav-link">Overview</a>
         <a href="#about" class="nav-link">About</a>
         <a href="#skills" class="nav-link">Skills</a>
-        <a href="#services" class="nav-link">Services</a>
 
         <!-- Group 02: Work & Engineering -->
         <div class="nav-group-header">
           <span class="nav-group-tag">// 02</span>
-          <span class="nav-group-title">WORK &amp; ENGINEERING</span>
+          <span class="nav-group-title">WORK &amp; CODE</span>
         </div>
         <a href="#projects" class="nav-link">Projects</a>
-        <a href="#pmsm-major" class="nav-link">Major Project</a>
-        <a href="#creative-photography" class="nav-link">Creative</a>
-        <a href="#approach" class="nav-link">Approach</a>
+        <a href="#github" class="nav-link">Repositories</a>
+        <a href="#creative-photography" class="nav-link">Photography</a>
 
         <!-- Group 03: Career & Updates -->
         <div class="nav-group-header">
           <span class="nav-group-tag">// 03</span>
-          <span class="nav-group-title">CAREER &amp; TIMELINE</span>
+          <span class="nav-group-title">CAREER &amp; RECOGNITION</span>
         </div>
         <a href="#experience" class="nav-link">Experience</a>
-        <a href="#activity" class="nav-link">Activity</a>
+        <a href="#recognition" class="nav-link">Recognition</a>
 
         <!-- Group 04: Collaboration & Contact -->
         <div class="nav-group-header">
@@ -3600,12 +3598,26 @@
           <!-- Rendered from PROFILE_DATA.interdisciplinaryDimensions -->
         </div>
       </div>
+
+      <!-- Engineering Approach Subsection -->
+      <div style="margin-top: 48px;" id="approach">
+        <div class="section-eyebrow" style="margin-bottom: 6px;">Methodology &amp; Workflow</div>
+        <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--text); margin: 0 0 6px;">
+          Engineering Approach
+        </h3>
+        <p style="font-size: 13.5px; color: var(--text-dim); margin: 0 0 16px; line-height: 1.5;">
+          A disciplined 7-phase methodology: from physical constraint deconstruction to simulation, prototyping, and field validation.
+        </p>
+        <div class="approach-timeline" id="approachTimeline">
+          <!-- Rendered from PROFILE_DATA.engineeringApproach -->
+        </div>
+      </div>
     </section>
 
     <!-- 03. Technical Focus Section -->
     <section class="section-pad wrap" id="skills">
       <div class="section-head">
-        <div class="section-eyebrow">02 // Capabilities</div>
+        <div class="section-eyebrow">02 // Skills</div>
         <h2 class="section-title">Technical Focus &amp; Stack</h2>
         <p class="section-desc">
           Structured competencies directly linked to validated projects and working physical prototypes.
@@ -3616,24 +3628,9 @@
       <div class="skills-categories-grid" id="skillsGrid">
         <!-- Rendered from PROFILE_DATA.technicalSkills -->
       </div>
-    </section>
-
-    <!-- Services & Collaboration Section -->
-    <section class="section-pad wrap" id="services">
-      <div class="section-head">
-        <div class="section-eyebrow">Engagement // Project-Based Work</div>
-        <h2 class="section-title">Services &amp; Collaboration</h2>
-        <p class="section-desc">
-          Skills and technical capabilities available for project-based work and collaboration.
-        </p>
-      </div>
-
-      <div class="services-grid" id="servicesGrid">
-        <!-- Rendered from PROFILE_DATA.services -->
-      </div>
 
       <!-- Skills-to-Services Pipeline: SKILL → APPLICATION → PROJECT / EVIDENCE -->
-      <div class="s2s-section-box">
+      <div class="s2s-section-box" style="margin-top: 36px;">
         <div class="s2s-head">
           <div class="section-eyebrow" style="margin-bottom: 4px;">Skills → Projects</div>
           <h3>Skill → Application → Project Evidence</h3>
@@ -3702,37 +3699,12 @@
         </p>
       </div>
 
-      <!-- Filter Bar -->
-      <div class="project-filter-bar">
-        <button class="filter-btn active" data-filter="all">All Projects (6)</button>
-        <button class="filter-btn" data-filter="control">Control &amp; Simulation</button>
-        <button class="filter-btn" data-filter="embedded">IoT &amp; Embedded</button>
-        <button class="filter-btn" data-filter="ai">AI / Signal Processing</button>
-        <button class="filter-btn" data-filter="web">Commercial Web</button>
-      </div>
-
-      <div class="projects-grid" id="projectsGrid">
-        <!-- Rendered from PROFILE_DATA.projects -->
-      </div>
-    </section>
-
-    <!-- 05. Major Engineering Project Deep-Dive: Hybrid ANN-PID PMSM -->
-    <section class="section-pad wrap" id="pmsm-major">
-      <div class="section-head">
-        <div class="section-eyebrow">04 // Major Engineering Project</div>
-        <h2 class="section-title">Hybrid ANN-PID PMSM Speed Control</h2>
-        <p class="section-desc">
-          In-depth architectural modeling and adaptive neural speed regulation for Permanent Magnet Synchronous Motors
-          under dynamic mechanical load perturbations.
-        </p>
-      </div>
-
-      <div class="major-pmsm-card">
+      <!-- Featured Major Project (Expanded) -->
+      <div class="major-pmsm-card" id="pmsm-major" style="margin-bottom: 48px;">
         <div
           style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px;">
           <div>
-            <span class="badge badge-copper" style="margin-bottom: 8px;">ELECTRICAL DRIVE CONTROL &amp;
-              SIMULATION</span>
+            <span class="badge badge-copper" style="margin-bottom: 8px;">FEATURED CAPSTONE // PMSM DRIVE CONTROL</span>
             <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin: 4px 0 8px; color: var(--text);">
               Adaptive Closed-Loop Speed Control Architecture
             </h3>
@@ -3865,28 +3837,35 @@
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- 06. Engineering Approach Section -->
-    <section class="section-pad wrap" id="approach">
-      <div class="section-head">
-        <div class="section-eyebrow">05 // Methodology</div>
-        <h2 class="section-title">Engineering Approach</h2>
-        <p class="section-desc">
-          A disciplined 7-phase methodology: from physical constraint deconstruction to simulation, prototyping, and
-          field validation.
-        </p>
+      <!-- Other Engineering Projects Subheading & Filter -->
+      <div style="margin-top: 48px; margin-bottom: 20px;">
+        <div class="section-eyebrow" style="margin-bottom: 6px;">All Engineering Projects</div>
+        <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--text); margin: 0;">
+          Hardware Prototypes &amp; Software Systems
+        </h3>
       </div>
 
-      <div class="approach-timeline" id="approachTimeline">
-        <!-- Rendered from PROFILE_DATA.engineeringApproach -->
+      <!-- Filter Bar -->
+      <div class="project-filter-bar">
+        <button class="filter-btn active" data-filter="all">All Projects (6)</button>
+        <button class="filter-btn" data-filter="control">Control &amp; Simulation</button>
+        <button class="filter-btn" data-filter="embedded">IoT &amp; Embedded</button>
+        <button class="filter-btn" data-filter="ai">AI / Signal Processing</button>
+        <button class="filter-btn" data-filter="web">Commercial Web</button>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
+        <!-- Rendered from PROFILE_DATA.projects -->
       </div>
     </section>
 
-    <!-- 07. GitHub Activity & Repositories Section -->
+
+
+    <!-- 04. GitHub Activity & Repositories Section -->
     <section class="section-pad wrap" id="github">
       <div class="section-head">
-        <div class="section-eyebrow">06 // Repositories</div>
+        <div class="section-eyebrow">04 // Repositories</div>
         <h2 class="section-title">GitHub Activity &amp; Repositories</h2>
         <p class="section-desc">
           Public codebases, commit activity, and repository metrics from GitHub.
@@ -3913,10 +3892,10 @@
       </div>
     </section>
 
-    <!-- 08. LinkedIn Activity Section -->
+    <!-- LinkedIn Activity Section -->
     <section class="section-pad wrap" id="activity">
       <div class="section-head">
-        <div class="section-eyebrow">07 // Professional Activity</div>
+        <div class="section-eyebrow">Activity // Professional Updates</div>
         <h2 class="section-title">LinkedIn Activity &amp; Updates</h2>
         <p class="section-desc">
           Verified professional achievements, technical advocacy, and event operations from LinkedIn.
@@ -3935,14 +3914,13 @@
       </div>
     </section>
 
-    <!-- 09. Experience & Leadership Section -->
+    <!-- 05. Experience & Leadership Section -->
     <section class="section-pad wrap" id="experience">
       <div class="section-head">
-        <div class="section-eyebrow">08 // Leadership &amp; Operations</div>
+        <div class="section-eyebrow">05 // Experience</div>
         <h2 class="section-title">Experience &amp; Leadership</h2>
         <p class="section-desc">
-          Demonstrated technical advocacy, large-scale event logistics coordination, and interdisciplinary student team
-          involvement.
+          Technical advocacy, campus event operations coordination, and student engineering involvement.
         </p>
       </div>
 
@@ -3951,10 +3929,10 @@
       </div>
     </section>
 
-    <!-- 10. Education Section -->
+    <!-- Education Section -->
     <section class="section-pad wrap" id="education">
       <div class="section-head">
-        <div class="section-eyebrow">09 // Academics</div>
+        <div class="section-eyebrow">Academics // Education Foundations</div>
         <h2 class="section-title">Education &amp; Foundations</h2>
         <p class="section-desc">
           Rigorous engineering coursework, laboratory distinction, and foundational scientific preparation.
@@ -3966,40 +3944,41 @@
       </div>
     </section>
 
-    <!-- 11. Certifications Section -->
-    <section class="section-pad wrap" id="certifications">
+    <!-- Combined Achievements & Certifications Section -->
+    <section class="section-pad wrap" id="recognition">
       <div class="section-head">
-        <div class="section-eyebrow">10 // Certifications</div>
-        <h2 class="section-title">Certifications &amp; Training</h2>
+        <div class="section-eyebrow">06 // Recognition</div>
+        <h2 class="section-title">Achievements &amp; Certifications</h2>
         <p class="section-desc">
-          Coursework and verified certifications across embedded programming, AI, and engineering tools.
+          Academic performance milestones, leadership roles, and verified technical certifications.
         </p>
       </div>
 
-      <div class="certs-grid" id="certsGrid">
-        <!-- Rendered from PROFILE_DATA.certifications -->
-      </div>
-    </section>
-
-    <!-- 12. Key Achievements Section -->
-    <section class="section-pad wrap" id="achievements">
-      <div class="section-head">
-        <div class="section-eyebrow">11 // Recognition</div>
-        <h2 class="section-title">Key Achievements &amp; Honors</h2>
-        <p class="section-desc">
-          Academic performance, student leadership, and project milestones.
-        </p>
+      <!-- Achievements Subsection -->
+      <div id="achievements" style="margin-bottom: 40px;">
+        <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--text); margin: 0 0 16px;">
+          Key Achievements &amp; Honors
+        </h3>
+        <div class="achievements-grid" id="achievementsGrid">
+          <!-- Rendered from PROFILE_DATA.achievements -->
+        </div>
       </div>
 
-      <div class="achievements-grid" id="achievementsGrid">
-        <!-- Rendered from PROFILE_DATA.achievements -->
+      <!-- Certifications Subsection -->
+      <div id="certifications">
+        <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--text); margin: 0 0 16px;">
+          Certifications &amp; Training
+        </h3>
+        <div class="certs-grid" id="certsGrid">
+          <!-- Rendered from PROFILE_DATA.certifications -->
+        </div>
       </div>
     </section>
 
     <!-- Creative Work & Photography Section -->
     <section class="section-pad wrap" id="creative-photography">
       <div class="section-head">
-        <div class="section-eyebrow">Creative // Photography</div>
+        <div class="section-eyebrow">07 // Photography</div>
         <h2 class="section-title">Nature &amp; Macro Photography</h2>
         <p class="section-desc">
           Personal photography focused on nature, macro details, and visual composition.
@@ -4142,10 +4121,10 @@
       </div>
     </section>
 
-    <!-- 13. Currently Building Section -->
+    <!-- Currently Building Section -->
     <section class="section-pad wrap" id="currently-building">
       <div class="section-head">
-        <div class="section-eyebrow">12 // In Progress</div>
+        <div class="section-eyebrow">Active Lab Work // In Progress</div>
         <h2 class="section-title">Currently Building</h2>
         <p class="section-desc">
           Transparent, active engineering initiatives under active development in the laboratory and simulation
@@ -4158,10 +4137,10 @@
       </div>
     </section>
 
-    <!-- Work With Me Section -->
+    <!-- 08. Work With Me Section -->
     <section class="section-pad wrap" id="work-with-me">
       <div class="section-head">
-        <div class="section-eyebrow">Opportunities // Availability</div>
+        <div class="section-eyebrow">08 // Opportunities</div>
         <h2 class="section-title">Work With Me</h2>
         <p class="section-desc">
           Available for engineering internships, technical roles, and hands-on hardware/software development.
@@ -4226,10 +4205,10 @@
       </div>
     </section>
 
-    <!-- 14. Contact Section -->
+    <!-- 09. Contact Section -->
     <section class="section-pad wrap" id="contact">
       <div class="contact-card">
-        <div class="section-eyebrow" style="margin-bottom: 8px;">13 // Connect</div>
+        <div class="section-eyebrow" style="margin-bottom: 8px;">09 // Connect</div>
         <h2
           style="font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 700; margin: 0 0 10px; color: var(--text);">
           Let's Build Something
@@ -4422,19 +4401,19 @@
         'hero': '#hero',
         'overview': '#overview',
         'about': '#about',
+        'approach': '#about',
         'skills': '#skills',
-        'services': '#services',
         'projects': '#projects',
-        'pmsm-major': '#pmsm-major',
-        'creative-photography': '#creative-photography',
-        'approach': '#approach',
-        'github': '#activity',
-        'activity': '#activity',
+        'pmsm-major': '#projects',
+        'github': '#github',
+        'activity': '#github',
         'experience': '#experience',
         'education': '#experience',
-        'certifications': '#experience',
-        'achievements': '#experience',
-        'currently-building': '#activity',
+        'recognition': '#recognition',
+        'certifications': '#recognition',
+        'achievements': '#recognition',
+        'creative-photography': '#creative-photography',
+        'currently-building': '#projects',
         'work-with-me': '#work-with-me',
         'contact': '#contact'
       };
