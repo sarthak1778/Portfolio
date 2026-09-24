@@ -1,63 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://sarthak-choudhary.vercel.app/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://sarthak-choudhary.vercel.app/og-image.png</image:loc>
+      <image:title>Sarthak Choudhary Portfolio - Electrical and Electronics Engineering</image:title>
+      <image:caption>Sarthak Choudhary - Electrical &amp; Electronics Engineering, Embedded Systems, IoT, PMSM Control, and AI</image:caption>
+    </image:image>
   </url>
   <url>
-    <loc>https://sarthak-choudhary.vercel.app/#about</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sarthak-choudhary.vercel.app/#skills</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sarthak-choudhary.vercel.app/#projects</loc>
-    <lastmod>2026-09-05</lastmod>
+    <loc>https://sarthak-choudhary.vercel.app/sync</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://sarthak-choudhary.vercel.app/#pmsm-major</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://sarthak-choudhary.vercel.app/#services</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sarthak-choudhary.vercel.app/#creative-photography</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sarthak-choudhary.vercel.app/#experience</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://sarthak-choudhary.vercel.app/#work-with-me</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sarthak-choudhary.vercel.app/#contact</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 </urlset>
