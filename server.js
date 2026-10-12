@@ -62,9 +62,16 @@ const server = http.createServer(async (req, res) => {
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
-      res.statusCode = 404;
-      res.setHeader('Content-Type', 'text/plain');
-      res.end('404 Not Found');
+      const notFoundPath = path.join(PUBLIC_DIR, '404.html');
+      if (fs.existsSync(notFoundPath)) {
+        res.statusCode = 404;
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+        fs.createReadStream(notFoundPath).pipe(res);
+      } else {
+        res.statusCode = 404;
+        res.setHeader('Content-Type', 'text/plain');
+        res.end('404 Not Found');
+      }
       return;
     }
 

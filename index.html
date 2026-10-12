@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sarthak Choudhary | EEE | Embedded Systems | IoT | Control Systems | AI</title>
+  <title>Sarthak Choudhary | Electrical &amp; Electronics Engineer | Embedded Systems &amp; IoT</title>
   <meta name="description"
-    content="Electrical &amp; Electronics Engineering student specializing in embedded systems, IoT, PMSM control, MATLAB/Simulink, AI/ML, and engineering projects.">
+    content="Electrical &amp; Electronics Engineering portfolio of Sarthak Choudhary. Specializing in embedded systems, IoT architectures, PMSM motor control simulations, MATLAB/Simulink, and applied AI/ML.">
   <meta name="author" content="Sarthak Choudhary">
   <link rel="canonical" href="https://sarthak-choudhary.vercel.app/">
   <meta name="theme-color" content="#0B132B">
@@ -195,8 +195,10 @@
 
     html,
     body {
-      overflow-x: clip;
-      max-width: 100vw;
+      overflow-x: hidden;
+      max-width: 100%;
+      width: 100%;
+      position: relative;
     }
 
     html {
@@ -1785,62 +1787,549 @@
       line-height: 1.6;
     }
 
-    /* 11. Certifications */
+    /* 11. Certifications & Verified Credentials */
+    .cert-filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .cert-filter-pill {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 8px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text-dim);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .cert-filter-pill:hover {
+      border-color: var(--copper);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .cert-filter-pill.active {
+      background: var(--copper);
+      color: #0B132B;
+      border-color: var(--copper);
+      font-weight: 700;
+      box-shadow: 0 4px 16px var(--copper-glow);
+    }
+
+    .cert-count-pill {
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      color: currentColor;
+    }
+
+    .cert-filter-pill.active .cert-count-pill {
+      background: rgba(11, 19, 43, 0.25);
+      color: #0B132B;
+    }
+
     .certs-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
     }
 
     .cert-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 22px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      transition: var(--transition);
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease, box-shadow 0.28s ease;
+      position: relative;
     }
 
     .cert-card:hover {
       border-color: var(--copper);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4), 0 0 20px var(--copper-glow);
+    }
+
+    .cert-thumb-container {
+      position: relative;
+      height: 210px;
+      background: #060b17;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cert-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 10px;
+      background: #080f20;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cert-card:hover .cert-thumb-img {
+      transform: scale(1.04);
+    }
+
+    .cert-thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(11, 19, 43, 0.92) 0%, rgba(11, 19, 43, 0.4) 60%, transparent 100%);
+      opacity: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.25s ease;
+      z-index: 2;
+    }
+
+    .cert-card:hover .cert-thumb-overlay,
+    .cert-thumb-container:focus .cert-thumb-overlay {
+      opacity: 1;
+    }
+
+    .cert-zoom-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 18px;
+      border-radius: 999px;
+      background: var(--copper);
+      color: #0B132B;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      transform: translateY(8px);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    }
+
+    .cert-card:hover .cert-zoom-btn {
+      transform: translateY(0);
+    }
+
+    .cert-thumb-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 30%, rgba(0, 240, 255, 0.1), transparent 70%), #080f20;
+      gap: 8px;
+    }
+
+    .cert-placeholder-icon {
+      color: var(--teal);
+    }
+
+    .cert-placeholder-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .cert-category-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(11, 19, 43, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-bright);
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--teal);
+      letter-spacing: 0.03em;
+      z-index: 3;
+    }
+
+    .cert-card-body {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .cert-header-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .cert-issuer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--copper);
+      font-weight: 600;
+    }
+
+    .cert-date {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-faint);
     }
 
     .cert-title {
       font-family: var(--font-display);
-      font-size: 1.15rem;
+      font-size: 1.18rem;
       font-weight: 700;
       color: var(--text);
+      line-height: 1.35;
       margin: 0 0 6px;
     }
 
     .cert-issuer {
       font-family: var(--font-mono);
       font-size: 12px;
-      color: var(--copper);
+      color: var(--teal);
       margin-bottom: 12px;
     }
 
     .cert-desc {
-      font-size: 13px;
+      font-size: 13.5px;
       color: var(--text-dim);
-      line-height: 1.55;
+      line-height: 1.6;
       margin: 0 0 16px;
       flex-grow: 1;
+    }
+
+    .cert-skills {
+      margin-bottom: 18px;
+    }
+
+    .cert-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+    }
+
+    .cert-view-btn {
+      font-size: 12px;
+      padding: 7px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: var(--font-mono);
+    }
+
+    .cert-view-btn:hover {
+      background: var(--copper-soft);
+      border-color: var(--copper);
+      color: var(--copper);
     }
 
     .cert-link {
       color: var(--copper);
       font-family: var(--font-mono);
-      font-size: 11.5px;
+      font-size: 12px;
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      margin-top: auto;
+      font-weight: 600;
+      text-decoration: none;
     }
 
     .cert-link:hover {
       text-decoration: underline;
+    }
+
+    /* Lightbox Modal for Full Certificate Inspection */
+    .cert-modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .cert-modal-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .cert-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(3, 7, 18, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .cert-modal-dialog {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border-bright);
+      border-radius: var(--radius-lg);
+      max-width: 960px;
+      width: 100%;
+      max-height: 94vh;
+      overflow-y: auto;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 30px var(--copper-glow);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      transform: scale(0.96) translateY(12px);
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cert-modal-overlay.open .cert-modal-dialog {
+      transform: scale(1) translateY(0);
+    }
+
+    .cert-modal-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--surface);
+      z-index: 20;
+    }
+
+    .cert-modal-header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .cert-modal-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    .cert-modal-header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cert-modal-counter {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--copper);
+      padding: 4px 10px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    .cert-modal-close {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .cert-modal-close:hover {
+      background: var(--copper);
+      color: #0B132B;
+      border-color: var(--copper);
+    }
+
+    .cert-modal-stage {
+      position: relative;
+      background: #040814;
+      min-height: 340px;
+      max-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 16px;
+    }
+
+    .cert-media-wrap {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cert-modal-img {
+      max-width: 100%;
+      max-height: 56vh;
+      object-fit: contain;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transition: transform 0.2s ease;
+    }
+
+    .cert-modal-placeholder-view {
+      padding: 60px 20px;
+      text-align: center;
+      color: var(--text-dim);
+    }
+
+    .cert-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(11, 19, 43, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-bright);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 15;
+      transition: var(--transition);
+    }
+
+    .cert-nav-btn:hover {
+      background: var(--copper);
+      color: #0B132B;
+      border-color: var(--copper);
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .cert-prev-btn {
+      left: 14px;
+    }
+
+    .cert-next-btn {
+      right: 14px;
+    }
+
+    .cert-modal-footer {
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background: var(--surface);
+    }
+
+    .cert-modal-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cert-modal-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .cert-meta-label {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-faint);
+    }
+
+    .cert-meta-val {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .cert-modal-actions-col {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .cert-modal-desc {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .certs-grid {
+        grid-template-columns: 1fr;
+      }
+      .cert-thumb-container {
+        height: 180px;
+      }
+      .cert-modal-header {
+        padding: 14px 16px;
+      }
+      .cert-modal-title {
+        font-size: 1.15rem;
+      }
+      .cert-modal-footer {
+        padding: 16px;
+      }
+      .cert-modal-meta-grid {
+        grid-template-columns: 1fr;
+      }
+      .cert-modal-actions-col {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+      .cert-nav-btn {
+        width: 36px;
+        height: 36px;
+      }
     }
 
     /* 12. Achievements */
@@ -2579,11 +3068,47 @@
       opacity: 0;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       pointer-events: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      max-width: calc(100vw - 48px);
     }
 
     .toast.show {
       transform: translateY(0);
       opacity: 1;
+      pointer-events: auto;
+    }
+
+    .toast.toast-success {
+      border-color: var(--teal);
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: 0 8px 24px rgba(94, 234, 212, 0.25);
+    }
+
+    .toast.toast-error {
+      border-color: #F43F5E;
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: 0 8px 24px rgba(244, 63, 94, 0.25);
+    }
+
+    .toast-icon {
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .toast-icon-success {
+      color: var(--teal);
+    }
+
+    .toast-icon-error {
+      color: #F43F5E;
+    }
+
+    .toast-icon-info {
+      color: var(--copper);
     }
 
     /* Case Study Modal */
@@ -2744,16 +3269,26 @@
         display: inline-flex;
       }
 
+      .menu-toggle .icon-close {
+        display: none;
+      }
+
+      .menu-toggle[aria-expanded="true"] .icon-hamburger {
+        display: none;
+      }
+
+      .menu-toggle[aria-expanded="true"] .icon-close {
+        display: block;
+      }
+
       nav.nav-links {
         position: absolute;
         top: 100%;
         left: 0;
         right: 0;
-        background: rgba(11, 19, 43, 0.98);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border-bottom: 1px solid var(--border);
-        box-shadow: var(--shadow-lg);
+        background: #0B132B;
+        border-bottom: 2px solid var(--border-bright);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
         flex-direction: column;
         align-items: stretch;
         gap: 0;
@@ -2768,10 +3303,12 @@
         overflow-y: auto;
         overflow-x: hidden;
         box-sizing: border-box;
+        z-index: 1001;
       }
 
       [data-theme="light"] nav.nav-links {
-        background: rgba(248, 250, 252, 0.98);
+        background: #FFFFFF;
+        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
       }
 
       nav.nav-links.open {
@@ -2780,6 +3317,25 @@
         visibility: visible;
         pointer-events: auto;
       }
+
+    .nav-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+      pointer-events: none;
+    }
+
+    .nav-backdrop.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
 
       /* Categorized section break headers inside mobile drawer */
       .nav-group-header {
@@ -4313,6 +4869,7 @@
           <span class="nav-group-title">CAREER &amp; RECOGNITION</span>
         </div>
         <a href="#experience" class="nav-link">Experience</a>
+        <a href="#certificates" class="nav-link">Certificates</a>
         <a href="#recognition" class="nav-link">Recognition</a>
 
         <!-- Group 04: Collaboration & Contact -->
@@ -4396,13 +4953,17 @@
         </button>
         <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false"
           aria-controls="primaryNav">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg class="icon-hamburger" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M3 6h18M3 12h18M3 18h18" />
+          </svg>
+          <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6L6 18M6 6l12 12" />
           </svg>
         </button>
       </div>
     </div>
   </header>
+  <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
 
   <main id="main">
 
@@ -5230,43 +5791,59 @@
       </div>
     </section>
 
-    <!-- Combined Achievements & Certifications Section -->
-    <section class="section-pad wrap" id="recognition">
+    <!-- 06 // Verified Certificates & Credentials Section -->
+    <section class="section-pad wrap" id="certificates">
+      <div id="certifications" style="position: absolute; margin-top: -80px;"></div>
       <div class="section-head">
-        <div class="section-eyebrow">06 // Recognition</div>
-        <h2 class="section-title">Achievements &amp; Certifications</h2>
+        <div class="section-eyebrow">06 // Credentials</div>
+        <h2 class="section-title">Verified Certificates &amp; Credentials</h2>
         <p class="section-desc">
-          Academic performance milestones, leadership roles, and verified technical certifications.
+          Official engineering certifications, skill development programs, national events leadership, and verified credentials with authentic documentation.
         </p>
       </div>
 
-      <!-- Achievements Subsection -->
-      <div id="achievements" style="margin-bottom: 40px;">
-        <h3
-          style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--text); margin: 0 0 16px;">
-          Key Achievements &amp; Honors
-        </h3>
-        <div class="achievements-grid" id="achievementsGrid">
-          <!-- Rendered from PROFILE_DATA.achievements -->
-        </div>
+      <!-- Certificate Filter Pills -->
+      <div class="cert-filter-bar" id="certFilterBar" role="tablist" aria-label="Certificate Categories">
+        <button type="button" class="cert-filter-pill active" data-filter="all" role="tab" aria-selected="true">
+          All Credentials <span class="cert-count-pill" id="certCountAll">8</span>
+        </button>
+        <button type="button" class="cert-filter-pill" data-filter="technical" role="tab" aria-selected="false">
+          Technical &amp; AI/ML <span class="cert-count-pill" id="certCountTech">3</span>
+        </button>
+        <button type="button" class="cert-filter-pill" data-filter="operations" role="tab" aria-selected="false">
+          Event Operations &amp; Management <span class="cert-count-pill" id="certCountOps">3</span>
+        </button>
+        <button type="button" class="cert-filter-pill" data-filter="workshops" role="tab" aria-selected="false">
+          Leadership &amp; Workshops <span class="cert-count-pill" id="certCountWork">2</span>
+        </button>
       </div>
 
-      <!-- Certifications Subsection -->
-      <div id="certifications">
-        <h3
-          style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--text); margin: 0 0 16px;">
-          Certifications &amp; Training
-        </h3>
-        <div class="certs-grid" id="certsGrid">
-          <!-- Rendered from PROFILE_DATA.certifications -->
-        </div>
+      <!-- Certificates Grid -->
+      <div class="certs-grid" id="certsGrid">
+        <!-- Rendered dynamically from PROFILE_DATA.certifications with photos -->
+      </div>
+    </section>
+
+    <!-- 07 // Achievements & Honors Section -->
+    <section class="section-pad wrap" id="recognition">
+      <div id="achievements" style="position: absolute; margin-top: -80px;"></div>
+      <div class="section-head">
+        <div class="section-eyebrow">07 // Recognition</div>
+        <h2 class="section-title">Key Achievements &amp; Honors</h2>
+        <p class="section-desc">
+          Academic performance milestones, leadership roles, and competitive recognitions.
+        </p>
+      </div>
+
+      <div class="achievements-grid" id="achievementsGrid">
+        <!-- Rendered from PROFILE_DATA.achievements -->
       </div>
     </section>
 
     <!-- Creative Work & Photography Section -->
     <section class="section-pad wrap" id="creative-photography">
       <div class="section-head">
-        <div class="section-eyebrow">07 // Photography</div>
+        <div class="section-eyebrow">08 // Photography</div>
         <h2 class="section-title">Nature &amp; Macro Photography</h2>
         <p class="section-desc">
           Personal photography focused on nature, macro details, and visual composition.
@@ -5453,10 +6030,14 @@
 
         <div class="contact-actions">
           <div class="email-copy-wrap">
-            <span id="emailText">sarthakchoudhary1778@gmail.com</span>
-            <button class="copy-btn" id="copyEmailBtn">Copy</button>
+            <a href="mailto:sarthakchoudhary1778@gmail.com" id="emailText" class="email-link" title="Click to email Sarthak">sarthakchoudhary1778@gmail.com</a>
+            <button class="copy-btn" id="copyEmailBtn" aria-label="Copy email address">Copy</button>
           </div>
-          <a href="mailto:sarthakchoudhary1778@gmail.com" class="btn btn-primary">Send Email ↗</a>
+          <a href="tel:+919341664156" class="btn btn-secondary contact-tel-btn" id="contactPhoneBtn" title="Call Sarthak (+91 93416 64156)">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 6px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +91 93416 64156
+          </a>
+          <a href="mailto:sarthakchoudhary1778@gmail.com" class="btn btn-primary" id="contactMailBtn">Send Email ↗</a>
           <a href="https://www.linkedin.com/in/sarthak-choudhary-455098293/" target="_blank" rel="noopener noreferrer"
             class="btn btn-secondary">LinkedIn ↗</a>
           <a href="https://www.instagram.com/sarthakchoudhary_21?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw=="
@@ -5467,31 +6048,103 @@
             style="border-color: var(--copper-line); color: var(--copper);">Photography Instagram (_nature_156) ↗</a>
           <button class="btn btn-ghost resume-export-btn" id="contactResumeBtn">Resume PDF</button>
         </div>
+
+        <!-- Quick Direct Inquiry Message Form -->
+        <div class="contact-form-wrap" style="max-width: 620px; margin: 36px auto 0; text-align: left; background: var(--surface); border: 1px solid var(--border-bright); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-sm);">
+          <h3 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; margin: 0 0 6px; color: var(--text);">Direct Message &amp; Project Inquiry</h3>
+          <p style="font-size: 13px; color: var(--text-dim); margin: 0 0 16px;">Have a project proposal, engineering internship opening, or technical query? Send a message directly.</p>
+
+          <form id="directContactForm" novalidate>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 12px;">
+              <div>
+                <label for="contactSenderName" style="display:block; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--text-faint); margin-bottom: 6px;">Your Name *</label>
+                <input type="text" id="contactSenderName" placeholder="e.g. Rahul Sharma" required style="width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px; color: var(--text); font-size: 13.5px; outline: none; box-sizing: border-box;" />
+              </div>
+              <div>
+                <label for="contactSenderEmail" style="display:block; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--text-faint); margin-bottom: 6px;">Your Email *</label>
+                <input type="email" id="contactSenderEmail" placeholder="e.g. rahul@company.com" required style="width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px; color: var(--text); font-size: 13.5px; outline: none; box-sizing: border-box;" />
+              </div>
+            </div>
+
+            <div style="margin-bottom: 12px;">
+              <label for="contactTopic" style="display:block; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--text-faint); margin-bottom: 6px;">Inquiry Topic *</label>
+              <select id="contactTopic" style="width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px; color: var(--text); font-size: 13.5px; outline: none; box-sizing: border-box;">
+                <option value="Engineering Internship / Hiring">Engineering Internship / Hiring Opportunity</option>
+                <option value="Embedded Systems &amp; IoT Project">Embedded Systems &amp; IoT Project Discussion</option>
+                <option value="MATLAB / Simulink Motor Control">MATLAB / Simulink Motor Control Collaboration</option>
+                <option value="Google Gemini Campus Ambassador">Google Gemini Campus Ambassador Engagement</option>
+                <option value="General Technical Inquiry">General Technical Inquiry</option>
+              </select>
+            </div>
+
+            <div style="margin-bottom: 14px;">
+              <label for="contactBodyText" style="display:block; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--text-faint); margin-bottom: 6px;">Your Message *</label>
+              <textarea id="contactBodyText" rows="4" placeholder="Describe your project requirements, questions, or timeline..." required style="width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px; color: var(--text); font-size: 13.5px; outline: none; font-family: var(--font-body); resize: vertical; box-sizing: border-box;"></textarea>
+            </div>
+
+            <div id="contactFormAlert" style="display: none; margin-bottom: 14px; padding: 12px 14px; border-radius: var(--radius-sm); font-size: 13px; line-height: 1.5;"></div>
+
+            <button type="submit" id="contactFormSubmitBtn" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 12px; font-size: 13.5px;">
+              Send Message via Email 🚀
+            </button>
+          </form>
+        </div>
       </div>
     </section>
 
   </main>
 
-  <!-- 15. Minimalist Engineering Footer -->
+  <!-- 15. Comprehensive Engineering Footer -->
   <footer class="footer">
-    <div class="wrap footer-inner">
-      <div>
-        <strong style="color: var(--text);">Sarthak Choudhary</strong> — EEE | Embedded Systems | IoT | Control Systems
-        | AI
-        <div style="margin-top: 4px; color: var(--text-faint);">
+    <div class="wrap footer-inner" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--border);">
+      <div style="max-width: 340px;">
+        <a href="#hero" class="brand" aria-label="Sarthak Choudhary Portfolio Home">
+          <span class="brand-icon">SC</span>
+          <span>SARTHAK.EEE</span>
+        </a>
+        <div style="margin-top: 8px; color: var(--text-dim); font-size: 13px; line-height: 1.5;">
+          Electrical &amp; Electronics Engineering &bull; Embedded Systems &bull; IoT &bull; Control Systems &bull; Applied AI/ML
+        </div>
+        <div style="margin-top: 6px; color: var(--text-faint); font-size: 12.5px;">
           Sir M Visvesvaraya Institute of Technology, Bengaluru
         </div>
       </div>
-      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-        <a href="https://github.com/sarthak1778" target="_blank" rel="noopener noreferrer"
-          style="color: var(--copper);">GitHub</a>
-        <a href="https://www.linkedin.com/in/sarthak-choudhary-455098293/" target="_blank" rel="noopener noreferrer"
-          style="color: var(--copper);">LinkedIn</a>
-        <a href="https://www.instagram.com/sarthakchoudhary_21?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw=="
-          target="_blank" rel="noopener noreferrer" style="color: var(--copper);">Personal Instagram</a>
-        <a href="https://www.instagram.com/_nature_156/" target="_blank" rel="noopener noreferrer"
-          style="color: var(--copper); font-weight: 600;">Photography Instagram (_nature_156)</a>
-        <a href="mailto:sarthakchoudhary1778@gmail.com" style="color: var(--copper);">Email</a>
+
+      <div>
+        <div style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--copper); letter-spacing: 0.08em; margin-bottom: 12px; font-weight: 600;">Navigation</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; font-size: 13px;">
+          <a href="#hero" style="color: var(--text-dim); text-decoration: none;">Home</a>
+          <a href="#about" style="color: var(--text-dim); text-decoration: none;">About</a>
+          <a href="#skills" style="color: var(--text-dim); text-decoration: none;">Skills</a>
+          <a href="#projects" style="color: var(--text-dim); text-decoration: none;">Projects</a>
+          <a href="#certificates" style="color: var(--text-dim); text-decoration: none;">Certificates</a>
+          <a href="#github" style="color: var(--text-dim); text-decoration: none;">Repositories</a>
+          <a href="#experience" style="color: var(--text-dim); text-decoration: none;">Experience</a>
+          <a href="#creative-photography" style="color: var(--text-dim); text-decoration: none;">Photography</a>
+          <a href="#contact" style="color: var(--text-dim); text-decoration: none;">Contact</a>
+          <a href="/sync" style="color: var(--teal); text-decoration: none;">Sync Engine ↗</a>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--copper); letter-spacing: 0.08em; margin-bottom: 12px; font-weight: 600;">Contact &amp; Connect</div>
+        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+          <a href="tel:+919341664156" style="color: var(--copper); text-decoration: none; font-weight: 500;">📞 +91 93416 64156</a>
+          <a href="mailto:sarthakchoudhary1778@gmail.com" style="color: var(--copper); text-decoration: none; font-weight: 500;">✉ sarthakchoudhary1778@gmail.com</a>
+          <a href="https://github.com/sarthak1778" target="_blank" rel="noopener noreferrer" style="color: var(--text-dim); text-decoration: none;">GitHub Profile ↗</a>
+          <a href="https://www.linkedin.com/in/sarthak-choudhary-455098293/" target="_blank" rel="noopener noreferrer" style="color: var(--text-dim); text-decoration: none;">LinkedIn Profile ↗</a>
+          <a href="https://www.instagram.com/sarthakchoudhary_21" target="_blank" rel="noopener noreferrer" style="color: var(--text-dim); text-decoration: none;">Personal Instagram ↗</a>
+          <a href="https://www.instagram.com/_nature_156/" target="_blank" rel="noopener noreferrer" style="color: var(--copper); text-decoration: none; font-weight: 600;">Photography (@_nature_156) ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding-top: 18px; font-size: 12.5px; color: var(--text-faint);">
+      <div>
+        &copy; <span id="copyrightYear">2026</span> <strong style="color: var(--text);">Sarthak Choudhary</strong>. All rights reserved.
+      </div>
+      <div>
+        Designed for high performance &bull; Responsive &bull; Zero external UI dependencies
       </div>
     </div>
   </footer>
@@ -5525,6 +6178,71 @@
 
       <div class="modal-footer" id="modalFooter">
         <!-- Links & buttons injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- High-Resolution Certificate Lightbox Modal -->
+  <div class="cert-modal-overlay" id="certLightboxModal" role="dialog" aria-modal="true" aria-labelledby="certModalTitle" aria-hidden="true" inert>
+    <div class="cert-modal-backdrop" onclick="closeCertLightbox()"></div>
+    <div class="cert-modal-dialog">
+      <!-- Modal Header -->
+      <div class="cert-modal-header">
+        <div class="cert-modal-header-left">
+          <span class="badge badge-teal" id="certModalCategory">Credential</span>
+          <h2 class="cert-modal-title" id="certModalTitle">Certificate Inspection</h2>
+        </div>
+        <div class="cert-modal-header-right">
+          <span class="cert-modal-counter" id="certModalCounter">1 / 8</span>
+          <button type="button" class="cert-modal-close" id="certModalCloseBtn" onclick="closeCertLightbox()" aria-label="Close certificate lightbox">✕</button>
+        </div>
+      </div>
+
+      <!-- Modal Stage -->
+      <div class="cert-modal-stage">
+        <!-- Prev Button -->
+        <button type="button" class="cert-nav-btn cert-prev-btn" id="certPrevBtn" onclick="navigateCert(-1)" aria-label="Previous Certificate" title="Previous (Left Arrow)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+
+        <!-- Media Wrap -->
+        <div class="cert-media-wrap" id="certMediaWrap">
+          <img src="" alt="" id="certModalImage" class="cert-modal-img" />
+          <div id="certModalPlaceholder" class="cert-modal-placeholder-view" style="display:none;"></div>
+        </div>
+
+        <!-- Next Button -->
+        <button type="button" class="cert-nav-btn cert-next-btn" id="certNextBtn" onclick="navigateCert(1)" aria-label="Next Certificate" title="Next (Right Arrow)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="cert-modal-footer">
+        <div class="cert-modal-meta-grid">
+          <div class="cert-modal-meta-item">
+            <span class="cert-meta-label">Issuing Authority</span>
+            <span class="cert-meta-val" id="certModalIssuer">—</span>
+          </div>
+          <div class="cert-modal-meta-item">
+            <span class="cert-meta-label">Issue Date</span>
+            <span class="cert-meta-val" id="certModalDate">—</span>
+          </div>
+          <div class="cert-modal-meta-item">
+            <span class="cert-meta-label">Credential Verification</span>
+            <span class="cert-meta-val" id="certModalCredId">—</span>
+          </div>
+          <div class="cert-modal-meta-item cert-modal-actions-col">
+            <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="certModalVerifyBtn">
+              Verify Credential ↗
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" id="certModalDownloadBtn">
+              Open Full Resolution ↗
+            </a>
+          </div>
+        </div>
+        <p class="cert-modal-desc" id="certModalDesc">—</p>
+        <div class="tech-pill-list" id="certModalSkills"></div>
       </div>
     </div>
   </div>
@@ -5568,43 +6286,65 @@
     function initNavigation() {
       const menuToggle = document.getElementById('menuToggle');
       const primaryNav = document.getElementById('primaryNav');
+      const navBackdrop = document.getElementById('navBackdrop');
       const topbar = document.querySelector('.topbar');
       const backToTopBtn = document.getElementById('backToTopBtn');
       const navLinks = Array.from(document.querySelectorAll('.nav-link'));
 
+      function closeNav() {
+        if (!primaryNav) return;
+        primaryNav.classList.remove('open');
+        if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+        if (navBackdrop) navBackdrop.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      function openNav() {
+        if (!primaryNav) return;
+        primaryNav.classList.add('open');
+        if (menuToggle) menuToggle.setAttribute('aria-expanded', 'true');
+        if (navBackdrop) navBackdrop.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
       // Mobile Drawer Controller
       if (menuToggle && primaryNav) {
-        menuToggle.addEventListener('click', () => {
-          const isOpen = primaryNav.classList.toggle('open');
-          menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        menuToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = primaryNav.classList.contains('open');
+          if (isOpen) {
+            closeNav();
+          } else {
+            openNav();
+          }
         });
+
+        if (navBackdrop) {
+          navBackdrop.addEventListener('click', closeNav);
+        }
 
         navLinks.forEach(link => {
           link.addEventListener('click', () => {
-            primaryNav.classList.remove('open');
-            menuToggle.setAttribute('aria-expanded', 'false');
+            closeNav();
           });
         });
 
         const mobileSocialBtns = Array.from(document.querySelectorAll('.nav-social-btn'));
         mobileSocialBtns.forEach(btn => {
           btn.addEventListener('click', () => {
-            primaryNav.classList.remove('open');
-            menuToggle.setAttribute('aria-expanded', 'false');
+            closeNav();
           });
         });
 
         document.addEventListener('click', (e) => {
           if (!primaryNav.classList.contains('open')) return;
           if (primaryNav.contains(e.target) || menuToggle.contains(e.target)) return;
-          primaryNav.classList.remove('open');
-          menuToggle.setAttribute('aria-expanded', 'false');
+          closeNav();
         });
 
         document.addEventListener('keydown', (e) => {
           if (e.key === 'Escape' && primaryNav.classList.contains('open')) {
-            primaryNav.classList.remove('open');
-            menuToggle.setAttribute('aria-expanded', 'false');
+            closeNav();
             menuToggle.focus();
           }
         });
@@ -5634,8 +6374,9 @@
         'activity': '#github',
         'experience': '#experience',
         'education': '#experience',
+        'certificates': '#certificates',
+        'certifications': '#certificates',
         'recognition': '#recognition',
-        'certifications': '#recognition',
         'achievements': '#recognition',
         'creative-photography': '#creative-photography',
         'currently-building': '#projects',
@@ -5753,12 +6494,23 @@
     }
 
     // ---------- Toast Controller ----------
-    function showToast(msg) {
+    function showToast(msg, type = 'info') {
       const toast = document.getElementById('toast');
       if (!toast) return;
-      toast.textContent = msg;
-      toast.classList.add('show');
-      setTimeout(() => { toast.classList.remove('show'); }, 3000);
+      toast.className = 'toast show toast-' + type;
+      let icon = '';
+      if (type === 'success') {
+        icon = '<span class="toast-icon toast-icon-success">✓</span> ';
+      } else if (type === 'error') {
+        icon = '<span class="toast-icon toast-icon-error">✕</span> ';
+      } else {
+        icon = '<span class="toast-icon toast-icon-info">ℹ</span> ';
+      }
+      toast.innerHTML = icon + '<span>' + escapeHtml(msg) + '</span>';
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
     }
 
     // ---------- Copy Email Feature ----------
@@ -5768,13 +6520,74 @@
         copyBtn.addEventListener('click', () => {
           navigator.clipboard.writeText('sarthakchoudhary1778@gmail.com').then(() => {
             copyBtn.textContent = 'Copied!';
-            showToast('Email copied to clipboard!');
+            showToast('Email address copied to clipboard!', 'success');
             setTimeout(() => { copyBtn.textContent = 'Copy'; }, 2200);
           }).catch(() => {
-            showToast('Press Ctrl+C to copy email.');
+            showToast('Could not copy automatically. Email: sarthakchoudhary1778@gmail.com', 'error');
           });
         });
       }
+    }
+
+    // ---------- Direct Contact Message Controller ----------
+    function initDirectContactForm() {
+      const form = document.getElementById('directContactForm');
+      const alertBox = document.getElementById('contactFormAlert');
+      if (!form) return;
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = (document.getElementById('contactSenderName').value || '').trim();
+        const email = (document.getElementById('contactSenderEmail').value || '').trim();
+        const topic = document.getElementById('contactTopic').value || 'General Inquiry';
+        const msg = (document.getElementById('contactBodyText').value || '').trim();
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!name || !email || !msg) {
+          if (alertBox) {
+            alertBox.style.display = 'block';
+            alertBox.style.background = 'rgba(244, 63, 94, 0.12)';
+            alertBox.style.border = '1px solid #F43F5E';
+            alertBox.style.color = '#F43F5E';
+            alertBox.innerHTML = '<strong>✕ Required Fields Missing:</strong> Please provide your name, valid email, and inquiry message.';
+          }
+          showToast('Please fill out all required fields.', 'error');
+          return;
+        }
+
+        if (!emailRegex.test(email)) {
+          if (alertBox) {
+            alertBox.style.display = 'block';
+            alertBox.style.background = 'rgba(244, 63, 94, 0.12)';
+            alertBox.style.border = '1px solid #F43F5E';
+            alertBox.style.color = '#F43F5E';
+            alertBox.innerHTML = '<strong>✕ Invalid Email:</strong> Please enter a valid email address.';
+          }
+          showToast('Invalid email address format.', 'error');
+          return;
+        }
+
+        // Prepare mailto link
+        const subject = encodeURIComponent(`[Portfolio Inquiry] ${topic} - from ${name}`);
+        const body = encodeURIComponent(`Hi Sarthak,\n\nName: ${name}\nEmail: ${email}\nTopic: ${topic}\n\nMessage:\n${msg}\n\n---\nSent via portfolio contact form.`);
+        const mailtoUrl = `mailto:sarthakchoudhary1778@gmail.com?subject=${subject}&body=${body}`;
+
+        // Trigger mail client
+        window.location.href = mailtoUrl;
+
+        // Display rich success message
+        if (alertBox) {
+          alertBox.style.display = 'block';
+          alertBox.style.background = 'rgba(94, 234, 212, 0.12)';
+          alertBox.style.border = '1px solid var(--teal)';
+          alertBox.style.color = 'var(--teal)';
+          alertBox.innerHTML = `<strong>✓ Message Prepared!</strong> Thank you, ${escapeHtml(name)}! Your email client has been launched with your inquiry. You can also reach Sarthak directly at <a href="tel:+919341664156" style="color:var(--copper); font-weight:700;">+91 93416 64156</a>.`;
+        }
+
+        showToast('Inquiry prepared successfully! Launching email...', 'success');
+        form.reset();
+      });
     }
 
     // ---------- ATS Resume Export Buttons ----------
@@ -5793,7 +6606,7 @@
         b.style.opacity = '0.7';
       });
 
-      showToast('Generating ATS Resume PDF...');
+      showToast('Generating ATS Resume PDF...', 'info');
 
       if (window.html2pdf) {
         const opt = {
@@ -5810,9 +6623,10 @@
             b.style.pointerEvents = 'auto';
             b.style.opacity = '1';
           });
-          showToast('ATS Resume PDF generated successfully!');
+          showToast('ATS Resume PDF generated successfully!', 'success');
         }).catch(err => {
           console.error('html2pdf export error:', err);
+          showToast('Could not compile PDF directly. Opening printable view instead.', 'error');
           if (typeof window.generateATSResume === 'function') {
             window.generateATSResume();
           } else {
@@ -6024,24 +6838,241 @@
         `).join('');
       }
 
-      // 8. Certifications
-      const certEl = document.getElementById('certsGrid');
-      if (certEl && Array.isArray(data.certifications)) {
-        certEl.innerHTML = data.certifications.map(c => `
-          <div class="cert-card">
-            <span class="badge badge-neutral" style="margin-bottom: 8px; align-self: flex-start;">${escapeHtml(c.source || 'Credential')}</span>
-            <div class="cert-title">${escapeHtml(c.title)}</div>
-            <div class="cert-issuer">${escapeHtml(c.issuer)} (${escapeHtml(c.issueDate)})</div>
-            <p class="cert-desc">${escapeHtml(c.description)}</p>
-            <div class="tech-pill-list" style="margin-bottom: 14px;">
-              ${(c.skills || []).map(s => `<span class="tech-pill">${escapeHtml(s)}</span>`).join('')}
+      // 8. Certifications & Credentials Showcase
+      let allCertificates = Array.isArray(data.certifications) ? data.certifications : [];
+      let activeFilterCertificates = allCertificates;
+      let currentCertIndex = 0;
+
+      function updateCertFilterCounters() {
+        const countAll = document.getElementById('certCountAll');
+        const countTech = document.getElementById('certCountTech');
+        const countOps = document.getElementById('certCountOps');
+        const countWork = document.getElementById('certCountWork');
+
+        if (countAll) countAll.textContent = allCertificates.length;
+        if (countTech) countTech.textContent = allCertificates.filter(c => c.categoryFilter === 'technical').length;
+        if (countOps) countOps.textContent = allCertificates.filter(c => c.categoryFilter === 'operations').length;
+        if (countWork) countWork.textContent = allCertificates.filter(c => c.categoryFilter === 'workshops').length;
+      }
+
+      function renderCertificates(filterCategory = 'all') {
+        const certEl = document.getElementById('certsGrid');
+        if (!certEl) return;
+
+        if (filterCategory === 'all') {
+          activeFilterCertificates = allCertificates;
+        } else {
+          activeFilterCertificates = allCertificates.filter(c => c.categoryFilter === filterCategory);
+        }
+
+        if (activeFilterCertificates.length === 0) {
+          certEl.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--text-dim); background: var(--surface); border-radius: var(--radius-md); border: 1px dashed var(--border);">
+              No certificates found for this category.
             </div>
-            <a href="${escapeHtml(c.credentialUrl)}" target="_blank" rel="noopener noreferrer" class="cert-link">
-              Verify Credential ↗
-            </a>
-          </div>
+          `;
+          return;
+        }
+
+        certEl.innerHTML = activeFilterCertificates.map(c => `
+          <article class="cert-card" data-category="${escapeHtml(c.categoryFilter || 'all')}" data-cert-id="${escapeHtml(c.id)}">
+            <div class="cert-thumb-container" onclick="openCertLightbox('${escapeHtml(c.id)}')" role="button" tabindex="0" aria-label="Inspect certificate ${escapeHtml(c.title)}" onkeydown="if(event.key==='Enter'||event.key===' ')openCertLightbox('${escapeHtml(c.id)}')">
+              ${c.image ? `
+                <img src="${escapeHtml(c.image)}" alt="${escapeHtml(c.title)}" class="cert-thumb-img" loading="lazy" />
+                <div class="cert-thumb-overlay">
+                  <span class="cert-zoom-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                    Inspect Photo
+                  </span>
+                </div>
+              ` : `
+                <div class="cert-thumb-placeholder">
+                  <div class="cert-placeholder-icon">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                  </div>
+                  <span class="cert-placeholder-tag">${escapeHtml(c.source || 'Credential')}</span>
+                  <div class="cert-thumb-overlay">
+                    <span class="cert-zoom-btn">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                      View Details
+                    </span>
+                  </div>
+                </div>
+              `}
+              <div class="cert-category-badge">${escapeHtml(c.category || 'Credential')}</div>
+            </div>
+
+            <div class="cert-card-body">
+              <div class="cert-header-meta">
+                <span class="cert-issuer-badge">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  ${escapeHtml(c.source || c.issuer)}
+                </span>
+                <span class="cert-date">${escapeHtml(c.issueDate || '')}</span>
+              </div>
+
+              <h3 class="cert-title">${escapeHtml(c.title)}</h3>
+              <div class="cert-issuer">${escapeHtml(c.issuer)}</div>
+              <p class="cert-desc">${escapeHtml(c.description || '')}</p>
+
+              <div class="tech-pill-list cert-skills">
+                ${(c.skills || []).map(s => `<span class="tech-pill">${escapeHtml(s)}</span>`).join('')}
+              </div>
+
+              <div class="cert-actions">
+                <button type="button" class="cert-view-btn" onclick="openCertLightbox('${escapeHtml(c.id)}')">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  ${c.image ? 'Inspect Photo' : 'View Credential'}
+                </button>
+                ${c.credentialUrl ? `
+                  <a href="${escapeHtml(c.credentialUrl)}" target="_blank" rel="noopener noreferrer" class="cert-link">
+                    <span>${c.credentialUrl.startsWith('http') ? 'Verify Online' : 'Open Photo'}</span> ↗
+                  </a>
+                ` : ''}
+              </div>
+            </div>
+          </article>
         `).join('');
       }
+
+      // Filter Bar Handlers
+      const certFilterBar = document.getElementById('certFilterBar');
+      if (certFilterBar) {
+        const pills = certFilterBar.querySelectorAll('.cert-filter-pill');
+        pills.forEach(pill => {
+          pill.addEventListener('click', () => {
+            pills.forEach(p => {
+              p.classList.remove('active');
+              p.setAttribute('aria-selected', 'false');
+            });
+            pill.classList.add('active');
+            pill.setAttribute('aria-selected', 'true');
+            const filter = pill.getAttribute('data-filter') || 'all';
+            renderCertificates(filter);
+          });
+        });
+      }
+
+      updateCertFilterCounters();
+      renderCertificates('all');
+
+      // Lightbox Modal Functions
+      window.openCertLightbox = function (id) {
+        const index = activeFilterCertificates.findIndex(c => c.id === id);
+        if (index !== -1) {
+          currentCertIndex = index;
+        } else {
+          const globalIndex = allCertificates.findIndex(c => c.id === id);
+          if (globalIndex !== -1) {
+            activeFilterCertificates = allCertificates;
+            currentCertIndex = globalIndex;
+          } else {
+            currentCertIndex = 0;
+          }
+        }
+        updateModalDisplay();
+        const modal = document.getElementById('certLightboxModal');
+        if (modal) {
+          modal.classList.add('open');
+          modal.removeAttribute('inert');
+          modal.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+        }
+      };
+
+      window.closeCertLightbox = function () {
+        const modal = document.getElementById('certLightboxModal');
+        if (modal) {
+          modal.classList.remove('open');
+          modal.setAttribute('inert', '');
+          modal.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        }
+      };
+
+      window.navigateCert = function (direction) {
+        if (!activeFilterCertificates.length) return;
+        currentCertIndex = (currentCertIndex + direction + activeFilterCertificates.length) % activeFilterCertificates.length;
+        updateModalDisplay();
+      };
+
+      function updateModalDisplay() {
+        const cert = activeFilterCertificates[currentCertIndex];
+        if (!cert) return;
+
+        const titleEl = document.getElementById('certModalTitle');
+        const catEl = document.getElementById('certModalCategory');
+        const counterEl = document.getElementById('certModalCounter');
+        const imgEl = document.getElementById('certModalImage');
+        const placeholderEl = document.getElementById('certModalPlaceholder');
+        const issuerEl = document.getElementById('certModalIssuer');
+        const dateEl = document.getElementById('certModalDate');
+        const credIdEl = document.getElementById('certModalCredId');
+        const descEl = document.getElementById('certModalDesc');
+        const skillsEl = document.getElementById('certModalSkills');
+        const verifyBtn = document.getElementById('certModalVerifyBtn');
+        const downloadBtn = document.getElementById('certModalDownloadBtn');
+
+        if (titleEl) titleEl.textContent = cert.title;
+        if (catEl) catEl.textContent = cert.category || 'Credential';
+        if (counterEl) counterEl.textContent = `${currentCertIndex + 1} / ${activeFilterCertificates.length}`;
+        if (issuerEl) issuerEl.textContent = cert.issuer;
+        if (dateEl) dateEl.textContent = cert.issueDate;
+        if (credIdEl) credIdEl.textContent = cert.credentialId || 'Verified Record';
+        if (descEl) descEl.textContent = cert.description;
+
+        if (skillsEl) {
+          skillsEl.innerHTML = (cert.skills || []).map(s => `<span class="tech-pill">${escapeHtml(s)}</span>`).join('');
+        }
+
+        if (cert.image) {
+          if (imgEl) {
+            imgEl.src = cert.image;
+            imgEl.alt = cert.title;
+            imgEl.style.display = 'block';
+          }
+          if (placeholderEl) placeholderEl.style.display = 'none';
+          if (downloadBtn) {
+            downloadBtn.href = cert.image;
+            downloadBtn.style.display = 'inline-flex';
+            downloadBtn.textContent = 'View Original Photo ↗';
+          }
+        } else {
+          if (imgEl) imgEl.style.display = 'none';
+          if (placeholderEl) {
+            placeholderEl.style.display = 'block';
+            placeholderEl.innerHTML = `
+              <div style="font-size: 40px; margin-bottom: 12px;">🏆</div>
+              <div style="font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--text);">${escapeHtml(cert.title)}</div>
+              <div style="color: var(--teal); font-family: var(--font-mono); font-size: 13px; margin-top: 6px;">${escapeHtml(cert.issuer)}</div>
+            `;
+          }
+          if (downloadBtn) downloadBtn.style.display = 'none';
+        }
+
+        if (verifyBtn) {
+          if (cert.credentialUrl) {
+            verifyBtn.href = cert.credentialUrl;
+            verifyBtn.style.display = 'inline-flex';
+            verifyBtn.textContent = cert.credentialUrl.startsWith('http') ? 'Verify Online ↗' : 'Open Document ↗';
+          } else {
+            verifyBtn.style.display = 'none';
+          }
+        }
+      }
+
+      document.addEventListener('keydown', (e) => {
+        const modal = document.getElementById('certLightboxModal');
+        if (modal && modal.classList.contains('open')) {
+          if (e.key === 'Escape') {
+            closeCertLightbox();
+          } else if (e.key === 'ArrowLeft') {
+            navigateCert(-1);
+          } else if (e.key === 'ArrowRight') {
+            navigateCert(1);
+          }
+        }
+      });
 
       // 9. Key Achievements
       const achieveEl = document.getElementById('achievementsGrid');
@@ -6726,6 +7757,9 @@
       initTheme();
       initNavigation();
       initCopyEmail();
+      initDirectContactForm();
+      const yrEl = document.getElementById('copyrightYear');
+      if (yrEl) yrEl.textContent = new Date().getFullYear();
       initResumeButtons();
       renderStaticSections();
       fetchLiveTelemetry();

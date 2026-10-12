@@ -4,7 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LinkedIn Activity Synchronizer | Sarthak Choudhary Portfolio</title>
+  <meta name="description" content="Synchronize LinkedIn activities, publications, honors, and verified engineering certifications directly with Sarthak Choudhary's portfolio.">
+  <meta name="author" content="Sarthak Choudhary">
   <meta name="robots" content="noindex, nofollow">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -608,9 +618,21 @@ x-sync-secret: <span class="secret-display">sarthak-portfolio-sync-key</span></c
       </div>
     </div>
   </div>
+
+  <footer style="margin-top: 48px; padding-top: 24px; padding-bottom: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--text-dim);">
+    <div>&copy; <span id="syncCopyrightYear">2026</span> <strong style="color: var(--text);">Sarthak Choudhary</strong> &bull; Electrical &amp; Electronics Engineering</div>
+    <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+      <a href="tel:+919341664156" style="color: var(--copper); text-decoration: none;">+91 93416 64156</a>
+      <a href="mailto:sarthakchoudhary1778@gmail.com" style="color: var(--copper); text-decoration: none;">sarthakchoudhary1778@gmail.com</a>
+      <a href="/" style="color: var(--copper); text-decoration: none;">&larr; Portfolio Home</a>
+    </div>
+  </footer>
 </div>
 
 <script>
+  // Dynamic copyright year
+  const syncYr = document.getElementById('syncCopyrightYear');
+  if (syncYr) syncYr.textContent = new Date().getFullYear();
   // Auth secret handling
   const secretInput = document.getElementById('syncSecretInput');
   const savedSecret = localStorage.getItem('sarthak_sync_secret');
