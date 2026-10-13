@@ -884,16 +884,16 @@ const PROFILE_DATA = {
       title: "MATLAB Onramp",
       issuer: "MathWorks",
       issuerIcon: "academic",
-      issueDate: "Sep 2026",
-      credentialUrl: "https://www.linkedin.com/in/sarthak-choudhary-455098293/details/certifications/",
+      issueDate: "17 Sep 2026",
+      credentialUrl: "Certificate/matlab onramp.png",
       credentialId: "MATHWORKS-MATLAB-ONRAMP",
-      image: null,
+      image: "Certificate/matlab onramp.png",
       category: "Technical & AI/ML",
       categoryFilter: "technical",
       skills: ["MATLAB", "Computational Programming", "Matrix Operations", "Data Visualization"],
-      source: "MathWorks / LinkedIn",
+      source: "MathWorks / Training Services",
       verified: true,
-      description: "Official MATLAB Onramp certification by MathWorks covering computational syntax, vector/matrix math, data visualization, dynamic plotting, and script automation."
+      description: "Official course completion certificate by MathWorks Training Services (17 September 2026) for successfully completing 100% of the self-paced MATLAB Onramp training course."
     },
     {
       id: "cert-matlab-ev-sim",
@@ -916,16 +916,16 @@ const PROFILE_DATA = {
       title: "Power Systems Simulation Onramp",
       issuer: "MathWorks / MATLAB Academy",
       issuerIcon: "academic",
-      issueDate: "Aug 2026",
-      credentialUrl: "https://lnkd.in/dMW3HBGJ",
+      issueDate: "17 Aug 2026",
+      credentialUrl: "Certificate/power system onramp.png",
       credentialId: "MATHWORKS-POWERSYS-ONRAMP",
-      image: null,
+      image: "Certificate/power system onramp.png",
       category: "Technical & Engineering",
       categoryFilter: "technical",
       skills: ["MATLAB", "Simscape Electrical", "Microgrid Simulation", "Power Systems", "Droop Control", "MPPT"],
-      source: "MathWorks / MATLAB Academy",
+      source: "MathWorks / Training Services",
       verified: true,
-      description: "Hands-on power systems simulation by MathWorks Academy simulating microgrids using Simscape Electrical — three-phase circuits, droop control for load sharing, and Maximum Power Point Tracking (MPPT) for renewables."
+      description: "Official course completion certificate by MathWorks Training Services (17 August 2026) for completing 100% of the Power Systems Simulation Onramp self-paced course in Simscape Electrical."
     },
     {
       id: "cert-data-analytics-coursera",
