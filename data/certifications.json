@@ -1,8 +1,8 @@
 [
   {
     "id": "cert-deloitte-analytics-2026",
-    "title": "Data Analytics Job Simulation",
-    "issuer": "Deloitte",
+    "title": "Deloitte Australia - Data Analytics Job Simulation",
+    "issuer": "Deloitte Australia",
     "issuerIcon": "analytics",
     "issueDate": "Oct 2026",
     "credentialUrl": "Certificate/DATA Analytics JOb simulation.png",
@@ -11,9 +11,9 @@
     "category": "Technical & AI/ML",
     "categoryFilter": "technical",
     "skills": ["Data Analysis", "Forensic Technology", "Analytics", "Problem Solving"],
-    "source": "Deloitte / Forage",
+    "source": "Deloitte Australia / Forage",
     "verified": true,
-    "description": "Completed practical job simulation authorized by Deloitte on Forage (October 2026). Hands-on tasks in practical data analysis, investigation, and forensic technology."
+    "description": "Completed practical job simulation authorized by Deloitte Australia on Forage (October 2026). Hands-on tasks in practical data analysis, investigation, and forensic technology."
   },
   {
     "id": "cert-siemens-pm-2026",
@@ -32,6 +32,54 @@
     "description": "Completed practical job simulation authorized by Siemens on Forage (October 2026). Practical tasks in developing key performance indicators (KPIs) and managing project dashboards."
   },
   {
+    "id": "cert-matlab-onramp-2026",
+    "title": "MATLAB Onramp",
+    "issuer": "MathWorks",
+    "issuerIcon": "academic",
+    "issueDate": "Sep 2026",
+    "credentialUrl": "https://www.linkedin.com/in/sarthak-choudhary-455098293/details/certifications/",
+    "credentialId": "MATHWORKS-MATLAB-ONRAMP",
+    "image": null,
+    "category": "Technical & AI/ML",
+    "categoryFilter": "technical",
+    "skills": ["MATLAB", "Computational Programming", "Matrix Operations", "Data Visualization"],
+    "source": "MathWorks / LinkedIn",
+    "verified": true,
+    "description": "Official MATLAB Onramp certification by MathWorks covering computational syntax, vector/matrix math, data visualization, dynamic plotting, and script automation."
+  },
+  {
+    "id": "cert-matlab-ev-sim",
+    "title": "Simulation & Analysis of EV using MATLAB",
+    "issuer": "Dept. of EEE, Sir M. Visvesvaraya Institute of Technology",
+    "issuerIcon": "academic",
+    "issueDate": "Sep 2026",
+    "credentialUrl": "Certificate/IMG_20261013_021959_1.jpg",
+    "credentialId": "SMVIT-EEE-EV-MATLAB",
+    "image": "Certificate/IMG_20261013_021959_1.jpg",
+    "category": "Technical & Engineering",
+    "categoryFilter": "technical",
+    "skills": ["MATLAB", "Simulink", "Electric Vehicles", "Powertrain Modeling", "Motor Dynamics"],
+    "source": "Sir MVIT / Dept of EEE",
+    "verified": true,
+    "description": "5-Day Skill Development Program on Electric Vehicle simulation, dynamic motor torque analysis, powertrain kinematics, and battery pack behavior organized by the Department of Electrical & Electronics Engineering."
+  },
+  {
+    "id": "cert-mathworks-powersystems-2026",
+    "title": "Power Systems Simulation Onramp",
+    "issuer": "MathWorks / MATLAB Academy",
+    "issuerIcon": "academic",
+    "issueDate": "Aug 2026",
+    "credentialUrl": "https://lnkd.in/dMW3HBGJ",
+    "credentialId": "MATHWORKS-POWERSYS-ONRAMP",
+    "image": null,
+    "category": "Technical & Engineering",
+    "categoryFilter": "technical",
+    "skills": ["MATLAB", "Simscape Electrical", "Microgrid Simulation", "Power Systems", "Droop Control", "MPPT"],
+    "source": "MathWorks / MATLAB Academy",
+    "verified": true,
+    "description": "Hands-on power systems simulation by MathWorks Academy simulating microgrids using Simscape Electrical — three-phase circuits, droop control for load sharing, and Maximum Power Point Tracking (MPPT) for renewables."
+  },
+  {
     "id": "cert-data-analytics-coursera",
     "title": "Data Analytics Foundations",
     "issuer": "Coursera & DeepLearning.AI",
@@ -46,22 +94,6 @@
     "source": "Coursera / DeepLearning.AI",
     "verified": true,
     "description": "Official course certificate authorized by DeepLearning.AI and offered through Coursera. Practical training in exploratory data analysis, relational SQL querying, spreadsheet modeling, and analytical reporting."
-  },
-  {
-    "id": "cert-matlab-ev-sim",
-    "title": "Simulation & Analysis of EV using MATLAB",
-    "issuer": "Dept. of EEE, Sir M. Visvesvaraya Institute of Technology",
-    "issuerIcon": "academic",
-    "issueDate": "July 2026",
-    "credentialUrl": "Certificate/IMG_20261013_021959_1.jpg",
-    "credentialId": "SMVIT-EEE-EV-MATLAB",
-    "image": "Certificate/IMG_20261013_021959_1.jpg",
-    "category": "Technical & Engineering",
-    "categoryFilter": "technical",
-    "skills": ["MATLAB", "Simulink", "Electric Vehicles", "Powertrain Modeling", "Motor Dynamics"],
-    "source": "Sir MVIT / Dept of EEE",
-    "verified": true,
-    "description": "5-Day Skill Development Program on Electric Vehicle simulation, dynamic motor torque analysis, powertrain kinematics, and battery pack behavior organized by the Department of Electrical & Electronics Engineering."
   },
   {
     "id": "cert-grandmasters-chess-2025",

@@ -5,24 +5,27 @@ const PROFILE_DATA = {
   personal: {
     name: "Sarthak Choudhary",
     handle: "sarthak1778",
-    headline: "Electrical & Electronics Engineering Student",
+    headline: "Google Student Ambassador 2026 | B.E Student | EEE Dept | Sir M Visvesvaraya Institute Of Technology",
     subheadline: "Embedded Systems • IoT • Control Systems • AI",
     positioning: "Building intelligent hardware-software systems that connect sensing, control, automation, and AI.",
-    bio: "Undergraduate engineer at Sir M Visvesvaraya Institute of Technology, Bengaluru (8.39 CGPA). I take engineering concepts from mathematical modeling and control simulation in MATLAB/Simulink to physical embedded prototypes and production software.",
+    bio: "Undergraduate engineer at Sir M Visvesvaraya Institute of Technology, Bengaluru (8.39 CGPA). Selected as Google Student Ambassador 2026 (GID: 4918). I take engineering concepts from mathematical modeling and control simulation in MATLAB/Simulink to physical embedded prototypes and production software.",
     email: "sarthakchoudhary1778@gmail.com",
     phone: "+91 93416 64156",
-    location: "Bengaluru, India",
+    location: "Greater Bengaluru Area, India",
     institution: "Sir M Visvesvaraya Institute of Technology, Bengaluru",
     cgpa: "8.39",
     degree: "B.E. in Electrical & Electronics Engineering",
     githubUrl: "https://github.com/sarthak1778",
     linkedinUrl: "https://www.linkedin.com/in/sarthak-choudhary-455098293/",
     linkedinHandle: "@sarthak-choudhary",
+    linkedinFollowers: "854",
+    linkedinConnections: "500+",
+    topSkills: ["Photography", "Event Management", "Embedded Systems", "MATLAB & Simulink", "Google Gemini & AI"],
     instagramUrl: "https://www.instagram.com/sarthakchoudhary_21?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==",
     instagramHandle: "@sarthakchoudhary_21",
     livePortfolioUrl: "https://sarthak-choudhary.vercel.app/",
     avatarUrl: "https://avatars.githubusercontent.com/u/87663705?v=4",
-    resumeObjective: "Electrical & Electronics Engineering undergraduate at Sir M Visvesvaraya Institute of Technology (8.39 CGPA) specializing in embedded firmware, IoT architectures, motor control simulations, and technical software. Demonstrated experience building working physical prototypes (ESP8266/Arduino), neural network adaptive motor simulations (MATLAB/Simulink), and production web applications. Active Google Gemini Campus Ambassador experienced in AI-accelerated engineering workflows."
+    resumeObjective: "Electrical & Electronics Engineering undergraduate at Sir M Visvesvaraya Institute of Technology (8.39 CGPA) specializing in embedded firmware, IoT architectures, motor control simulations, and technical software. Demonstrated experience building working physical prototypes (ESP8266/Arduino), neural network adaptive motor simulations (MATLAB/Simulink), and production web applications. Active Google Student Ambassador 2026 (GID: 4918) experienced in AI-accelerated engineering workflows."
   },
 
   photography: {
@@ -846,8 +849,8 @@ const PROFILE_DATA = {
   certifications: [
     {
       id: "cert-deloitte-analytics-2026",
-      title: "Data Analytics Job Simulation",
-      issuer: "Deloitte",
+      title: "Deloitte Australia - Data Analytics Job Simulation",
+      issuer: "Deloitte Australia",
       issuerIcon: "analytics",
       issueDate: "Oct 2026",
       credentialUrl: "Certificate/DATA Analytics JOb simulation.png",
@@ -856,9 +859,9 @@ const PROFILE_DATA = {
       category: "Technical & AI/ML",
       categoryFilter: "technical",
       skills: ["Data Analysis", "Forensic Technology", "Analytics", "Problem Solving"],
-      source: "Deloitte / Forage",
+      source: "Deloitte Australia / Forage",
       verified: true,
-      description: "Completed practical job simulation authorized by Deloitte on Forage (October 2026). Hands-on tasks in practical data analysis, investigation, and forensic technology."
+      description: "Completed practical job simulation authorized by Deloitte Australia on Forage (October 2026). Hands-on tasks in practical data analysis, investigation, and forensic technology."
     },
     {
       id: "cert-siemens-pm-2026",
@@ -877,6 +880,54 @@ const PROFILE_DATA = {
       description: "Completed practical job simulation authorized by Siemens on Forage (October 2026). Practical tasks in developing key performance indicators (KPIs) and managing project dashboards."
     },
     {
+      id: "cert-matlab-onramp-2026",
+      title: "MATLAB Onramp",
+      issuer: "MathWorks",
+      issuerIcon: "academic",
+      issueDate: "Sep 2026",
+      credentialUrl: "https://www.linkedin.com/in/sarthak-choudhary-455098293/details/certifications/",
+      credentialId: "MATHWORKS-MATLAB-ONRAMP",
+      image: null,
+      category: "Technical & AI/ML",
+      categoryFilter: "technical",
+      skills: ["MATLAB", "Computational Programming", "Matrix Operations", "Data Visualization"],
+      source: "MathWorks / LinkedIn",
+      verified: true,
+      description: "Official MATLAB Onramp certification by MathWorks covering computational syntax, vector/matrix math, data visualization, dynamic plotting, and script automation."
+    },
+    {
+      id: "cert-matlab-ev-sim",
+      title: "Simulation & Analysis of EV using MATLAB",
+      issuer: "Dept. of EEE, Sir M. Visvesvaraya Institute of Technology",
+      issuerIcon: "academic",
+      issueDate: "Sep 2026",
+      credentialUrl: "Certificate/IMG_20261013_021959_1.jpg",
+      credentialId: "SMVIT-EEE-EV-MATLAB",
+      image: "Certificate/IMG_20261013_021959_1.jpg",
+      category: "Technical & Engineering",
+      categoryFilter: "technical",
+      skills: ["MATLAB", "Simulink", "Electric Vehicles", "Powertrain Modeling", "Motor Dynamics"],
+      source: "Sir MVIT / Dept of EEE",
+      verified: true,
+      description: "5-Day Skill Development Program on Electric Vehicle simulation, dynamic motor torque analysis, powertrain kinematics, and battery pack behavior organized by the Department of Electrical & Electronics Engineering."
+    },
+    {
+      id: "cert-mathworks-powersystems-2026",
+      title: "Power Systems Simulation Onramp",
+      issuer: "MathWorks / MATLAB Academy",
+      issuerIcon: "academic",
+      issueDate: "Aug 2026",
+      credentialUrl: "https://lnkd.in/dMW3HBGJ",
+      credentialId: "MATHWORKS-POWERSYS-ONRAMP",
+      image: null,
+      category: "Technical & Engineering",
+      categoryFilter: "technical",
+      skills: ["MATLAB", "Simscape Electrical", "Microgrid Simulation", "Power Systems", "Droop Control", "MPPT"],
+      source: "MathWorks / MATLAB Academy",
+      verified: true,
+      description: "Hands-on power systems simulation by MathWorks Academy simulating microgrids using Simscape Electrical — three-phase circuits, droop control for load sharing, and Maximum Power Point Tracking (MPPT) for renewables."
+    },
+    {
       id: "cert-data-analytics-coursera",
       title: "Data Analytics Foundations",
       issuer: "Coursera & DeepLearning.AI",
@@ -891,22 +942,6 @@ const PROFILE_DATA = {
       source: "Coursera / DeepLearning.AI",
       verified: true,
       description: "Official course certificate authorized by DeepLearning.AI and offered through Coursera. Practical training in exploratory data analysis, relational SQL querying, spreadsheet modeling, and analytical reporting."
-    },
-    {
-      id: "cert-matlab-ev-sim",
-      title: "Simulation & Analysis of EV using MATLAB",
-      issuer: "Dept. of EEE, Sir M. Visvesvaraya Institute of Technology",
-      issuerIcon: "academic",
-      issueDate: "July 2026",
-      credentialUrl: "Certificate/IMG_20261013_021959_1.jpg",
-      credentialId: "SMVIT-EEE-EV-MATLAB",
-      image: "Certificate/IMG_20261013_021959_1.jpg",
-      category: "Technical & Engineering",
-      categoryFilter: "technical",
-      skills: ["MATLAB", "Simulink", "Electric Vehicles", "Powertrain Modeling", "Motor Dynamics"],
-      source: "Sir MVIT / Dept of EEE",
-      verified: true,
-      description: "5-Day Skill Development Program on Electric Vehicle simulation, dynamic motor torque analysis, powertrain kinematics, and battery pack behavior organized by the Department of Electrical & Electronics Engineering."
     },
     {
       id: "cert-grandmasters-chess-2025",
@@ -1059,17 +1094,17 @@ const PROFILE_DATA = {
       source: "linkedin",
       sourceType: "verified-feed",
       type: "milestone",
-      title: "Completed Deloitte Data Analytics Job Simulation",
-      description: "Completed practical job simulation authorized by Deloitte via Forage. Solved real-world tasks in data analysis, data forensics, and structured analytics.",
+      title: "Deloitte Australia - Data Analytics Job Simulation Certification",
+      description: "I’m happy to share that I’ve obtained a new certification: Deloitte Australia - Data Analytics Job Simulation from Forage! Completed practical tasks in data analysis and forensic technology.",
       date: "2026-10-13T16:00:00Z",
       timestamp: "2026-10-13T16:00:00Z",
       url: "https://www.linkedin.com/in/sarthak-choudhary-455098293/details/certifications/",
       category: "achievements",
-      technologies: ["Data Analytics", "Forensic Technology", "Deloitte", "Forage"],
+      technologies: ["Data Analytics", "Forensic Technology", "Deloitte Australia", "Forage"],
       metadata: {
         author: "Sarthak Choudhary",
         handle: "@sarthak-choudhary",
-        engagement: { reactions: 48, comments: 8 }
+        engagement: { reactions: 5, comments: 0, impressions: 14 }
       }
     },
     {
@@ -1077,7 +1112,7 @@ const PROFILE_DATA = {
       source: "linkedin",
       sourceType: "verified-feed",
       type: "milestone",
-      title: "Completed Siemens Project Manager Job Simulation",
+      title: "Siemens Project Manager Job Simulation Certification",
       description: "Completed project management job simulation authorized by Siemens via Forage. Hands-on experience developing key performance indicators (KPIs) and managing project dashboards.",
       date: "2026-10-08T14:30:00Z",
       timestamp: "2026-10-08T14:30:00Z",
@@ -1091,75 +1126,129 @@ const PROFILE_DATA = {
       }
     },
     {
-      id: "li-gemini-ambassador-2025",
-      source: "linkedin",
-      sourceType: "verified-feed",
-      type: "post",
-      title: "Selected as Google Gemini Campus Ambassador",
-      description: "Proud to be representing Google Gemini on campus! Organizing hands-on technical workshops covering modern AI workflows, prompt engineering, and developer tooling for engineering students.",
-      date: "2026-08-20T10:00:00Z",
-      timestamp: "2026-08-20T10:00:00Z",
-      url: "https://www.linkedin.com/in/sarthak-choudhary-455098293/recent-activity/all/",
-      category: "achievements",
-      technologies: ["Google Gemini", "Generative AI", "Prompt Engineering", "Developer Community"],
-      metadata: {
-        author: "Sarthak Choudhary",
-        handle: "@sarthak-choudhary",
-        engagement: { reactions: 85, comments: 14 }
-      }
-    },
-    {
-      id: "li-aero-india-2025",
+      id: "li-matlab-onramp-2026",
       source: "linkedin",
       sourceType: "verified-feed",
       type: "milestone",
-      title: "Operations & Logistics Coordination at Aero India 2025",
-      description: "Honored to volunteer at Aero India 2025, managing event logistics, delegate routing, and coordination for over 1,200 attendees at Asia's premier aerospace exposition.",
-      date: "2026-07-15T09:30:00Z",
-      timestamp: "2026-07-15T09:30:00Z",
-      url: "https://www.linkedin.com/in/sarthak-choudhary-455098293/details/volunteering/",
+      title: "Obtained MATLAB Onramp Certification from MathWorks",
+      description: "I’m happy to share that I’ve obtained a new certification: MATLAB Onramp from MathWorks! Demonstrating foundational proficiency in MATLAB programming, matrix computation, and visualization.",
+      date: "2026-09-17T10:00:00Z",
+      timestamp: "2026-09-17T10:00:00Z",
+      url: "https://www.linkedin.com/in/sarthak-choudhary-455098293/details/certifications/",
       category: "achievements",
-      technologies: ["Event Logistics", "Leadership", "Aero India 2025"],
+      technologies: ["MATLAB", "MathWorks", "Computation", "Algorithms"],
       metadata: {
         author: "Sarthak Choudhary",
         handle: "@sarthak-choudhary",
-        engagement: { reactions: 112, comments: 22 }
+        engagement: { reactions: 10, comments: 1, impressions: 365 }
       }
     },
     {
-      id: "li-smart-plant-iot",
+      id: "li-matlab-ev-sim-2026",
       source: "linkedin",
       sourceType: "verified-feed",
-      type: "project",
-      title: "Smart Plant Monitoring System Prototype Completed",
-      description: "Completed physical prototyping of our automated IoT plant monitoring & irrigation unit using Arduino Uno, ESP8266 Wi-Fi module, and ThingSpeak cloud telemetry.",
-      date: "2026-05-18T14:20:00Z",
-      timestamp: "2026-05-18T14:20:00Z",
-      url: "https://www.linkedin.com/in/sarthak-choudhary-455098293/details/projects/",
-      category: "projects",
-      technologies: ["IoT", "Arduino Uno", "ESP8266", "ThingSpeak", "Sensors"],
+      type: "post",
+      title: "5-Day Skill Development Program: EV Simulation using MATLAB",
+      description: "Glad to share that I have successfully completed a 5-Day Skill Development Program on 'Simulation and Analysis of EV using MATLAB', organized by the Department of Electrical & Electronics Engineering, Sir MVIT. Hands-on exposure to EV system simulation, motor performance, and powertrain kinematics.",
+      date: "2026-09-03T11:30:00Z",
+      timestamp: "2026-09-03T11:30:00Z",
+      url: "https://www.linkedin.com/in/sarthak-choudhary-455098293/recent-activity/all/",
+      category: "achievements",
+      technologies: ["Electric Vehicles", "EV", "MATLAB", "Simulink", "Power Electronics"],
       metadata: {
         author: "Sarthak Choudhary",
         handle: "@sarthak-choudhary",
-        engagement: { reactions: 94, comments: 18 }
+        engagement: { reactions: 8, comments: 0, impressions: 374 }
       }
     },
     {
-      id: "li-hybrid-control-ann",
+      id: "li-powersystems-onramp-2026",
       source: "linkedin",
       sourceType: "verified-feed",
-      type: "project",
-      title: "Hybrid ANN-PID PMSM Speed Control Simulation",
-      description: "Validated non-linear speed regulation for permanent magnet synchronous motor drives using MATLAB/Simulink with adaptive artificial neural networks.",
-      date: "2026-03-10T11:00:00Z",
-      timestamp: "2026-03-10T11:00:00Z",
-      url: "https://www.linkedin.com/in/sarthak-choudhary-455098293/details/projects/",
+      type: "post",
+      title: "Power Systems Simulation Onramp: Simscape Electrical & Microgrids",
+      description: "Excited to share that I've completed the 'Power Systems Simulation Onramp' course by MATLAB Academy (MathWorks)! Covered simulating a simple microgrid using Simscape Electrical — three-phase circuits, droop control for load sharing, and MPPT for renewable sources.",
+      date: "2026-08-17T09:15:00Z",
+      timestamp: "2026-08-17T09:15:00Z",
+      url: "https://www.linkedin.com/in/sarthak-choudhary-455098293/recent-activity/all/",
       category: "projects",
-      technologies: ["MATLAB", "Simulink", "Control Systems", "ANN"],
+      technologies: ["MATLAB", "Power Systems", "Microgrid", "Simscape Electrical", "Renewable Energy"],
       metadata: {
         author: "Sarthak Choudhary",
         handle: "@sarthak-choudhary",
-        engagement: { reactions: 76, comments: 9 }
+        engagement: { reactions: 13, comments: 0, impressions: 385 }
+      }
+    },
+    {
+      id: "li-gemini-joy-code-2026",
+      source: "linkedin",
+      sourceType: "verified-feed",
+      type: "post",
+      title: "Finding the Creative Joy in Complex Code: Engineering with Gemini",
+      description: "Taking a project from an ambitious idea to a working prototype used to take weeks of debugging. Now, I’m using Gemini to brainstorm logic, debug C++ on the fly, and even visualize the final hardware design before I build it. [GID: 4918]",
+      date: "2026-06-19T14:00:00Z",
+      timestamp: "2026-06-19T14:00:00Z",
+      url: "https://www.linkedin.com/in/sarthak-choudhary-455098293/recent-activity/all/",
+      category: "projects",
+      technologies: ["Google Gemini", "C++", "Embedded Systems", "Hardware Design", "GSA 2026"],
+      metadata: {
+        author: "Sarthak Choudhary",
+        handle: "@sarthak-choudhary",
+        engagement: { reactions: 4, comments: 0, impressions: 236 }
+      }
+    },
+    {
+      id: "li-gemini-welcome-kit-2026",
+      source: "linkedin",
+      sourceType: "verified-feed",
+      type: "post",
+      title: "Welcome Kit Unboxing: Google Gemini Student Ambassador Program 2026",
+      description: "Thrilled to unbox my official Welcome Kit for the Google Gemini Student Ambassador Program 2026! Being selected to represent #TeamGemini on campus is an absolute honor. Here's to Prompting the Future! [GID: 4918]",
+      date: "2026-06-11T12:00:00Z",
+      timestamp: "2026-06-11T12:00:00Z",
+      url: "https://www.linkedin.com/in/sarthak-choudhary-455098293/recent-activity/all/",
+      category: "achievements",
+      technologies: ["Google Student Ambassador", "Team Gemini", "AI Literacy", "Community Leadership"],
+      metadata: {
+        author: "Sarthak Choudhary",
+        handle: "@sarthak-choudhary",
+        engagement: { reactions: 19, comments: 0, impressions: 683 }
+      }
+    },
+    {
+      id: "li-career-glowup-2026",
+      source: "linkedin",
+      sourceType: "verified-feed",
+      type: "post",
+      title: "Hosted Career Glow Up Night for Sir MVIT Campus Community",
+      description: "Successfully hosted Career Glow Up Night for my campus community at Sir MVIT! Guided peers through personal branding, interactive pitch trials, and showcasing how AI assists complex embedded systems and HCI drone control. [GID: 4918]",
+      date: "2026-05-31T18:00:00Z",
+      timestamp: "2026-05-31T18:00:00Z",
+      url: "https://www.linkedin.com/in/sarthak-choudhary-455098293/recent-activity/all/",
+      category: "achievements",
+      technologies: ["Google Gemini", "Embedded Systems", "Drone Control", "Personal Branding", "Sir MVIT"],
+      metadata: {
+        author: "Sarthak Choudhary",
+        handle: "@sarthak-choudhary",
+        engagement: { reactions: 14, comments: 0, impressions: 547 }
+      }
+    },
+    {
+      id: "li-student-ai-reel-2026",
+      source: "linkedin",
+      sourceType: "verified-feed",
+      type: "post",
+      title: "Exploring How AI Supports Students: CV, Interview & Productivity Reel",
+      description: "Created a student-focused guide and Reel exploring real Gemini workflows for CV improvement, interview preparation, career guidance, and academic productivity support. [GID: 4918]",
+      date: "2026-05-23T15:30:00Z",
+      timestamp: "2026-05-23T15:30:00Z",
+      url: "https://www.linkedin.com/in/sarthak-choudhary-455098293/recent-activity/all/",
+      category: "projects",
+      technologies: ["Google Gemini", "AI Productivity", "Career Prep", "Student Community"],
+      metadata: {
+        author: "Sarthak Choudhary",
+        handle: "@sarthak-choudhary",
+        engagement: { reactions: 2, comments: 1, impressions: 186 }
       }
     }
   ]
