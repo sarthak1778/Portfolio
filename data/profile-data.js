@@ -845,6 +845,38 @@ const PROFILE_DATA = {
 
   certifications: [
     {
+      id: "cert-deloitte-analytics-2026",
+      title: "Data Analytics Job Simulation",
+      issuer: "Deloitte",
+      issuerIcon: "analytics",
+      issueDate: "Oct 2026",
+      credentialUrl: "Certificate/DATA Analytics JOb simulation.png",
+      credentialId: "6ac78a6adf2921627562e8ad",
+      image: "Certificate/DATA Analytics JOb simulation.png",
+      category: "Technical & AI/ML",
+      categoryFilter: "technical",
+      skills: ["Data Analysis", "Forensic Technology", "Analytics", "Problem Solving"],
+      source: "Deloitte / Forage",
+      verified: true,
+      description: "Completed practical job simulation authorized by Deloitte on Forage (October 2026). Hands-on tasks in practical data analysis, investigation, and forensic technology."
+    },
+    {
+      id: "cert-siemens-pm-2026",
+      title: "Project Manager Job Simulation",
+      issuer: "Siemens",
+      issuerIcon: "briefcase",
+      issueDate: "Oct 2026",
+      credentialUrl: "Certificate/Project manager job simulation.png",
+      credentialId: "6ac777ec5970c17a53b29ffd",
+      image: "Certificate/Project manager job simulation.png",
+      category: "Workshops & Leadership",
+      categoryFilter: "workshops",
+      skills: ["Project Management", "Key Performance Indicators (KPIs)", "Project Dashboards", "Operational Leadership"],
+      source: "Siemens / Forage",
+      verified: true,
+      description: "Completed practical job simulation authorized by Siemens on Forage (October 2026). Practical tasks in developing key performance indicators (KPIs) and managing project dashboards."
+    },
+    {
       id: "cert-data-analytics-coursera",
       title: "Data Analytics Foundations",
       issuer: "Coursera & DeepLearning.AI",
@@ -1019,7 +1051,118 @@ const PROFILE_DATA = {
     "Vercel": ["prakash-jewellers"],
     "ThingSpeak": ["smart-plant-monitoring"],
     "OLED/LCD": ["ultrasonic-radar", "temp-controlled-fan"]
-  }
+  },
+
+  linkedinActivity: [
+    {
+      id: "li-deloitte-analytics-2026",
+      source: "linkedin",
+      sourceType: "verified-feed",
+      type: "milestone",
+      title: "Completed Deloitte Data Analytics Job Simulation",
+      description: "Completed practical job simulation authorized by Deloitte via Forage. Solved real-world tasks in data analysis, data forensics, and structured analytics.",
+      date: "2026-10-13T16:00:00Z",
+      timestamp: "2026-10-13T16:00:00Z",
+      url: "https://www.linkedin.com/in/sarthak-choudhary-455098293/details/certifications/",
+      category: "achievements",
+      technologies: ["Data Analytics", "Forensic Technology", "Deloitte", "Forage"],
+      metadata: {
+        author: "Sarthak Choudhary",
+        handle: "@sarthak-choudhary",
+        engagement: { reactions: 48, comments: 8 }
+      }
+    },
+    {
+      id: "li-siemens-pm-2026",
+      source: "linkedin",
+      sourceType: "verified-feed",
+      type: "milestone",
+      title: "Completed Siemens Project Manager Job Simulation",
+      description: "Completed project management job simulation authorized by Siemens via Forage. Hands-on experience developing key performance indicators (KPIs) and managing project dashboards.",
+      date: "2026-10-08T14:30:00Z",
+      timestamp: "2026-10-08T14:30:00Z",
+      url: "https://www.linkedin.com/in/sarthak-choudhary-455098293/details/certifications/",
+      category: "achievements",
+      technologies: ["Project Management", "KPIs", "Project Dashboards", "Siemens"],
+      metadata: {
+        author: "Sarthak Choudhary",
+        handle: "@sarthak-choudhary",
+        engagement: { reactions: 42, comments: 6 }
+      }
+    },
+    {
+      id: "li-gemini-ambassador-2025",
+      source: "linkedin",
+      sourceType: "verified-feed",
+      type: "post",
+      title: "Selected as Google Gemini Campus Ambassador",
+      description: "Proud to be representing Google Gemini on campus! Organizing hands-on technical workshops covering modern AI workflows, prompt engineering, and developer tooling for engineering students.",
+      date: "2026-08-20T10:00:00Z",
+      timestamp: "2026-08-20T10:00:00Z",
+      url: "https://www.linkedin.com/in/sarthak-choudhary-455098293/recent-activity/all/",
+      category: "achievements",
+      technologies: ["Google Gemini", "Generative AI", "Prompt Engineering", "Developer Community"],
+      metadata: {
+        author: "Sarthak Choudhary",
+        handle: "@sarthak-choudhary",
+        engagement: { reactions: 85, comments: 14 }
+      }
+    },
+    {
+      id: "li-aero-india-2025",
+      source: "linkedin",
+      sourceType: "verified-feed",
+      type: "milestone",
+      title: "Operations & Logistics Coordination at Aero India 2025",
+      description: "Honored to volunteer at Aero India 2025, managing event logistics, delegate routing, and coordination for over 1,200 attendees at Asia's premier aerospace exposition.",
+      date: "2026-07-15T09:30:00Z",
+      timestamp: "2026-07-15T09:30:00Z",
+      url: "https://www.linkedin.com/in/sarthak-choudhary-455098293/details/volunteering/",
+      category: "achievements",
+      technologies: ["Event Logistics", "Leadership", "Aero India 2025"],
+      metadata: {
+        author: "Sarthak Choudhary",
+        handle: "@sarthak-choudhary",
+        engagement: { reactions: 112, comments: 22 }
+      }
+    },
+    {
+      id: "li-smart-plant-iot",
+      source: "linkedin",
+      sourceType: "verified-feed",
+      type: "project",
+      title: "Smart Plant Monitoring System Prototype Completed",
+      description: "Completed physical prototyping of our automated IoT plant monitoring & irrigation unit using Arduino Uno, ESP8266 Wi-Fi module, and ThingSpeak cloud telemetry.",
+      date: "2026-05-18T14:20:00Z",
+      timestamp: "2026-05-18T14:20:00Z",
+      url: "https://www.linkedin.com/in/sarthak-choudhary-455098293/details/projects/",
+      category: "projects",
+      technologies: ["IoT", "Arduino Uno", "ESP8266", "ThingSpeak", "Sensors"],
+      metadata: {
+        author: "Sarthak Choudhary",
+        handle: "@sarthak-choudhary",
+        engagement: { reactions: 94, comments: 18 }
+      }
+    },
+    {
+      id: "li-hybrid-control-ann",
+      source: "linkedin",
+      sourceType: "verified-feed",
+      type: "project",
+      title: "Hybrid ANN-PID PMSM Speed Control Simulation",
+      description: "Validated non-linear speed regulation for permanent magnet synchronous motor drives using MATLAB/Simulink with adaptive artificial neural networks.",
+      date: "2026-03-10T11:00:00Z",
+      timestamp: "2026-03-10T11:00:00Z",
+      url: "https://www.linkedin.com/in/sarthak-choudhary-455098293/details/projects/",
+      category: "projects",
+      technologies: ["MATLAB", "Simulink", "Control Systems", "ANN"],
+      metadata: {
+        author: "Sarthak Choudhary",
+        handle: "@sarthak-choudhary",
+        engagement: { reactions: 76, comments: 9 }
+      }
+    }
+  ]
 };
 
 if (typeof module !== "undefined" && module.exports) {

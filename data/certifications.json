@@ -1,5 +1,37 @@
 [
   {
+    "id": "cert-deloitte-analytics-2026",
+    "title": "Data Analytics Job Simulation",
+    "issuer": "Deloitte",
+    "issuerIcon": "analytics",
+    "issueDate": "Oct 2026",
+    "credentialUrl": "Certificate/DATA Analytics JOb simulation.png",
+    "credentialId": "6ac78a6adf2921627562e8ad",
+    "image": "Certificate/DATA Analytics JOb simulation.png",
+    "category": "Technical & AI/ML",
+    "categoryFilter": "technical",
+    "skills": ["Data Analysis", "Forensic Technology", "Analytics", "Problem Solving"],
+    "source": "Deloitte / Forage",
+    "verified": true,
+    "description": "Completed practical job simulation authorized by Deloitte on Forage (October 2026). Hands-on tasks in practical data analysis, investigation, and forensic technology."
+  },
+  {
+    "id": "cert-siemens-pm-2026",
+    "title": "Project Manager Job Simulation",
+    "issuer": "Siemens",
+    "issuerIcon": "briefcase",
+    "issueDate": "Oct 2026",
+    "credentialUrl": "Certificate/Project manager job simulation.png",
+    "credentialId": "6ac777ec5970c17a53b29ffd",
+    "image": "Certificate/Project manager job simulation.png",
+    "category": "Workshops & Leadership",
+    "categoryFilter": "workshops",
+    "skills": ["Project Management", "Key Performance Indicators (KPIs)", "Project Dashboards", "Operational Leadership"],
+    "source": "Siemens / Forage",
+    "verified": true,
+    "description": "Completed practical job simulation authorized by Siemens on Forage (October 2026). Practical tasks in developing key performance indicators (KPIs) and managing project dashboards."
+  },
+  {
     "id": "cert-data-analytics-coursera",
     "title": "Data Analytics Foundations",
     "issuer": "Coursera & DeepLearning.AI",

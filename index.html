@@ -5694,6 +5694,44 @@
         <article class="li-card">
           <div class="li-card-top">
             <span class="badge badge-blue">LINKEDIN VERIFIED</span>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-faint);">Oct 2026</span>
+          </div>
+          <h3 class="li-title">Completed Deloitte Data Analytics Job Simulation</h3>
+          <p class="li-desc">Completed practical job simulation authorized by Deloitte via Forage. Solved real-world tasks in data analysis, data forensics, and structured analytics.</p>
+          <div class="tech-pill-list" style="margin-bottom: 14px;">
+            <span class="tech-pill">Data Analytics</span>
+            <span class="tech-pill">Forensic Technology</span>
+            <span class="tech-pill">Deloitte</span>
+            <span class="tech-pill">Forage</span>
+          </div>
+          <div class="li-footer">
+            <span style="color: var(--text-faint);">@sarthak-choudhary</span>
+            <a href="https://www.linkedin.com/in/sarthak-choudhary-455098293/details/certifications/" target="_blank"
+              rel="noopener noreferrer" style="color: var(--copper); font-weight: 600;">View on LinkedIn ↗</a>
+          </div>
+        </article>
+        <article class="li-card">
+          <div class="li-card-top">
+            <span class="badge badge-blue">LINKEDIN VERIFIED</span>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-faint);">Oct 2026</span>
+          </div>
+          <h3 class="li-title">Completed Siemens Project Manager Job Simulation</h3>
+          <p class="li-desc">Completed project management job simulation authorized by Siemens via Forage. Hands-on experience developing key performance indicators (KPIs) and managing project dashboards.</p>
+          <div class="tech-pill-list" style="margin-bottom: 14px;">
+            <span class="tech-pill">Project Management</span>
+            <span class="tech-pill">KPIs</span>
+            <span class="tech-pill">Project Dashboards</span>
+            <span class="tech-pill">Siemens</span>
+          </div>
+          <div class="li-footer">
+            <span style="color: var(--text-faint);">@sarthak-choudhary</span>
+            <a href="https://www.linkedin.com/in/sarthak-choudhary-455098293/details/certifications/" target="_blank"
+              rel="noopener noreferrer" style="color: var(--copper); font-weight: 600;">View on LinkedIn ↗</a>
+          </div>
+        </article>
+        <article class="li-card">
+          <div class="li-card-top">
+            <span class="badge badge-blue">LINKEDIN VERIFIED</span>
             <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-faint);">Aug 2026</span>
           </div>
           <h3 class="li-title">Selected as Google Gemini Campus Ambassador</h3>
@@ -5805,16 +5843,16 @@
       <!-- Certificate Filter Pills -->
       <div class="cert-filter-bar" id="certFilterBar" role="tablist" aria-label="Certificate Categories">
         <button type="button" class="cert-filter-pill active" data-filter="all" role="tab" aria-selected="true">
-          All Credentials <span class="cert-count-pill" id="certCountAll">8</span>
+          All Credentials <span class="cert-count-pill" id="certCountAll">10</span>
         </button>
         <button type="button" class="cert-filter-pill" data-filter="technical" role="tab" aria-selected="false">
-          Technical &amp; AI/ML <span class="cert-count-pill" id="certCountTech">3</span>
+          Technical &amp; AI/ML <span class="cert-count-pill" id="certCountTech">4</span>
         </button>
         <button type="button" class="cert-filter-pill" data-filter="operations" role="tab" aria-selected="false">
           Event Operations &amp; Management <span class="cert-count-pill" id="certCountOps">3</span>
         </button>
         <button type="button" class="cert-filter-pill" data-filter="workshops" role="tab" aria-selected="false">
-          Leadership &amp; Workshops <span class="cert-count-pill" id="certCountWork">2</span>
+          Leadership &amp; Workshops <span class="cert-count-pill" id="certCountWork">3</span>
         </button>
       </div>
 
@@ -6254,7 +6292,7 @@
   <div id="resume-sheet" aria-hidden="true"></div>
 
   <!-- Master Profile Data -->
-  <script src="data/profile-data.js?v=20260917"></script>
+  <script src="data/profile-data.js?v=20261014"></script>
 
   <!-- Interactive Client Controller Script -->
   <script>
@@ -6835,6 +6873,32 @@
             </div>
             <p class="edu-details">${escapeHtml(ed.details)}</p>
           </div>
+        `).join('');
+      }
+
+      // 7b. LinkedIn Activity Cards (Instant Render from PROFILE_DATA)
+      const linkedinCards = document.getElementById('linkedinCards');
+      if (linkedinCards && Array.isArray(data.linkedinActivity)) {
+        linkedinCards.innerHTML = data.linkedinActivity.map(item => `
+          <article class="li-card">
+            <div class="li-card-top">
+              <span class="badge badge-blue">LINKEDIN VERIFIED</span>
+              <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-faint);">
+                ${formatDate(item.date || item.timestamp)}
+              </span>
+            </div>
+            <h3 class="li-title">${escapeHtml(item.title)}</h3>
+            <p class="li-desc">${escapeHtml(item.description)}</p>
+            <div class="tech-pill-list" style="margin-bottom: 14px;">
+              ${(item.technologies || []).map(t => `<span class="tech-pill">${escapeHtml(t)}</span>`).join('')}
+            </div>
+            <div class="li-footer">
+              <span style="color: var(--text-faint);">${escapeHtml(item.metadata?.handle || '@sarthak-choudhary')}</span>
+              <a href="${escapeHtml(item.url || 'https://www.linkedin.com/in/sarthak-choudhary-455098293/')}" target="_blank" rel="noopener noreferrer" style="color: var(--copper); font-weight: 600;">
+                View on LinkedIn ↗
+              </a>
+            </div>
+          </article>
         `).join('');
       }
 
