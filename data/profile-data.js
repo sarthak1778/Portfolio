@@ -21,7 +21,7 @@ const PROFILE_DATA = {
     linkedinFollowers: "854",
     linkedinConnections: "500+",
     topSkills: ["Photography", "Event Management", "Embedded Systems", "MATLAB & Simulink", "Google Gemini & AI"],
-    instagramUrl: "https://www.instagram.com/sarthakchoudhary_21?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==",
+    instagramUrl: "https://www.instagram.com/sarthakchoudhary_21/",
     instagramHandle: "@sarthakchoudhary_21",
     livePortfolioUrl: "https://sarthak-choudhary.vercel.app/",
     avatarUrl: "https://avatars.githubusercontent.com/u/87663705?v=4",
